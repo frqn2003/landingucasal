@@ -492,7 +492,7 @@ class GenericCarousel {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Agregar mas sliders asi, y poner los items correspondientes
+  // Aca se agregan mas carruseles si se desea, seguir la corriente de lo ya escrito
   const testimonios = [
     {
       title: "María González",
@@ -542,3 +542,553 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+/* --------------------- Formulario ------------------------- */
+// Script corregido para el formulario
+(async () => {
+  try {
+    const resp = await fetch(
+      `../../landing/consultas/getCarrerasJson.php?tipcar=Grado,Pregrado,Intermedio`
+    );
+    const data = await resp.json();
+
+    // Códigos de carrera que deseas excluir
+    let codigosExcluidos = ["191", "46"];
+    // Filtrar el arreglo data para excluir los códigos de carrera especificados
+    let dataFiltrado = data.filter((carrera) => !codigosExcluidos.includes(carrera.codcar));
+
+    // CORREGIDO: Guardar correctamente en localStorage
+    window.localStorage.setItem("CarrerasModGeneral", JSON.stringify(dataFiltrado));
+
+    // 🔄 Vaciar y llenar selects con estado inicial correcto
+    $("#cbx_carrera").empty().append('<option value="" disabled selected>Carrera</option>');
+    $("#cbx_provincia").empty().append('<option value="" disabled selected>Provincia</option>');
+    $("#cbx_sede").empty().append('<option value="" disabled selected>Sede</option>');
+
+    // CORREGIDO: NO llenar el selector de carreras al inicio
+    // Las carreras se cargarán solo después de seleccionar modalidad → provincia → sede
+
+    // CORREGIDO: Asegurar que todos los campos estén deshabilitados al inicio
+    setTimeout(() => {
+      const provinciaElement = document.getElementById('cbx_provincia');
+      const sedeElement = document.getElementById('cbx_sede');
+      const carreraElement = document.getElementById('cbx_carrera');
+      
+      if (provinciaElement) {
+        provinciaElement.setAttribute("disabled", "disabled");
+        provinciaElement.className = "block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600 boton-inactivo-form";
+      }
+
+      if (sedeElement) {
+        sedeElement.setAttribute("disabled", "disabled");
+        sedeElement.className = "block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600 boton-inactivo-form";
+      }
+
+      if (carreraElement) {
+        carreraElement.setAttribute("disabled", "disabled");
+        carreraElement.className = "block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600 boton-inactivo-form";
+      }
+
+      // Establecer tooltips iniciales
+      const provinciaWrapper = provinciaElement?.closest('.select-wrapper');
+      const sedeWrapper = sedeElement?.closest('.select-wrapper');
+      
+      if (provinciaWrapper) {
+        provinciaWrapper.classList.remove('enabled');
+        provinciaWrapper.setAttribute('data-tooltip', 'Seleccioná una modalidad primero');
+      }
+      if (sedeWrapper) {
+        sedeWrapper.classList.remove('enabled');
+        sedeWrapper.setAttribute('data-tooltip', 'Seleccioná una modalidad primero');
+      }
+    }, 100);
+
+  } catch (error) {
+    console.error("❌ Error al cargar carreras:", error);
+    mostrarErrorEnLaUI("No se pudieron cargar las carreras en este momento.");
+  }
+})();
+
+// Función para mostrar errores en la UI
+function mostrarErrorEnLaUI(mensaje) {
+  $("#cbx_carrera").empty().append(`<option value="" disabled selected>${mensaje}</option>`);
+  $("#cbx_provincia").empty().append(`<option value="" disabled selected>-</option>`);
+  $("#cbx_sede").empty().append(`<option value="" disabled selected>-</option>`);
+  
+  // Asegurar que estén deshabilitados en caso de error
+  document.getElementById('cbx_provincia')?.setAttribute("disabled", "disabled");
+  document.getElementById('cbx_sede')?.setAttribute("disabled", "disabled");
+  document.getElementById('cbx_carrera')?.setAttribute("disabled", "disabled");
+}
+
+// Manejar parámetros URL al cargar la ventana
+$(window).on("load", function () {
+  if (window.location.href.split("?")[1]) {
+    $('a[href*="https://sistemas"]').each(function () {
+      var con = $(this).prop("href").split("?").length == 1 ? "?" : "&";
+      $(this).prop(
+        "href",
+        $(this).prop("href") + con + window.location.href.split("?")[1]
+      );
+    });
+  }
+});
+
+// CORREGIDO: Función para cambiar modalidad
+function cambiar_modo() {
+  var modo = $("#modo").val();
+  
+  if (!modo) {
+    // Si no hay modalidad, deshabilitar todos los campos
+    resetearFormulario();
+    return;
+  }
+
+  // Limpiar todos los selects dependientes
+  $("#cbx_provincia").empty().append('<option value="" disabled selected>Provincia</option>');
+  $("#cbx_sede").empty().append('<option value="" disabled selected>Sede</option>');
+  $("#cbx_carrera").empty().append('<option value="" disabled selected>Carrera</option>');
+
+  // Habilitar provincia
+  let provinciaElement = document.getElementById('cbx_provincia');
+  if (provinciaElement) {
+    provinciaElement.removeAttribute("disabled");
+    provinciaElement.className = "block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600";
+    
+    const provinciaWrapper = provinciaElement.closest('.select-wrapper');
+    if (provinciaWrapper) {
+      provinciaWrapper.classList.add('enabled');
+      provinciaWrapper.setAttribute('data-tooltip', '');
+    }
+  }
+
+  // Deshabilitar sede y carrera inicialmente
+  let sedeElement = document.getElementById('cbx_sede');
+  if (sedeElement) {
+    sedeElement.setAttribute("disabled", "disabled");
+    sedeElement.className = "block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600 boton-inactivo-form";
+    
+    const sedeWrapper = sedeElement.closest('.select-wrapper');
+    if (sedeWrapper) {
+      sedeWrapper.classList.remove('enabled');
+      sedeWrapper.setAttribute('data-tooltip', 'Seleccioná una provincia primero');
+    }
+  }
+
+  let carreraElement = document.getElementById('cbx_carrera');
+  if (carreraElement) {
+    carreraElement.setAttribute("disabled", "disabled");
+    carreraElement.className = "block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600 boton-inactivo-form";
+  }
+
+  // Obtener todas las carreras de la modalidad seleccionada
+  var carrerasArray = JSON.parse(window.localStorage.getItem("CarrerasModGeneral") || "[]");
+  const carrerasMod = carrerasArray.filter(carreras => carreras.modo == modo);
+
+  if (carrerasMod.length > 0) {
+    // Obtener provincias únicas de todas las carreras de esta modalidad
+    var listaProvincia = [];
+    var list_prov_id = [];
+    
+    carrerasMod.forEach(function(valorCarrera) {
+      if (valorCarrera.provincias) {
+        valorCarrera.provincias.forEach(function(provincia) {
+          if (!list_prov_id.includes(provincia.id_provincia)) {
+            list_prov_id.push(provincia.id_provincia);
+            listaProvincia.push(provincia);
+          }
+        });
+      }
+    });
+
+    // Ordenar provincias alfabéticamente
+    listaProvincia.sort((a, b) => a.nombre_provincia.localeCompare(b.nombre_provincia));
+
+    // Cargar provincias en el select
+    listaProvincia.forEach(function(provincia) {
+      $("#cbx_provincia").append(
+        `<option value="${provincia.id_provincia}">${provincia.nombre_provincia}</option>`
+      );
+    });
+
+    // Si hay una sola provincia, seleccionarla automáticamente
+    if (listaProvincia.length === 1) {
+      $("#cbx_provincia").val($("#cbx_provincia option:eq(1)").val());
+      cargar_sedes();
+    }
+  }
+}
+
+// Función para cargar sedes basada en modalidad y provincia seleccionada
+function cargar_sedes() {
+  const modo = document.getElementById('modo').value;
+  const provincia = document.getElementById('cbx_provincia').value;
+  const sedeSelect = document.getElementById('cbx_sede');
+  const carreraSelect = document.getElementById('cbx_carrera');
+
+  if (!sedeSelect || !carreraSelect) return;
+
+  const sedeWrapper = sedeSelect.closest('.select-wrapper');
+
+  // Limpiar selects dependientes
+  $("#cbx_sede").empty().append('<option value="" disabled selected>Sede</option>');
+  $("#cbx_carrera").empty().append('<option value="" disabled selected>Carrera</option>');
+
+  // Deshabilitar carrera inicialmente
+  carreraSelect.setAttribute("disabled", "disabled");
+  carreraSelect.className = "block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600 boton-inactivo-form";
+
+  if (provincia && modo) {
+    // Habilitar sede
+    sedeSelect.removeAttribute("disabled");
+    sedeSelect.className = "block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600";
+    
+    if (sedeWrapper) {
+      sedeWrapper.classList.add('enabled');
+      sedeWrapper.setAttribute('data-tooltip', '');
+    }
+
+    let carrerasArray = JSON.parse(localStorage.getItem("CarrerasModGeneral") || "[]");
+    const carrerasMod = carrerasArray.filter(c => c.modo == modo);
+
+    // Obtener sedes únicas de la provincia seleccionada
+    var listaSedes = [];
+    var list_sede_id = [];
+
+    carrerasMod.forEach(function(carrera) {
+      if (carrera.provincias) {
+        carrera.provincias.forEach(function(prov) {
+          if (prov.id_provincia == provincia && !list_sede_id.includes(prov.id_sede)) {
+            list_sede_id.push(prov.id_sede);
+            listaSedes.push(prov);
+          }
+        });
+      }
+    });
+
+    // Ordenar sedes alfabéticamente
+    listaSedes.sort((a, b) => a.nombre_sede.localeCompare(b.nombre_sede));
+
+    // Cargar sedes en el select
+    listaSedes.forEach(function(sede) {
+      $("#cbx_sede").append(
+        `<option value="${sede.id_sede}">${sede.nombre_sede}</option>`
+      );
+    });
+
+    // Si hay una sola sede, seleccionarla automáticamente
+    if (listaSedes.length === 1) {
+      $("#cbx_sede").val($("#cbx_sede option:eq(1)").val());
+      cargar_carreras();
+    }
+  } else {
+    // Si no hay provincia seleccionada
+    sedeSelect.setAttribute("disabled", "disabled");
+    sedeSelect.className = "block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600 boton-inactivo-form";
+    
+    if (sedeWrapper) {
+      sedeWrapper.classList.remove('enabled');
+      sedeWrapper.setAttribute('data-tooltip', 'Seleccioná una provincia primero');
+    }
+  }
+}
+
+// Nueva función para cargar carreras basada en modalidad, provincia y sede
+function cargar_carreras() {
+  const modo = document.getElementById('modo').value;
+  const provincia = document.getElementById('cbx_provincia').value;
+  const sede = document.getElementById('cbx_sede').value;
+  const carreraSelect = document.getElementById('cbx_carrera');
+
+  if (!carreraSelect) return;
+
+  // Limpiar carrera
+  $("#cbx_carrera").empty().append('<option value="" disabled selected>Carrera</option>');
+
+  if (sede && provincia && modo) {
+    // Habilitar carrera
+    carreraSelect.removeAttribute("disabled");
+    carreraSelect.className = "block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600";
+
+    let carrerasArray = JSON.parse(localStorage.getItem("CarrerasModGeneral") || "[]");
+    
+    // Filtrar carreras que coincidan con modalidad, provincia y sede
+    const carrerasFiltradas = carrerasArray.filter(carrera => {
+      if (carrera.modo != modo) return false;
+      
+      if (carrera.provincias) {
+        return carrera.provincias.some(prov => 
+          prov.id_provincia == provincia && prov.id_sede == sede
+        );
+      }
+      return false;
+    });
+
+    // Ordenar carreras alfabéticamente
+    carrerasFiltradas.sort((a, b) => a.nombre_carrera.localeCompare(b.nombre_carrera));
+
+    // Cargar carreras en el select
+    carrerasFiltradas.forEach(function(carrera) {
+      $("#cbx_carrera").append(
+        `<option value="${carrera.codcar}">${carrera.nombre_carrera}</option>`
+      );
+    });
+
+    // Si hay una sola carrera, seleccionarla automáticamente
+    if (carrerasFiltradas.length === 1) {
+      $("#cbx_carrera").val($("#cbx_carrera option:eq(1)").val());
+    }
+  } else {
+    // Si no hay sede seleccionada
+    carreraSelect.setAttribute("disabled", "disabled");
+    carreraSelect.className = "block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600 boton-inactivo-form";
+  }
+}
+
+// NUEVA: Función para resetear el formulario al estado inicial
+function resetearFormulario() {
+  const provinciaElement = document.getElementById('cbx_provincia');
+  const sedeElement = document.getElementById('cbx_sede');
+  const carreraElement = document.getElementById('cbx_carrera');
+  
+  const provinciaWrapper = provinciaElement?.closest('.select-wrapper');
+  const sedeWrapper = sedeElement?.closest('.select-wrapper');
+
+  // Limpiar y deshabilitar todos los campos
+  $("#cbx_provincia").empty().append('<option value="" disabled selected>Provincia</option>');
+  $("#cbx_sede").empty().append('<option value="" disabled selected>Sede</option>');
+  $("#cbx_carrera").empty().append('<option value="" disabled selected>Carrera</option>');
+
+  if (provinciaElement) {
+    provinciaElement.setAttribute("disabled", "disabled");
+    provinciaElement.className = "block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600 boton-inactivo-form";
+  }
+
+  if (sedeElement) {
+    sedeElement.setAttribute("disabled", "disabled");
+    sedeElement.className = "block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600 boton-inactivo-form";
+  }
+
+  if (carreraElement) {
+    carreraElement.setAttribute("disabled", "disabled");
+    carreraElement.className = "block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600 boton-inactivo-form";
+  }
+
+  // Restaurar tooltips iniciales
+  if (provinciaWrapper) {
+    provinciaWrapper.classList.remove('enabled');
+    provinciaWrapper.setAttribute('data-tooltip', 'Seleccioná una modalidad primero');
+  }
+  if (sedeWrapper) {
+    sedeWrapper.classList.remove('enabled');
+    sedeWrapper.setAttribute('data-tooltip', 'Seleccioná una modalidad primero');
+  }
+}
+
+// Inicializar el estado correcto al cargar la página
+document.addEventListener('DOMContentLoaded', function () {
+  // Esta inicialización ahora se maneja en la función async principal
+  // para evitar conflictos de timing
+});
+
+// Función para cargar carrera específica (actualizada para el nuevo flujo)
+function carreraForm(cod) {
+  const carrerasString = window.localStorage.getItem("CarrerasModGeneral");
+  if (!carrerasString) {
+    console.error("Failed to load career data from local storage.");
+    return;
+  }
+
+  const carrerasArray = JSON.parse(carrerasString);
+  if (!carrerasArray || carrerasArray.length === 0) {
+    console.error("No careers found in local storage.");
+    return;
+  }
+
+  // Buscar la carrera específica
+  const carreraSeleccionada = carrerasArray.find(carrera => carrera.codcar == cod);
+  if (!carreraSeleccionada) {
+    console.error("Career not found:", cod);
+    return;
+  }
+
+  // Establecer modalidad automáticamente
+  $("#modo").val(carreraSeleccionada.modo);
+  cambiar_modo();
+
+  // Si la carrera tiene una sola provincia y sede, seleccionarlas automáticamente
+  setTimeout(() => {
+    if (carreraSeleccionada.provincias && carreraSeleccionada.provincias.length === 1) {
+      const provincia = carreraSeleccionada.provincias[0];
+      $("#cbx_provincia").val(provincia.id_provincia);
+      cargar_sedes();
+      
+      setTimeout(() => {
+        $("#cbx_sede").val(provincia.id_sede);
+        cargar_carreras();
+        
+        setTimeout(() => {
+          $("#cbx_carrera").val(cod);
+        }, 100);
+      }, 100);
+    }
+  }, 100);
+
+  scrollToForm();
+}
+// Función de scroll suave
+function smoothScroll(event, id) {
+  event.preventDefault();
+  const section = document.getElementById(id);
+  if (section) {
+    var componentePosicion = section.offsetTop;
+    window.scrollTo({
+      top: componentePosicion - 110,
+      behavior: 'smooth'
+    });
+  }
+}
+
+// CORREGIDO: Función de validación del reCAPTCHA
+function reCALLBACK(token) {
+  const btn = document.getElementById('formButton');
+  if (!token || !btn) return;
+
+  // Verificar si todos los campos requeridos están completos
+  const form = document.getElementById('pedidoinfo') || document.querySelector('form');
+  if (!form) return;
+
+  const requiredInputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+  let allFieldsCompleted = true;
+
+  // Verificar que todos los campos requeridos tengan valor
+  requiredInputs.forEach(input => {
+    if (!input.value.trim()) {
+      allFieldsCompleted = false;
+    }
+  });
+
+  // Solo habilitar si todos los campos están completos
+  if (allFieldsCompleted) {
+    btn.removeAttribute("disabled");
+    btn.classList.add("boton-activo");
+    btn.classList.remove("boton-inactivo-form");
+  } else {
+    btn.setAttribute("disabled", "disabled");
+    btn.classList.remove("boton-activo");
+    btn.classList.add("boton-inactivo-form");
+  }
+
+  // Guardar el token de reCAPTCHA
+  window.recaptchaCompleted = true;
+}
+
+// Inicialización del formulario
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('pedidoinfo') || document.querySelector('form');
+  if (!form) return;
+
+  const requiredInputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+  const btn = document.getElementById('formButton');
+
+  if (btn) {
+    // Asegurarse de que el botón comience deshabilitado
+    btn.classList.add("boton-inactivo");
+    btn.setAttribute("disabled", "disabled");
+  }
+
+  // Función para verificar el estado del formulario
+  function checkFormCompletion() {
+    if (!window.recaptchaCompleted || !btn) return;
+
+    let allFieldsCompleted = true;
+
+    requiredInputs.forEach(input => {
+      if (!input.value.trim()) {
+        allFieldsCompleted = false;
+      }
+    });
+
+    if (allFieldsCompleted) {
+      btn.removeAttribute("disabled");
+      btn.classList.add("boton-activo");
+      btn.classList.remove("boton-inactivo");
+    } else {
+      btn.setAttribute("disabled", "disabled");
+      btn.classList.remove("boton-activo");
+      btn.classList.add("boton-inactivo");
+    }
+  }
+
+  // Agregar event listeners a todos los campos requeridos
+  requiredInputs.forEach(input => {
+    input.addEventListener('input', checkFormCompletion);
+    input.addEventListener('change', checkFormCompletion);
+    input.addEventListener('blur', checkFormCompletion);
+  });
+});
+
+// CORREGIDO: Función de validación final
+function check() {
+  const form = document.getElementById('pedidoinfo') || document.querySelector('form');
+  const btn = document.getElementById('formButton');
+  const spinnerContainer = document.getElementById("spinnerContainer");
+
+  if (!form || !btn || !spinnerContainer) return false;
+
+  // Verificar la validez del teléfono
+  const codArea = document.getElementsByName("cod_area")[0];
+  const tel = document.getElementsByName("tel")[0];
+
+  if (codArea && tel) {
+    const totalLength = codArea.value.length + tel.value.length;
+    if (totalLength > 1 && totalLength < 10) {
+      tel.setCustomValidity("Escribe Teléfono y Código de Área completos");
+    } else {
+      tel.setCustomValidity("");
+    }
+  }
+
+  // Verificar si el formulario es válido
+  if (form.checkValidity()) {
+    btn.classList.add("hidden");
+    spinnerContainer.classList.remove("hidden");
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// Función para validar longitud de teléfono
+function validarLongitudTelefono(inputTelefono, longitudMaxima) {
+  if (!inputTelefono) return;
+  
+  var telefono = inputTelefono.value;
+  var telefonoLimpio = telefono.replace(/\D/g, '');
+  
+  if (telefonoLimpio.length > longitudMaxima) {
+    telefonoLimpio = telefonoLimpio.slice(0, longitudMaxima);
+  }
+  
+  inputTelefono.value = telefonoLimpio;
+}
+
+// Función para scroll al formulario con efecto
+function scrollToForm() {
+  var componente = document.getElementById("pedidoinfo");
+  if (!componente) return;
+
+  var componentePosicion = componente.offsetTop;
+
+  window.scrollTo({
+    top: componentePosicion - 100,
+    behavior: "smooth"
+  });
+
+  setTimeout(function () {
+    componente.classList.add("zoom-effect");
+    setTimeout(function () {
+      componente.classList.remove("zoom-effect");
+    }, 1000);
+  }, 500);
+}

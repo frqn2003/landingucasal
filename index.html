@@ -35,8 +35,6 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="stylesheet" href="/modulos/intl-tel-input/css/intlTelInput.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     type="text/css" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
@@ -81,8 +79,8 @@
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-  <script src="/src/scripts.js" async defer></script>
-  <link rel="stylesheet" href="src/styles.css">
+  <script src="./assets/scripts.js" async defer></script>
+  <link rel="stylesheet" href="./assets/styles.css">
   <!-- ..... -->
 
   <style>
@@ -301,28 +299,8 @@
         /* width: 100vw; */
       }
 
-      h1 {
-        font-size: 1.5rem;
-      }
-
-      h2 {
-        font-size: 1.3rem;
-      }
-
       .ahora_dist {
         width: 100vw;
-      }
-    }
-
-    /* flag de formulario */
-    .iti__flag {
-      background-image: url("../modulos/intl-tel-input/img/flags.png");
-    }
-
-    @media (-webkit-min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi) {
-      .iti__flag {
-        background-image: url("../modulos/intl-tel-input/img/flags.png");
       }
     }
   </style>
@@ -428,9 +406,9 @@
   <!-- Hero Section -->
   <main class="relative w-full overflow-hidden bg-gradient-to-b from-[#E2E3F2] to-[#D3D2D2] font-sans">
     <div class="relative z-10 contenedor">
-      <div class="grid lg:grid-cols-2 gap-4 md:min-h-screen items-center">
+      <div class="grid lg:grid-cols-2 gap-4 mt-24 md:mt-36 items-center">
         <!-- COLUMNA IZQUIERDA -->
-        <div class="order-1 sm:space-y-2 lg:space-y-6">
+        <div class="order-1 space-y-4 lg:space-y-6">
           <p class="bg-[#D6001C] text-md font-bold text-white p-2 px-4 rounded-[40px] w-fit">
             Inscripciones 2025 abiertas
           </p>
@@ -450,11 +428,11 @@
             </svg>
           </button>
           <!-- Datos -->
-          <div class="grid grid-cols-8 items-center text-center text-[#002F6C] font-semibold">
-            <h3 class="col-start-1 text-lg leading-tight">+40<br><span class="text-base">Carreras</span></h3>
-            <h3 class="col-start-3 text-lg leading-tight">+50<br><span class="text-base">Años</span></h3>
-            <h3 class="col-start-5 text-lg leading-tight">+15k<br><span class="text-base">Estudiantes</span></h3>
-            <h3 class="col-start-7 text-lg leading-tight">+10000<br><span class="text-base">Graduados</span></h3>
+          <div class="grid grid-cols-4 md:grid-cols-8 items-center text-center text-[#002F6C] font-semibold">
+            <h3 class="md:col-start-1 text-sm leading-tight">+40<br><span class="text-base">Carreras</span></h3>
+            <h3 class="md:col-start-3 text-sm leading-tight">+50<br><span class="text-base ml-1">Años</span></h3>
+            <h3 class="md:col-start-5 text-sm leading-tight">+15k<br><span class="text-base">Estudiantes</span></h3>
+            <h3 class="md:col-start-7 text-sm leading-tight">+10000<br><span class="text-base">Graduados</span></h3>
           </div>
         </div>
         <!-- COLUMNA DERECHA -->
@@ -569,11 +547,180 @@
       </div>
     </div>
   </section>
-  <div class="w-full max-w-4xl p-6 mx-auto" id="formu">
-    <div class="text-center mb-5 font-bold">
+  <!-- Formulario -->
+  <div class="w-full max-w-4xl px-6 pt-6 mx-auto" id="formu">
+    <div class="text-center font-bold">
       <h1 class="font-sans">¿Te quedaron dudas? ¡Solicitá más información!</h1>
     </div>
   </div>
+  <form id="pedidoinfo" method="post" enctype="multipart/form-data" action="/postulantes_mail1.php" autocomplete="on"
+    class="border-gray-200 border-2 shadow-lg p-5 contenedor">
+    <!-- input defaul -->
+    <input type="hidden" value="4" name="id_origen" id="id_origen" />
+    <!-- <input type="hidden" value=" " name="apellido" id="apellido" /> -->
+    <input type="hidden" value="postulantes" name="tabla" />
+    <input type="hidden" id="addr" name="addr" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" />
+    <input type="hidden" id="agent" name="agent" value="<?php echo $_SERVER['HTTP_USER_AGENT']; ?>" />
+    <input type="hidden" name="utm_source" value="<?php echo $utm_source; ?>" />
+    <input type="hidden" name="utm_medium" value="<?php echo $utm_medium; ?>" />
+    <input type="hidden" name="utm_term" value="<?php echo $utm_term; ?>" />
+    <input type="hidden" name="utm_content" value="<?php echo $utm_content; ?>" />
+    <input type="hidden" name="utm_campaign" value="<?php echo $utm_campaign; ?>" />
+    <input type="hidden" name="idconversion" value="<?php echo $idconversion; ?>" />
+    <input type="hidden" name="campaignid" value="<?php echo $campaignid; ?>" />
+    <input type="hidden" name="referer" value="<?php echo $referer; ?>" />
+    <input name="gclid" type="hidden" value="<?php echo $gclid; ?>" />
+    <input type="hidden" name="tkp" value="/landing/enviado-distancia-2021.php">
+    <input type="hidden" name="fkp" value="/landing/enviado-distancia-2021.php?id=404">
+
+    <!-- Nombre y Apellido -->
+    <div class="grid md:grid-cols-3 md:gap-6">
+      <div class="relative z-0 w-full mb-4 group">
+        <input type="text" name="nombre" id="nombre" pattern="[A-Za-záéíóúÁÉÍÓÚñÑ\s]+"
+          onkeypress="return /[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/i.test(event.key)"
+          class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-gray-900 border border-gray-300 appearance-none bg-white/80 focus:outline-none focus:ring-0 focus:border-blue-600"
+          placeholder="Nombre" required tabindex="1" />
+      </div>
+      <div class="relative z-0 w-full mb-4 group">
+        <input type="text" name="apellido" id="apellido" pattern="[A-Za-záéíóúÁÉÍÓÚñÑ\s]+"
+          onkeypress="return /[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/i.test(event.key)"
+          class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-gray-900 border border-gray-300 appearance-none bg-white/80 focus:outline-none focus:ring-0 focus:border-blue-600"
+          placeholder="Apellido" required tabindex="2" />
+      </div>
+      <!-- Email -->
+      <div class="relative z-0 w-full mb-4 group">
+        <input type="email" name="email" id="email"
+          class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-gray-900 border border-gray-300 appearance-none bg-white/80 focus:outline-none focus:ring-0 focus:border-blue-600"
+          placeholder="Email" required tabindex="2" />
+      </div>
+    </div>
+
+    <!-- DNI -->
+    <!-- <div class="relative z-0 w-full mb-4 group">
+      <input type="text" name="dni" id="dni" pattern="[0-9]{7,8}" maxlength="8" inputmode="numeric"
+        class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-gray-900 border rounded-[8px]  border-gray-300 appearance-none bg-white/80 focus:outline-none focus:ring-0 focus:border-blue-600"
+        placeholder="DNI para Promociones" tabindex="3"
+        onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" />
+    </div> -->
+
+    <!-- Carrera -->
+    <div class="relative z-0 w-full mb-4 group grid grid-cols-2 md:grid-cols-4 gap-4">
+      <select name="modo" id="modo"
+        class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600"
+        required onchange="cambiar_modo();" tabindex="5">
+        <!-- Opciones del select -->
+        <option value="" disabled selected>Modalidad</option>
+        <option value="1">Presencial</option>
+        <option value="7">Digital</option>
+      </select>
+
+      <?php
+        if ($cbx_sede > 0) {
+          echo '
+      <input name="cbx_provincia" id="cbx_provincia1" type="hidden" value="' . $cbx_provincia . '">
+      <input name="cbx_sede" id="cbx_sede1" type="hidden" value="' . $cbx_sede . '">
+      ';
+        } else {
+          echo '
+        <!-- Provincia -->
+        <div class="relative z-0 w-full group">
+          <div class="select-wrapper" data-tooltip="Seleccioná una modalidad primero">
+            <select name="cbx_provincia" id="cbx_provincia" disabled
+              class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600 boton-inactivo-form"
+              required onchange="cargar_sedes();" tabindex="5">
+              <option value="" disabled selected>Provincia</option>
+            </select>
+          </div>
+        </div>
+        
+        <!-- Sede -->
+        <div class="relative z-0 w-full group">
+          <div class="select-wrapper" data-tooltip="Seleccioná una provincia primero">
+            <select name="cbx_sede" id="cbx_sede" onchange="cargar_carreras()" disabled
+              class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600 boton-inactivo-form"
+              required tabindex="6">
+              <option value="" disabled selected>Sede</option>
+            </select>
+          </div>
+        </div>
+      ';
+        }
+        ?>
+      <div class="select-wrapper" data-tooltip="Seleccioná una sede primero">
+        <select name="cbx_carrera" id="cbx_carrera"
+          class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600 boton-inactivo-form"
+          required tabindex="4">
+          <!-- Opciones del select -->
+          <option value="" disabled selected>Seleccionar Carrera</option>
+        </select>
+      </div>
+    </div>
+    <!-- Teléfono -->
+    <div class="grid grid-cols-8 gap-4 md:grid-cols-6">
+      <div class="relative z-0 w-full col-span-3 mt-6 md:col-span-2 group">
+        <div class="relative w-full group">
+          <input name="tipo_tel"
+            class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-b-0 border-gray-300 rounded-b-none shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600"
+            tabindex="9" type="hidden" value="cel">
+          </input>
+          <input type="text"
+            class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:outline-none focus:ring-0 focus:border-blue-600 form-control form-control-sm input-style"
+            id="phone" name="ddi_pais" />
+          <label for="tel"
+            class="absolute md:text-base text-[0.7rem] text-black duration-300 transform md:-translate-y-1 scale-75 -top-1 left-0 -z-10 origin-[0] -mt-4">Código
+            país</label>
+        </div>
+      </div>
+      <div class="relative col-span-2 mt-6 group">
+        <div class="relative z-0 w-full group">
+          <input type="text" name="cod_area" id="cod" size="4" maxLength="4"
+            class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:outline-none focus:ring-0 focus:border-blue-600"
+            placeholder="Ej: 387" required tabindex="5" oninput="validarLongitudTelefono(this, 4)" />
+          <label for="cod"
+            class="absolute md:text-base text-[0.7rem] text-black duration-300 transform md:-translate-y-1 scale-75 -top-1 left-0 -z-10 origin-[0] -mt-4">Código
+            Área
+          </label>
+        </div>
+      </div>
+      <div class="relative z-0 w-full col-span-3 mt-6 md:col-start-5 group">
+        <div class="relative">
+          <span
+            class="text-[0.8rem] absolute left-0 top-[55%] transform -translate-y-1/2 text-gray-700 border px-1 border-gray-500 bg-white/80 left-0.5 flex items-center h-[1.25rem] mt-0">15</span>
+          <input type="text" name="tel" id="tel" size="8" maxLength="8"
+            class="block w-full px-0 pt-2 pb-1 text-sm text-black border border-gray-300 shadow-sm pl-7 bg-white/80 focus:outline-none focus:ring-0 focus:border-blue-600"
+            placeholder="Ej: 7790015" required tabindex="6" oninput="validarLongitudTelefono(this, 8)" />
+          <label for="tel"
+            class="absolute text-md text-black duration-300 transform -translate-y-1 scale-75 -top-1 left-0 -z-10 origin-[0] -mt-4">N&uacute;mero
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- reCAPTCHA -->
+    <div class="flex justify-center mt-3 g-recaptcha" tabindex="10" data-callback="reCALLBACK"
+      data-sitekey="6LetQBEjAAAAAMewiwE_zXYFkT0IV-dx8_wW39ft"></div>
+
+    <!-- Botón de envío -->
+    <div class="flex justify-center mt-4">
+      <button id="formButton" type="submit"
+        class="text-white bg-[#242F41] hover:bg-blue-800 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center transition-colors duration-200 ease-in-out scale-105 boton-inactivo-form"
+        tabindex="11" onclick="check()" disabled>
+        Enviar
+      </button>
+      <div id="spinnerContainer" class="hidden" role="status">
+        <svg class="w-8 h-8 text-gray-200 animate-spin fill-[#B11111]" viewBox="0 0 100 101" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+            fill="currentColor" />
+          <path
+            d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+            fill="currentFill" />
+        </svg>
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </form>
   <div id="financiavenecia" class="mb-5"></div>
   <!-- FINANCIA ARANCELES -->
   <div class="relative bg-fixed bg-center bg-cover"
@@ -1114,326 +1261,9 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQig4WgRBLxxFrs1XwHBk5LEebZYhzr0k&callback=initMap"
     async defer></script>
   <script src="/js/mapsgoogle/markerclusterer.js"></script>
-  <script src="/modulos/intl-tel-input/js/intlTelInput.js"></script>
-
-  <!-- Scritps para banner y formulario -->
-  <script>
-    // funcion asincrona anonima autoejecutable c:
-    (async () => {
-      const resp = await fetch(
-        `../../landing/consultas/getCarrerasJson.php?tipcar=Grado,Pregrado,Intermedio`
-      );
-      const data = await resp.json();
-
-      // Códigos de carrera que deseas excluir
-      let codigosExcluidos = ["191", "46"];
-      // Filtrar el arreglo data para excluir los códigos de carrera especificados
-      let dataFiltrado = data.filter((carrera) => !codigosExcluidos.includes(carrera.codcar));
-
-      //guardo el listado en un almacenamiento local
-      window.localStorage.setItem(
-        "CarrerasModGeneral",
-        JSON.stringify(dataFiltrado)
-      );
-    })();
-    fetch('assets/datosCarreras.json')
-      .then((response) => response.json())
-      .then((json) => {
-        // Asumiendo que el archivo JSON tiene una clave "promoción" con el texto de la promoción
-        const datosTarjeta = json.tarjeta;
-        const banner = json.banner;
-        const videoURL = json.videoURL;
-        const elementoVideo = document.getElementById('video');
-        const promociones = json.promocion;
-        const elementoPromocion = document.getElementById('promo');
-        console.log(promociones);
-
-        let index = 0;
-
-        // Inicializa el contenido de la promoción con el primer mensaje
-        elementoPromocion.innerHTML = promociones[index];
-
-        // Función para cambiar el texto de la promoción cada 3 segundos
-        function cambiarTexto() {
-          index = (index + 1) % promociones.length;
-          elementoPromocion.innerHTML = promociones[index];
-        }
-
-        // Iniciar el intervalo para cambiar el texto
-        setInterval(cambiarTexto, 3000);
-
-        // Actualiza el componente de Tarjeta Macro
-        document.getElementById('tarjetaMacro').innerHTML = `
-                <img class="w-1/2 p-4 bg-white rounded-2xl" src="${datosTarjeta.macro.imagen}" alt="tarjeta macro">
-                <p class="text-md">${datosTarjeta.macro.descripcion}</p>
-            `;
-
-        // Actualiza el componente de Tarjeta Naranja
-        document.getElementById('tarjetaNaranja').innerHTML = `
-                <img class="w-1/2 p-4 bg-white rounded-2xl" src="${datosTarjeta.naranja.imagen}" alt="tarjeta naranja">
-                <p class="text-md">${datosTarjeta.naranja.descripcion}</p>
-            `;
-
-        // Actualiza el componente de Tarjeta Banco
-        document.getElementById('tarjetaBanco').innerHTML = `
-                <img class="w-1/2 p-4 bg-white rounded-2xl" src="${datosTarjeta.banco.imagen}" alt="tarjeta banco">
-                <p class="text-md">${datosTarjeta.banco.descripcion}</p>
-            `;
-
-        // Actualiza el componente banner
-        document.getElementById('banner').innerHTML = `
-                <source src="${banner.video}" type="video/mp4">
-                <source src="${banner.videoOgg}" type="video/ogg">
-            `;
-
-        // Actualiza el elemento de video
-        elementoVideo.setAttribute('src', videoURL);
-      });
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.0/build/js/intlTelInput.min.js"></script>
 
   <script>
-    var input = document.querySelector("#phone");
-    var iti = window.intlTelInput(input);
-    iti.setCountry("ar");
-    input.addEventListener("countrychange", function () {
-      var countryData = iti.getSelectedCountryData();
-      document.getElementById("phone").value = countryData.dialCode;
-      document.getElementById("codigo_pais").innerHTML = countryData.dialCode;
-    });
-
-    var countryData = iti.getSelectedCountryData();
-    document.getElementById("phone").value = countryData.dialCode;
-    document.getElementById("codigo_pais").innerHTML = countryData.dialCode;
-
-    const scrollToTop = () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    };
-    /**********************/
-    function cambiar_modo() {
-      var modo = $("#modo").val()
-
-      // Obtén el elemento del botón
-      let element = document.getElementById('cbx_provincia');
-      // Quita el atributo "disabled"
-      element.removeAttribute("disabled");
-
-      $("#cbx_provincia").empty();
-      $("#cbx_sede").empty();
-      $("#cbx_carrera").empty();
-
-      $("#cbx_provincia").append(
-        '<option value="" selected>Seleccionar Provincia</option>'
-      );
-
-      $("#cbx_sede").append(
-        '<option value="" selected>Seleccionar Sede</option>'
-      );
-
-      $("#cbx_carrera").append(
-        '<option value="" selected>Seleccionar Carrera</option>'
-      );
-
-      var carrerasArray = JSON.parse(
-        window.localStorage.getItem("CarrerasModGeneral")
-      );
-
-      const carrerasMod = carrerasArray.filter(carreras => carreras.modo == modo);
-
-      console.log(carrerasMod);
-
-      if (carrerasMod) {
-        //listado de id provincias para poner solo una en el combo
-        var list_prov_id = [];
-        var listaProvincia = [];
-        //ciclo por todas las carreras
-        $.each(carrerasMod, function (i, valorCarrera) {
-          var provincias = valorCarrera.provincias;
-          // Saco las provincias sin duplicados. 
-          $.each(provincias, function (j, valor) {
-            if (!list_prov_id.includes(valor.id_provincia)) {
-              list_prov_id.push(valor.id_provincia); //agrego al listado para no tomar repetidos
-              listaProvincia.push(valor); //guardo el objeto provincias para ordenarlo
-            }
-          })
-
-        })
-
-        //Ordeno alfabeticamente las provincias
-        listaProvincia.sort(
-          (a, b) => a.nombre_provincia.localeCompare(b.nombre_provincia));
-
-
-        $.each(listaProvincia, function (j, valor) {
-          $("#cbx_provincia").append(
-            `<option value="${valor.id_provincia}">${valor.nombre_provincia}</option>`
-          );
-        })
-
-        if (listaProvincia.length == 1) {
-          $("#cbx_provincia").val($("#cbx_provincia option:eq(1)").val());
-          cambiar_provincia();
-        }
-
-      }
-
-    }
-
-    function cambiar_provincia() {
-      var provincia = $("#cbx_provincia").val();
-      var modo = $("#modo").val();
-      $("#cbx_sede").empty();
-      $("#cbx_carrera").empty();
-
-      $("#cbx_sede").append(
-        '<option value="" selected>Seleccionar Sede</option>'
-      );
-
-      $("#cbx_carrera").append(
-        '<option value="" selected>Seleccionar Carrera</option>'
-      );
-
-      // Obtén el elemento del botón
-      let element = document.getElementById('cbx_sede');
-      // Quita el atributo "disabled"
-      element.removeAttribute("disabled");
-
-      var carrerasArray = JSON.parse(
-        window.localStorage.getItem("CarrerasModGeneral")
-      );
-
-      const carrerasMod = carrerasArray.filter(carreras => carreras.modo == modo);
-
-      if (carrerasMod) {
-        //listado de id provincias para poner solo una en el combo
-        var list_sedes_id = [];
-        var listaProvincia = [];
-        //ciclo por todas las carreras
-        $.each(carrerasMod, function (i, valorCarrera) {
-          var provincias = valorCarrera.provincias;
-          // Saco las provincias sin duplicados. 
-          $.each(provincias, function (j, valor) {
-            if (!list_sedes_id.includes(valor.id_sede) && valor.id_provincia == provincia) {
-              list_sedes_id.push(valor.id_sede); //agrego al listado para no tomar repetidos
-              listaProvincia.push(valor); //guardo el objeto provincias para ordenarlo
-            }
-          })
-        })
-
-
-        //Ordeno alfabeticamente las sedes
-        listaProvincia.sort(
-          (a, b) => a.nombre_sede.localeCompare(b.nombre_sede));
-
-
-        $.each(listaProvincia, function (i, valor) {
-          $("#cbx_sede").append(
-            `<option value="${valor.id_sede}">${valor.nombre_sede}</option>`
-          );
-        })
-
-        if (listaProvincia.length == 1) {
-          $("#cbx_sede").val($("#cbx_sede option:eq(1)").val());
-          cambiar_sede();
-        }
-      }
-    }
-
-    function cambiar_sede() {
-      var provincia = $("#cbx_provincia").val();
-      var modo = $("#modo").val();
-      var sede = $("#cbx_sede").val();
-
-      $("#cbx_carrera").empty();
-
-      $("#cbx_carrera").append(
-        '<option value="" selected>Seleccionar Carrera</option>'
-      );
-      // Obtén el elemento del botón
-      let element = document.getElementById('cbx_carrera');
-      // Quita el atributo "disabled"
-      element.removeAttribute("disabled");
-
-
-      var carrerasArray = JSON.parse(
-        window.localStorage.getItem("CarrerasModGeneral")
-      );
-
-      const carrerasMod = carrerasArray.filter(carreras => carreras.modo == modo);
-
-      if (carrerasMod) {
-        const carrerasSedes = carrerasMod.filter(
-          carreras => carreras.provincias.filter(provincia => provincia.id_sede == sede).length > 0
-        )
-
-        $.each(carrerasSedes, function (j, valor) {
-          $("#cbx_carrera").append(
-            `<option value="${valor.codcar}">${valor.nombre_carrera}</option>`
-          );
-        })
-
-        if (carrerasSedes.length == 1) {
-          $("#cbx_carrera").val($("#cbx_carrera option:eq(1)").val());
-        }
-      }
-    }
-
-    function check() {
-      if (
-        document.getElementsByName("tel")[0].value.length +
-        document.getElementsByName("cod_area")[0].value.length >
-        1 &&
-        document.getElementsByName("tel")[0].value.length +
-        document.getElementsByName("cod_area")[0].value.length <
-        10
-      ) {
-        document
-          .getElementsByName("tel")[0]
-          .setCustomValidity("Escribe Telefono y Codigo de Area");
-      } else {
-        document.getElementsByName("tel")[0].setCustomValidity("");
-      }
-    }
-  </script>
-
-  <script>
-    function reCALLBACK(r) {
-      // reCAPTCHA le pasa como parámetro al CB el valor del token, hacer aquí la lógica necesaria
-      console.log(1, r);
-      if (r) {
-        // Obtén el elemento del botón
-        let element = document.getElementById('formButton');
-
-        // Quita el atributo "disabled"
-        element.removeAttribute("disabled");
-
-        // Agrega y quita clases CSS para cambiar el estilo
-        element.classList.add("boton-rojo");
-        element.classList.remove("boton-gris");
-      } else {
-        alert("Demuestra que no eres un robot!");
-      }
-    }
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
-  <!-- test boton de carrusel -->
-  <script>
-    function scrollToForm() {
-      var componente = document.getElementById("pedidoinfo");
-      var componentePosicion = componente.offsetTop;
-      window.scrollTo({
-        top: componentePosicion - 110,
-        behavior: "smooth"
-      });
-      setTimeout(function () {
-        componente.classList.add("zoom-effect");
-        setTimeout(function () {
-          componente.classList.remove("zoom-effect");
-        }, 1000);
-      }, 500);
-    }
     document.addEventListener('DOMContentLoaded', () => {
       const dots = document.querySelectorAll('.step-dot');
 
@@ -1458,399 +1288,41 @@
         });
       });
     });
-    class CareerCard extends HTMLElement {
-      constructor() {
-        super();
-        const shadow = this.attachShadow({
-          mode: 'open'
-        });
-        const template = document.createElement('template');
-        template.innerHTML = `
-            <style>
-                /* Estilos del Web Component */
-                .container {
-                    width: 250px;
-                    height: 360px;
-                    display: flex;
-                    justify-content: center;
-                    margin: 0 auto 1.25rem auto;
-                }
-                .card {
-                    max-width: 16rem;
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 1.5rem;
-                    overflow: hidden;
-                    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-                    position: relative;
-                    transition: transform 0.3s, box-shadow 0.3s;
-                    border: 2px solid #eee;
-                }
-                .card:hover {
-                    transform: scale(1.05);
-                    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
-                }
-                .image-container {
-                    position: relative;
-                    height: 13rem;
-                }
-                .image-container img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
-                .image-container .overlay {
-                    position: absolute;
-                    inset: 0;
-                    background-size: cover;
-                    transition: opacity 0.3s;
-                    opacity: 0;
-                }
-                .image-container:hover .overlay {
-                    opacity: 1;
-                }
-                .icon {
-                    position: absolute;
-                    left: 50%;
-                    top: calc(100% - 10.5rem); /* Ajustar la posición del ícono */
-                    transform: translate(-50%, -50%);
-                    width: 5rem;
-                    height: 3.5rem;
-                    z-index: 20; /* Asegurarse de que el ícono esté por encima de otros elementos */
-                }
-                .title-container {
-                    height: 5rem; /* Fijar el alto del contenedor del título */
-                    background-color: white;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    padding: 0 1rem;
-                    box-sizing: border-box;
-                }
-                .title {
-                    font-weight: bold;
-                    text-align: center;
-                    font-size: 1rem;
-                    z-index: 5; /* Elevar el título por encima del fondo */
-                    position: relative;
-                    margin: 0; /* Eliminar márgenes para evitar superposiciones */
-                }
-                .info-container {
-                    height: 5rem; /* Fijar el alto del contenedor de modalidad y duración */
-                    padding: 0.5rem 0.75rem; /* Reducir padding para subir los textos */
-                    background-color: #ee1818;
-                    position: relative;
-                    z-index: 1; /* Asegurarse de que la sección roja esté visible */
-                    border-radius: 0 0 1.5rem 1.5rem; /* Para redondear los bordes inferiores */
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: flex-start; /* Alinear el texto hacia la parte superior */
-                }
-                .info {
-                    color: white;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    font-size: 0.875rem;
-                    width: 100%;
-                }
-                .info div {
-                    flex: 1;
-                    text-align: center;
-                    position: relative;
-                    font-size: 0.75rem;
-                }
-                .info div:not(:last-child)::after {
-                    content: "";
-                    position: absolute;
-                    right: 0;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    height: 60%;
-                    width: 1px;
-                    background-color: white;
-                }
-                .info span {
-                    display: block;
-                }
-                .info .bold {
-                    font-weight: bold;
-                    font-size: 0.875rem; /* Restaurar tamaño de texto anterior */
-                }
-            </style>
-            
-            <div class="container">
-                <div class="card">
-                    <!-- Parte 1: Imagen -->
-                    <div class="image-container">
-                        <img class="background-image" alt="Card image">
-                        <div class="overlay"></div>
-                    </div>
-
-                    <!-- Parte 2: Icono -->
-                    <img class="icon" alt="Icon">
-
-                    <!-- Parte 3: Título -->
-                    <div class="title-container">
-                        <div class="title"></div>
-                    </div>
-
-                    <!-- Parte 4: Modalidad y Duración -->
-                    <div class="info-container">
-                        <div class="info">
-                            <div>
-                                <span class="light">Modalidad</span>
-                                <span class="bold modality"></span>
-                            </div>
-                            <div>
-                                <span class="light">Duración</span>
-                                <span class="bold duration"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-        shadow.appendChild(template.content.cloneNode(true));
-        this.updateComponent();
-        this.addEventListener('click', () => this.handleCardClick());
-      }
-      static get observedAttributes() {
-        return ['title', 'modality', 'duration', 'icon-src', 'bg-image', 'overlay-image'];
-      }
-      attributeChangedCallback() {
-        this.updateComponent();
-      }
-
-      updateComponent() {
-        const shadow = this.shadowRoot;
-
-        // Actualizar el título
-        shadow.querySelector('.title').textContent = this.getAttribute('title');
-
-        // Actualizar la modalidad
-        shadow.querySelector('.modality').textContent = this.getAttribute('modality');
-
-        // Actualizar la duración
-        shadow.querySelector('.duration').textContent = this.getAttribute('duration');
-
-        // Actualizar el icono
-        shadow.querySelector('.icon').src = this.getAttribute('icon-src');
-
-        // Actualizar la imagen de fondo
-        shadow.querySelector('.background-image').src = this.getAttribute('bg-image');
-
-        // Actualizar la imagen de overlay
-        shadow.querySelector('.overlay').style.backgroundImage = `url(${this.getAttribute('overlay-image')})`;
-      }
-      handleCardClick() {
-        scrollToForm();
-      }
-    }
-
-    // Registrar el Web Component
-    customElements.define('career-card', CareerCard);
-
-
-    class MobileCareerCard extends HTMLElement {
-      constructor() {
-        super();
-
-        // Crear el shadow DOM
-        const shadow = this.attachShadow({
-          mode: 'open'
+  </script>
+  <script>
+    // Script para el input de telefono 
+    document.addEventListener('DOMContentLoaded', function () {
+      const input = document.querySelector("#phone");
+      if (input && window.intlTelInput) {
+        var iti = window.intlTelInput(input, {
+          fixDropdownWidth: false,
+          dropdownContainer: document.body,
+          initialCountry: "ar",
+          utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.0/build/js/utils.js"
         });
 
-        // Crear un template
-        const template = document.createElement('template');
-        template.innerHTML = `
-            <style>
-                /* Estilos del Web Component reducido */
-                .container {
-                    width: 150px;
-                    height: 200px;
-                    display: flex;
-                    justify-content: center;
-                    margin: 0 auto;
-                }
-                .card {
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 1rem;
-                    overflow: hidden;
-                    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
-                    position: relative;
-                    transition: transform 0.3s, box-shadow 0.3s;
-                    border: 1px solid #eee;
-                }
-                .card:hover {
-                    transform: scale(1.05);
-                    box-shadow: 0 12px 18px rgba(0, 0, 0, 0.15);
-                }
-                .image-container {
-                    position: relative;
-                    height: 6rem;
-                }
-                .image-container img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
-                .image-container .overlay {
-                    position: absolute;
-                    inset: 0;
-                    background-size: cover;
-                    transition: opacity 0.3s;
-                    opacity: 0;
-                }
-                .image-container:hover .overlay {
-                    opacity: 1;
-                }
-                .icon {
-                    position: absolute;
-                    left: 50%;
-                    top: calc(100% - 7rem); /* Subir la posición del ícono */
-                    transform: translate(-50%, -50%);
-                    width: 2.5rem;
-                    height: 2rem;
-                    z-index: 10; /* Asegurarse de que el ícono esté por encima de otros elementos */
-                }
-                .title-container {
-                    height: 3rem; /* Fijar el alto del contenedor del título */
-                    background-color: white;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    padding: 0 0.5rem;
-                    box-sizing: border-box;
-                }
-                .title {
-                    font-weight: bold;
-                    text-align: center;
-                    font-size: 0.6rem;
-                    z-index: 5; /* Elevar el título por encima del fondo */
-                    position: relative;
-                    margin: 0; /* Eliminar márgenes para evitar superposiciones */
-                }
-                .info-container {
-                    height: 3rem; /* Fijar el alto del contenedor de modalidad y duración */
-                    padding: 0.25rem 0.5rem; /* Reducir padding para subir los textos */
-                    background-color: #ee1818;
-                    position: relative;
-                    z-index: 1; /* Asegurarse de que la sección roja esté visible */
-                    border-radius: 0 0 1rem 1rem; /* Para redondear los bordes inferiores */
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center; /* Centrar verticalmente el texto */
-                }
-                .info {
-                    color: white;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    font-size: 0.65rem; /* Reducir tamaño de texto */
-                    width: 100%;
-                }
-                .info div {
-                    flex: 1;
-                    text-align: center;
-                    position: relative;
-                }
-                .info div:not(:last-child)::after {
-                    content: "";
-                    position: absolute;
-                    right: 0;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    height: 60%;
-                    width: 1px;
-                    background-color: white;
-                }
-                .info span {
-                    display: block;
-                }
-                .info .bold {
-                    font-weight: bold;
-                    font-size: 0.6rem; /* Ajustar tamaño de texto */
-                }
-            </style>
-            
-            <div class="container">
-                <div class="card">
-                    <!-- Parte 1: Imagen -->
-                    <div class="image-container">
-                        <img class="background-image" alt="Card image">
-                        <div class="overlay"></div>
-                    </div>
+        // Establecer código de país inicial
+        if (iti.getSelectedCountryData()) {
+          input.value = iti.getSelectedCountryData().dialCode;
+          const codigoPais = document.getElementById("codigo_pais");
+          if (codigoPais) {
+            codigoPais.innerHTML = iti.getSelectedCountryData().dialCode;
+          }
+        }
 
-                    <!-- Parte 2: Icono -->
-                    <img class="icon" alt="Icon">
-
-                    <!-- Parte 3: Título -->
-                    <div class="title-container">
-                        <div class="title"></div>
-                    </div>
-
-                    <!-- Parte 4: Modalidad y Duración -->
-                    <div class="info-container">
-                        <div class="info">
-                            <div>
-                                <span class="light">Modalidad</span>
-                                <span class="bold modality"></span>
-                            </div>
-                            <div>
-                                <span class="light">Duración</span>
-                                <span class="bold duration"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-
-        shadow.appendChild(template.content.cloneNode(true));
-
-        // Asignar los valores de los atributos a las partes correspondientes del componente
-        this.updateComponent();
-        this.addEventListener('click', () => this.handleCardClick());
+        // Manejar cambio de país
+        input.addEventListener("countrychange", function () {
+          var countryData = iti.getSelectedCountryData();
+          if (countryData) {
+            input.value = countryData.dialCode;
+            const codigoPais = document.getElementById("codigo_pais");
+            if (codigoPais) {
+              codigoPais.innerHTML = countryData.dialCode;
+            }
+          }
+        });
       }
-
-      static get observedAttributes() {
-        return ['title', 'modality', 'duration', 'icon-src', 'bg-image', 'overlay-image'];
-      }
-
-      attributeChangedCallback() {
-        this.updateComponent();
-      }
-
-      updateComponent() {
-        const shadow = this.shadowRoot;
-
-        // Actualizar el título
-        shadow.querySelector('.title').textContent = this.getAttribute('title');
-
-        // Actualizar la modalidad
-        shadow.querySelector('.modality').textContent = this.getAttribute('modality');
-
-        // Actualizar la duración
-        shadow.querySelector('.duration').textContent = this.getAttribute('duration');
-
-        // Actualizar el icono
-        shadow.querySelector('.icon').src = this.getAttribute('icon-src');
-
-        // Actualizar la imagen de fondo
-        shadow.querySelector('.background-image').src = this.getAttribute('bg-image');
-
-        // Actualizar la imagen de overlay
-        shadow.querySelector('.overlay').style.backgroundImage = `url(${this.getAttribute('overlay-image')})`;
-      }
-      handleCardClick() {
-        scrollToForm();
-      }
-    }
-
-    // Registrar el Web Component reducido para móvil
-    customElements.define('mobile-career-card', MobileCareerCard);
+    });
   </script>
 </body>
 

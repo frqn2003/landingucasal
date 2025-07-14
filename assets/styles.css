@@ -87,6 +87,90 @@
     }
 }
 
+.boton-inactivo {
+    background-color: #e0e0e0;
+    color: rgb(26 18 18);
+    cursor: not-allowed;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo para el botón cuando está activo/habilitado */
+.boton-activo {
+    background-color: #B11111;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* Estilo base para campos deshabilitados */
+.boton-inactivo-form {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+    position: relative;
+}
+
+/* Wrapper para los selects con tooltips */
+.select-wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+/* Tooltip usando data-tooltip */
+.select-wrapper::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: -20px;
+    left: 0;
+    background: #333;
+    color: #fff;
+    font-size: 10px;
+    padding: 6px 6px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.15s ease-in-out;
+    z-index: 1000;
+}
+
+/* Mostrar tooltip en hover del wrapper cuando el select está deshabilitado */
+.select-wrapper:hover::after,
+.select-wrapper:hover::before {
+    opacity: 1;
+}
+
+/* Solo mostrar tooltip si el select está deshabilitado */
+.select-wrapper:has(select:not([disabled]))::after,
+.select-wrapper:has(select:not([disabled]))::before {
+    display: none;
+}
+
+/* Fallback para navegadores que no soportan :has() */
+.select-wrapper.enabled::after,
+.select-wrapper.enabled::before {
+    display: none;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.10);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.boton-activo {
+    animation: pulse 2s infinite;
+}
+
+
 h1 {
     /* TITULOS */
     font-size: 1.5rem;
@@ -102,6 +186,8 @@ h1 {
         line-height: 45px;
     }
 }
+
+
 
 h2 {
     /* SUBTITULOS */
@@ -137,19 +223,21 @@ h3 {
 
 /* Custom scrollbar styles for better visual appeal */
 .scrollbar-thin::-webkit-scrollbar {
-    width: 6px;
+  width: 8px;
 }
 
 .scrollbar-thin::-webkit-scrollbar-track {
-    background: #f1f5f9;
-    border-radius: 3px;
+  background: linear-gradient(to bottom, #f1f5f9, #e2e8f0);
+  border-radius: 4px;
+  box-shadow: inset 0 0 3px rgba(0,0,0,0.1);
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 3px;
+  background: linear-gradient(to bottom, #cbd5e1, #94a3b8);
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
+  background: linear-gradient(to bottom, #94a3b8, #64748b);
 }
