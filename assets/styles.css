@@ -199,7 +199,7 @@ h2 {
 
 @media (min-width: 768px) {
     h2 {
-        font-size: 1.20rem;
+        font-size: 1.50rem;
         /* Tamaño más pequeño para escritorio */
         line-height: 25px;
     }
@@ -207,7 +207,7 @@ h2 {
 
 h3 {
     /* DESCRIPCIONES */
-    font-size: 1.1rem;
+    font-size: 1rem;
     /* Tamaño base para móviles */
     margin-bottom: 1rem;
     /* Espacio inferior */

@@ -403,22 +403,610 @@
       </div>
     </div>
   </nav>
+  <style>
+/* ===== COLORES DE MARCA UCASAL ===== */
+:root {
+  --ucasal-red: #D6001C;      /* PANTONE 2035 C */
+  --ucasal-blue: #002F6C;     /* PANTONE 294 C */
+  --ucasal-white: #FFFFFF;
+  --ucasal-black: #000000;
+  --ucasal-gray-light: #F8F9FA;
+  --ucasal-gray-medium: #E9ECEF;
+}
+
+/* ===== OPCIÓN 2: Patrón geométrico sutil - BRAND VERSION ===== */
+.hero-bg-option-2-brand {
+  background: linear-gradient(135deg, var(--ucasal-gray-light) 0%, var(--ucasal-gray-medium) 100%);
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(0, 47, 108, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(214, 0, 28, 0.08) 0%, transparent 50%),
+    linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.15) 50%, transparent 60%);
+  background-size: 120px 120px, 120px 120px, 60px 60px;
+  position: relative;
+}
+
+.hero-bg-option-2-brand::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.4) 50%, 
+    var(--ucasal-white) 100%);
+  pointer-events: none;
+}
+
+.carreras-section-option-2-brand {
+  background: linear-gradient(to bottom,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.3) 10%,
+    rgba(255, 255, 255, 0.9) 30%,
+    var(--ucasal-white) 50%);
+  position: relative;
+}
+
+/* ===== OPCIÓN 5: Mesh gradient moderno - BRAND VERSION ===== */
+.hero-bg-option-5-brand {
+  background:
+    radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(214, 0, 28, 0.12) 0%, transparent 60%),
+    radial-gradient(circle at 40% 40%, rgba(0, 47, 108, 0.08) 0%, transparent 50%),
+    linear-gradient(135deg, var(--ucasal-gray-light) 0%, var(--ucasal-gray-medium) 100%);
+  position: relative;
+}
+
+.hero-bg-option-5-brand::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 40%,
+    rgba(255, 255, 255, 0.7) 70%,
+    var(--ucasal-white) 100%);
+  pointer-events: none;
+}
+
+/* ===== OPCIÓN 6: Ondas fluidas animadas - BRAND VERSION ===== */
+.hero-bg-option-6-brand {
+  background: linear-gradient(135deg, var(--ucasal-gray-light) 0%, var(--ucasal-white) 50%, var(--ucasal-gray-medium) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-option-6-brand::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(ellipse 800px 600px at 50% 0%, rgba(0, 47, 108, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse 600px 400px at 100% 100%, rgba(214, 0, 28, 0.10) 0%, transparent 50%);
+  animation: waveFloat 8s ease-in-out infinite;
+}
+
+.hero-bg-option-6-brand::after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z' fill='%23ffffff'/%3E%3C/svg%3E") no-repeat;
+  background-size: cover;
+  z-index: 1;
+}
+
+/* ===== OPCIÓN 7: Gradiente dinámico con partículas - BRAND VERSION ===== */
+.hero-bg-option-7-brand {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(0, 47, 108, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(214, 0, 28, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 60% 40%, rgba(255, 255, 255, 0.4) 0%, transparent 40%),
+    linear-gradient(135deg, var(--ucasal-gray-light) 0%, var(--ucasal-white) 50%, var(--ucasal-gray-medium) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-option-7-brand::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 25% 75%, rgba(0, 47, 108, 0.06) 2px, transparent 2px),
+    radial-gradient(circle at 75% 25%, rgba(214, 0, 28, 0.06) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.4) 1px, transparent 1px);
+  background-size: 100px 100px, 150px 150px, 20px 20px;
+  animation: particleFloat 15s linear infinite;
+}
+
+.hero-bg-option-7-brand::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.8) 80%,
+    var(--ucasal-white) 100%);
+  clip-path: polygon(0 40%, 100% 0%, 100% 100%, 0% 100%);
+}
+/* ===== OPCIÓN 9: Gradiente líquido moderno - BRAND VERSION (RECOMENDADA) ===== */
+.hero-bg-option-9 {
+  background:
+    radial-gradient(ellipse at top left, rgba(0, 47, 108, 0.18) 0%, transparent 50%),
+    radial-gradient(ellipse at top right, rgba(214, 0, 28, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom center, rgba(255, 255, 255, 0.5) 0%, transparent 50%),
+    linear-gradient(135deg, var(--ucasal-gray-light) 0%, var(--ucasal-white) 30%, var(--ucasal-gray-light) 70%, var(--ucasal-gray-medium) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-option-9::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    conic-gradient(from 0deg at 50% 50%,
+      transparent 0deg,
+      rgba(0, 47, 108, 0.06) 60deg,
+      transparent 120deg,
+      rgba(214, 0, 28, 0.06) 180deg,
+      transparent 240deg,
+      rgba(0, 47, 108, 0.06) 300deg,
+      transparent 360deg);
+  animation: rotateGradient 20s linear infinite;
+}
+
+.hero-bg-option-9::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background:
+    radial-gradient(ellipse 100% 100% at 50% 100%, var(--ucasal-white) 0%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.9) 60%, var(--ucasal-white) 100%);
+}
+/* ===== OPCIÓN 9: Gradiente líquido moderno - BRAND VERSION ENHANCED ===== */
+.hero-bg-option-9-brand {
+  background:
+    radial-gradient(ellipse at top left, rgba(0, 47, 108, 0.28) 0%, transparent 50%),
+    radial-gradient(ellipse at top right, rgba(214, 0, 28, 0.22) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom center, rgba(255, 255, 255, 0.7) 0%, transparent 50%),
+    linear-gradient(135deg, var(--ucasal-gray-light) 0%, var(--ucasal-white) 30%, var(--ucasal-gray-light) 70%, var(--ucasal-gray-medium) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-option-9-brand::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    conic-gradient(from 0deg at 50% 50%,
+      transparent 0deg,
+      rgba(0, 47, 108, 0.12) 60deg,
+      transparent 120deg,
+      rgba(214, 0, 28, 0.10) 180deg,
+      transparent 240deg,
+      rgba(0, 47, 108, 0.12) 300deg,
+      transparent 360deg);
+  animation: rotateGradient 20s linear infinite;
+}
+
+.hero-bg-option-9-brand::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background:
+    radial-gradient(ellipse 100% 100% at 50% 100%, var(--ucasal-white) 0%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.9) 60%, var(--ucasal-white) 100%);
+}
+
+/* ===== VERSIÓN ALTERNATIVA CON COLORES AÚN MÁS INTENSOS ===== */
+.hero-bg-option-9-brand-intense {
+  background:
+    radial-gradient(ellipse at top left, rgba(0, 47, 108, 0.35) 0%, rgba(0, 47, 108, 0.08) 70%, transparent 100%),
+    radial-gradient(ellipse at top right, rgba(214, 0, 28, 0.28) 0%, rgba(214, 0, 28, 0.06) 70%, transparent 100%),
+    radial-gradient(ellipse at bottom center, rgba(255, 255, 255, 0.8) 0%, transparent 60%),
+    radial-gradient(ellipse at center, rgba(248, 249, 250, 0.9) 0%, transparent 80%),
+    linear-gradient(135deg, var(--ucasal-gray-light) 0%, var(--ucasal-white) 30%, var(--ucasal-gray-light) 70%, var(--ucasal-gray-medium) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-option-9-brand-intense::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    conic-gradient(from 0deg at 50% 50%,
+      transparent 0deg,
+      rgba(0, 47, 108, 0.15) 45deg,
+      rgba(0, 47, 108, 0.08) 75deg,
+      transparent 120deg,
+      rgba(214, 0, 28, 0.12) 165deg,
+      rgba(214, 0, 28, 0.06) 195deg,
+      transparent 240deg,
+      rgba(0, 47, 108, 0.15) 285deg,
+      rgba(0, 47, 108, 0.08) 315deg,
+      transparent 360deg);
+  animation: rotateGradient 20s linear infinite;
+}
+
+.hero-bg-option-9-brand-intense::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background:
+    radial-gradient(ellipse 100% 100% at 50% 100%, var(--ucasal-white) 0%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.9) 60%, var(--ucasal-white) 100%);
+}
+
+/* ===== VERSIÓN CON PATRONES ADICIONALES PARA MÁS DEFINICIÓN ===== */
+.hero-bg-option-9-brand-defined {
+  background:
+    /* Patrones sutiles para más textura */
+    repeating-radial-gradient(circle at 20% 20%, 
+      transparent 0px, 
+      rgba(0, 47, 108, 0.02) 1px, 
+      transparent 2px, 
+      transparent 40px),
+    repeating-radial-gradient(circle at 80% 80%, 
+      transparent 0px, 
+      rgba(214, 0, 28, 0.02) 1px, 
+      transparent 2px, 
+      transparent 60px),
+    /* Gradientes principales más intensos */
+    radial-gradient(ellipse at top left, rgba(0, 47, 108, 0.32) 0%, rgba(0, 47, 108, 0.05) 60%, transparent 100%),
+    radial-gradient(ellipse at top right, rgba(214, 0, 28, 0.25) 0%, rgba(214, 0, 28, 0.04) 60%, transparent 100%),
+    radial-gradient(ellipse at bottom center, rgba(255, 255, 255, 0.75) 0%, transparent 50%),
+    linear-gradient(135deg, var(--ucasal-gray-light) 0%, var(--ucasal-white) 30%, var(--ucasal-gray-light) 70%, var(--ucasal-gray-medium) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-option-9-brand-defined::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    conic-gradient(from 0deg at 50% 50%,
+      transparent 0deg,
+      rgba(0, 47, 108, 0.18) 30deg,
+      rgba(0, 47, 108, 0.12) 60deg,
+      rgba(0, 47, 108, 0.06) 90deg,
+      transparent 120deg,
+      rgba(214, 0, 28, 0.15) 150deg,
+      rgba(214, 0, 28, 0.10) 180deg,
+      rgba(214, 0, 28, 0.05) 210deg,
+      transparent 240deg,
+      rgba(0, 47, 108, 0.18) 270deg,
+      rgba(0, 47, 108, 0.12) 300deg,
+      rgba(0, 47, 108, 0.06) 330deg,
+      transparent 360deg);
+  animation: rotateGradient 25s linear infinite;
+}
+
+.hero-bg-option-9-brand-defined::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background:
+    radial-gradient(ellipse 100% 100% at 50% 100%, var(--ucasal-white) 0%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.9) 60%, var(--ucasal-white) 100%);
+}
+
+/* ===== ANIMACIÓN MEJORADA ===== */
+@keyframes rotateGradient {
+  0% { 
+    transform: rotate(0deg) scale(1); 
+    opacity: 0.8;
+  }
+  25% { 
+    transform: rotate(90deg) scale(1.05); 
+    opacity: 1;
+  }
+  50% { 
+    transform: rotate(180deg) scale(1); 
+    opacity: 0.9;
+  }
+  75% { 
+    transform: rotate(270deg) scale(1.05); 
+    opacity: 1;
+  }
+  100% { 
+    transform: rotate(360deg) scale(1); 
+    opacity: 0.8;
+  }
+}
+
+/* ===== RESPONSIVE PARA COLORES INTENSOS ===== */
+@media (max-width: 768px) {
+  .hero-bg-option-9-brand,
+  .hero-bg-option-9-brand-intense,
+  .hero-bg-option-9-brand-defined {
+    /* Reducir un poco la intensidad en móviles para mejor legibilidad */
+    filter: brightness(1.1) contrast(0.95);
+  }
+  
+  .hero-bg-option-9-brand::after,
+  .hero-bg-option-9-brand-intense::after,
+  .hero-bg-option-9-brand-defined::after {
+    height: 60px;
+  }
+}
+
+/* ===== UTILIDAD PARA AJUSTAR INTENSIDAD DINÁMICAMENTE ===== */
+.color-intensity-low {
+  filter: brightness(0.9) saturate(0.8);
+}
+
+.color-intensity-medium {
+  filter: brightness(1) saturate(1);
+}
+
+.color-intensity-high {
+  filter: brightness(1.1) saturate(1.2);
+}
+
+.color-intensity-max {
+  filter: brightness(1.2) saturate(1.4);
+}
+
+/* ===== OPCIÓN 10: Efecto de profundidad con sombras - BRAND VERSION ===== */
+.hero-bg-option-10-brand {
+  background: linear-gradient(135deg, var(--ucasal-gray-light) 0%, var(--ucasal-white) 50%, var(--ucasal-gray-medium) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-option-10-brand::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(0, 47, 108, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 70% 70%, rgba(214, 0, 28, 0.10) 0%, transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0.7) 0%, transparent 30%);
+  filter: blur(1px);
+}
+
+.hero-bg-option-10-brand::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 25%,
+    rgba(255, 255, 255, 0.7) 60%,
+    var(--ucasal-white) 100%);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M0,0 C300,80 900,40 1200,0 L1200,120 L0,120 Z' fill='white'/%3E%3C/svg%3E") no-repeat;
+  mask-size: cover;
+}
+
+/* ===== NUEVA OPCIÓN: Elegante Corporativa - BRAND VERSION ===== */
+.hero-bg-brand-corporate {
+  background:
+    linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 100%),
+    radial-gradient(circle at 25% 25%, rgba(0, 47, 108, 0.08) 0%, transparent 100%),
+    radial-gradient(circle at 75% 75%, rgba(214, 0, 28, 0.06) 0%, transparent 100%),
+    linear-gradient(135deg, var(--ucasal-white) 0%, var(--ucasal-gray-light) 50%, var(--ucasal-gray-medium) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-brand-corporate::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 47, 108, 0.02) 2px,
+      rgba(0, 47, 108, 0.02) 4px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 2px,
+      rgba(214, 0, 28, 0.02) 2px,
+      rgba(214, 0, 28, 0.02) 4px
+    );
+  animation: subtleShift 12s ease-in-out infinite;
+}
+
+.hero-bg-brand-corporate::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    var(--ucasal-white) 100%);
+  clip-path: ellipse(100% 100% at 50% 100%);
+}
+
+@keyframes subtleShift {
+  0%, 100% { opacity: 0.3; transform: translateX(0); }
+  50% { opacity: 0.6; transform: translateX(10px); }
+}
+
+/* ===== SECCIONES DE CARRERAS CORRESPONDIENTES ===== */
+.carreras-section-brand {
+  background: var(--ucasal-white);
+  position: relative;
+}
+
+.carreras-section-brand::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background:
+    radial-gradient(circle at 25% 25%, rgba(0, 47, 108, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(214, 0, 28, 0.03) 0%, transparent 50%);
+  background-size: 100px 100px, 150px 150px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes waveFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(1deg); }
+}
+
+@keyframes particleFloat {
+  0% { transform: translateX(0) translateY(0); }
+  100% { transform: translateX(-100px) translateY(-50px); }
+}
+
+@keyframes rotateGradient {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+  .hero-bg-option-6-brand::after,
+  .hero-bg-option-7-brand::after,
+  .hero-bg-option-10-brand::after,
+  .hero-bg-brand-corporate::after {
+    height: 20px;
+  }
+
+  .hero-bg-option-9-brand::after {
+    height: 60px;
+  }
+
+  .hero-bg-option-6-brand::before,
+  .hero-bg-option-7-brand::before,
+  .hero-bg-option-9-brand::before,
+  .hero-bg-option-10-brand::before,
+  .hero-bg-brand-corporate::before {
+    filter: blur(1px);
+  }
+
+  /* Reducir intensidad en móviles */
+  .hero-bg-option-7-brand,
+  .hero-bg-option-9-brand {
+    background-size: 80% 80%;
+  }
+}
+
+/* ===== UTILIDADES DE MARCA ===== */
+.brand-text-primary {
+  color: var(--ucasal-blue);
+}
+
+.brand-text-secondary {
+  color: var(--ucasal-red);
+}
+
+.brand-bg-primary {
+  background-color: var(--ucasal-blue);
+}
+
+.brand-bg-secondary {
+  background-color: var(--ucasal-red);
+}
+
+.brand-border-primary {
+  border-color: var(--ucasal-blue);
+}
+
+.brand-border-secondary {
+  border-color: var(--ucasal-red);
+}
+
+/* ===== EFECTOS ESPECIALES PARA ELEMENTOS INTERACTIVOS ===== */
+.brand-hover-effect {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.brand-hover-effect:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 47, 108, 0.15);
+}
+
+.brand-glass-effect {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+  </style>
   <!-- Hero Section -->
-  <main class="relative w-full overflow-hidden bg-gradient-to-b from-[#E2E3F2] to-[#D3D2D2] font-sans">
-    <div class="relative z-10 contenedor">
-      <div class="grid lg:grid-cols-2 gap-4 mt-24 md:mt-36 items-center">
+  <main class="hero-bg-option-9-brand relative w-full overflow-hidden font-sans pb-12">
+    <div class="relative z-10 contenedor @container">
+      <div class="grid lg:grid-cols-2 gap-4 mt-24 @[768px]:mt-24 lg:mt-36 items-center">
         <!-- COLUMNA IZQUIERDA -->
         <div class="order-1 space-y-4 lg:space-y-6">
-          <p class="bg-[#D6001C] text-md font-bold text-white p-2 px-4 rounded-[40px] w-fit">
+          <!-- <p class="text-md font-bold text-white">
             Inscripciones 2025 abiertas
-          </p>
-          <!-- Descripciones -->
+          </p> -->
+          <!-- Titulo página -->
           <h1 class="text-black font-bold">
-            Frase para atrapar la atención del usuario
+            Somos tu punto de partida para llegar más lejos. Estudiá en UCASAL
           </h1>
+          <!-- Descripcion página -->
           <h3 class="text-lg text-gray-800">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere nisi debitis quos iste quaerat quo quae aut
-            suscipit sapiente eligendi? Rerum quis consectetur libero illum eos quia. Magnam, blanditiis quis.
+            Desde 1963, formamos personas que se animan a transformar su realidad con educación de calidad. Somos un
+            sinónimo de excelencia, innovación educativa y compromiso con el desarrollo humano.<br>
           </h3>
           <!-- CTA -->
           <button onclick="location.href='#carreras'" class="boton-cta">Explorar Carreras
@@ -476,13 +1064,12 @@
               </div>
             </div>
           </div>
-          <div class="bg-white/50 py-3 my-2 lg:my-4 pb-6 rounded-lg mx-auto">
+          <div class="bg-white/50 backdrop-blur-lg py-3 my-2 lg:my-4 pb-6 rounded-lg mx-auto">
             <div class="grid grid-rows-2 text-center items-center justify-center">
               <h2 class="flex-1 font-bold mb-2">
                 ¿Listo para Comenzar?
               </h2>
-              <button onclick="location.href='#formu'" class="boton-cta mx-auto">Solicita
-                información
+              <button onclick="location.href='#formu'" class="boton-cta mx-auto">Quiero información
               </button>
             </div>
           </div>
@@ -490,60 +1077,58 @@
       </div>
   </main>
   <!-- Carreras -->
-  <section class="bg-gradient-to-b from-[#D3D2D2] to-white font-sans">
-    <div class="w-full max-w-4xl p-6 mx-auto">
-      <div class="text-center mb-5 font-bold">
-        <h1>Elige tu Modalidad de Estudio</h1>
-        <p class="text-sm font-semibold"><!-- Si se desea una subdescripcion --></p>
-      </div>
-      <div class="grid grid-cols-2 gap-6" id="modalidades">
-        <!-- Se genera dinamicamente -->
-      </div>
-    </div>
-    <div class="w-full max-w-4xl p-6 mx-auto" id="carreras">
-      <div class="text-center mb-5 font-bold">
-        <h1>¡Explora todas nuestras carreras!</h1>
-        <p class="text-sm font-semibold"><!-- Si se desea una subdescripcion --></p>
-      </div>
-    </div>
-    <!-- Barra de busqueda -->
-    <div class="contenedor space-y-4">
-      <div class="relative">
-        <input type="text" id="search-bar" placeholder="Buscar carreras..."
-          class="w-full px-4 py-2 border border-gray-400 rounded-[8px] focus:outline-none focus:ring-1 focus:ring-gray-500">
-        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-          <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-          </svg>
+  <section class="carreras-section-brand font-sans">
+    <div class="">
+      <div class="w-full max-w-4xl p-6 mx-auto">
+        <div class="text-center mb-5 font-bold">
+          <h1>Elige tu Modalidad de Estudio</h1>
+          <p class="text-sm font-semibold"><!-- Si se desea una subdescripcion --></p>
+        </div>
+        <div class="grid grid-cols-2 gap-6" id="modalidades">
+          <!-- Se genera dinamicamente -->
         </div>
       </div>
-      <!-- Filtros -->
-      <h3 class="max-sm:text-sm">Buscar por filtros</h3>
-      <div class="flex flex-row gap-4 overflow-auto mb-2" id="filtros">
-        <!-- Dinamicamente -->
+      <div class="w-full max-w-4xl p-6 mx-auto" id="carreras">
+        <div class="text-center mb-5 font-bold">
+          <h1>¡Explora todas nuestras carreras!</h1>
+          <p class="text-sm font-semibold"><!-- Si se desea una subdescripcion --></p>
+        </div>
       </div>
-      <h3 class="max-sm:text-sm">Buscar por area</h3>
-      <div class="flex flex-row gap-4 overflow-auto mb-2" id="filtros-categoria">
-        <!-- Dinamicamente -->
+      <!-- Barra de busqueda -->
+      <div class="contenedor space-y-4">
+        <div class="relative">
+          <input type="text" id="search-bar" placeholder="Buscar carreras..."
+            class="w-full px-4 py-2 border border-gray-400 rounded-[8px] focus:outline-none focus:ring-1 focus:ring-gray-500">
+          <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
+        </div>
+        <!-- Filtros -->
+        <h3 class="max-sm:text-sm">Buscar por filtros</h3>
+        <div class="flex flex-row gap-4 overflow-auto mb-2" id="filtros">
+          <!-- Dinamicamente -->
+        </div>
+        <h3 class="max-sm:text-sm">Buscar por area</h3>
+        <div class="flex flex-row gap-4 overflow-auto mb-2" id="filtros-categoria">
+          <!-- Dinamicamente -->
+        </div>
       </div>
-    </div>
-    <!-- Carreras -->
-    <div class="contenedor relative bg-gradient-to-b from-gray-100 via-white to-gray-100 py-2 rounded-xl shadow-inner">
-      <!-- Scroll indicator at top -->
-      <div
-        class="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-gray-200/60 to-transparent z-10 pointer-events-none flex items-end justify-center">
-      </div>
-      <!-- Main grid container -->
-      <div
-        class="grid md:grid-cols-4 grid-cols-2 gap-4 md:gap-8 overflow-y-scroll h-[800px] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 relative"
-        id="listaCarreras">
-        <!-- Dinamicamente -->
-      </div>
-      <!-- Scroll indicator at bottom -->
-      <div
-        class="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-gray-200/60 to-transparent z-10 pointer-events-none flex items-end justify-center pb-2">
+      <!-- Carreras -->
+      <div class="contenedor relative bg-gradient-to-b from-gray-100 via-white to-gray-100 py-2 rounded-xl shadow-inner">
+        <!-- Scroll indicator at top -->
+        <div class="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-gray-200/60 to-transparent z-10 pointer-events-none flex items-end justify-center">
+        </div>
+        <!-- Main grid container -->
+        <div class="grid md:grid-cols-4 grid-cols-2 gap-4 md:gap-8 overflow-y-scroll h-[800px] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 relative" id="listaCarreras">
+          <!-- Dinamicamente -->
+        </div>
+        <!-- Scroll indicator at bottom -->
+        <div class="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-gray-200/60 to-transparent z-10 pointer-events-none flex items-end justify-center pb-2">
+        </div>
       </div>
     </div>
   </section>
@@ -656,33 +1241,27 @@
       </div>
     </div>
     <!-- Teléfono -->
-    <div class="grid grid-cols-8 gap-4 md:grid-cols-6">
-      <div class="relative z-0 w-full col-span-3 mt-6 md:col-span-2 group">
-        <div class="relative w-full group">
-          <input name="tipo_tel"
-            class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-b-0 border-gray-300 rounded-b-none shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600"
-            tabindex="9" type="hidden" value="cel">
-          </input>
-          <input type="text"
-            class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:outline-none focus:ring-0 focus:border-blue-600 form-control form-control-sm input-style"
+    <div class="grid grid-cols-8 gap-4 md:grid-cols-3">
+      <div class="relative z-0 w-full col-span-3 mt-6 md:col-span-1 group">
+        <div class="relative w-full group @container">
+          <input name="tipo_tel" tabindex="9" type="hidden" value="cel" />
+          <input type="text" class="block @[768px]:w-[500px] md:w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:outline-none focus:ring-0 focus:border-blue-600 form-control form-control-sm input-style"
             id="phone" name="ddi_pais" />
           <label for="tel"
-            class="absolute md:text-base text-[0.7rem] text-black duration-300 transform md:-translate-y-1 scale-75 -top-1 left-0 -z-10 origin-[0] -mt-4">Código
-            país</label>
+            class="absolute md:text-base text-[0.7rem] text-black duration-300 transform md:-translate-y-1 scale-75 -top-1 left-0 -z-10 origin-[0] -mt-4">Código país</label>
         </div>
       </div>
-      <div class="relative col-span-2 mt-6 group">
+      <div class="relative max-md:col-span-2 mt-6 group">
         <div class="relative z-0 w-full group">
           <input type="text" name="cod_area" id="cod" size="4" maxLength="4"
             class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:outline-none focus:ring-0 focus:border-blue-600"
             placeholder="Ej: 387" required tabindex="5" oninput="validarLongitudTelefono(this, 4)" />
           <label for="cod"
-            class="absolute md:text-base text-[0.7rem] text-black duration-300 transform md:-translate-y-1 scale-75 -top-1 left-0 -z-10 origin-[0] -mt-4">Código
-            Área
+            class="absolute md:text-base text-[0.7rem] text-black duration-300 transform md:-translate-y-1 scale-75 -top-1 left-0 -z-10 origin-[0] -mt-4">Código Área
           </label>
         </div>
       </div>
-      <div class="relative z-0 w-full col-span-3 mt-6 md:col-start-5 group">
+      <div class="relative z-0 w-full max-md:col-span-3 mt-6 group">
         <div class="relative">
           <span
             class="text-[0.8rem] absolute left-0 top-[55%] transform -translate-y-1/2 text-gray-700 border px-1 border-gray-500 bg-white/80 left-0.5 flex items-center h-[1.25rem] mt-0">15</span>
@@ -726,9 +1305,8 @@
   <div class="relative bg-fixed bg-center bg-cover"
     style="background-image: url('/landing/ingreso-carreras-ucasal/close-up-person-doing-online-shopping.jpg');">
     <div class="absolute inset-0 bg-black opacity-50"></div>
-    <div class="relative z-10 mx-5 2xl:ml-64 xl:mx-52 md:mx-20">
-      <h2 class="mt-5 text-white bigTitle shadow-black">
-        <span>Financia tus aranceles con:</span>
+    <div class="relative z-10 contenedor">
+      <h2 class="py-5 text-white font-bold font-sans shadow-black">Financia tus aranceles con:
       </h2>
       <div class="grid grid-cols-1 my-5 text-white lg:grid-cols-3">
         <div id="tarjetaMacro" class="flex flex-col items-center justify-center gap-3 mb-5 text-center">
