@@ -198,7 +198,7 @@ const careers = [
     category: "Profesorado y Educación",
     image: "",
   },
-    {
+  {
     codcar: 56,
     name: "Tecnicatura Universitaria en Podología",
     description: "",
@@ -259,8 +259,8 @@ const careers = [
 const filtros = [
   { id: "popular", name: "Más Populares", filter: career => career.popular },
   { id: "featured", name: "Destacadas", filter: career => career.featured },
-  { id: "presencial", name: "Presencial", filter: career => career.modality.includes(1) },
-  { id: "distancia", name: "Virtual/Online", filter: career => career.modality.includes(7) },
+  { id: "1", name: "Presencial", filter: career => career.modality.includes(1) },
+  { id: "7", name: "Virtual/Online", filter: career => career.modality.includes(7) },
 ];
 
 const containerCarreras = document.getElementById("listaCarreras");
@@ -279,21 +279,21 @@ filtrosAreaActivos = []; // Nuevo array para filtros de área
 
 function filtrosRender() {
   containerFiltros.innerHTML = filtros.map(filter => `
-  <button class="filtro-btn cursor-pointer flex items-center space-x-2 px-4 py-2 rounded-[8px] bg-gray-400 hover:bg-[#D6001C] hover:text-white transition-colors md:text-base text-xs" 
+  <button class="cursor-pointer flex items-center space-x-2 px-4 py-2 rounded-[8px] bg-white border-2 border-gray-200 hover:bg-[#D6001C] hover:text-white transition-colors md:text-base text-xs" id="boton-filtro"
     data-filter="${filter.id}">
     <span>${filter.name}</span>
   </button>
 `).join('');
 
   containerFiltrosArea.innerHTML = filtrosArea.map(filter => `
-  <button class="filtro-area-btn cursor-pointer flex items-center space-x-2 px-4 py-2 rounded-[8px] bg-gray-400 hover:bg-[#D6001C] hover:text-white transition-colors md:text-base text-xs" 
+  <button class="filtro-area-btn cursor-pointer flex items-center space-x-2 px-4 py-2 rounded-[8px] bg-white border-2 border-gray-200 hover:bg-[#D6001C] hover:text-white transition-colors md:text-base text-xs" 
     data-filter="${filter}">
     <span>${filter.charAt(0).toUpperCase() + filter.slice(1)}</span>
   </button>
 `).join('');
 
   // Event listeners para filtros principales
-  const botones = containerFiltros.querySelectorAll(".filtro-btn");
+  const botones = containerFiltros.querySelectorAll("#boton-filtro");
   botones.forEach(button => {
     button.addEventListener("click", (e) => {
       const selectedFilter = e.currentTarget.dataset.filter;
@@ -302,11 +302,11 @@ function filtrosRender() {
         // Si ya está activo, lo removemos del array
         filtrosActivos = filtrosActivos.filter(filtro => filtro !== selectedFilter);
         e.currentTarget.classList.remove("bg-[#D6001C]", "text-white");
-        e.currentTarget.classList.add("bg-gray-400");
+        e.currentTarget.classList.add("bg-white");
       } else {
         // Si no está activo, lo agregamos al array
         filtrosActivos.push(selectedFilter);
-        e.currentTarget.classList.remove("bg-gray-400");
+        e.currentTarget.classList.remove("bg-white");
         e.currentTarget.classList.add("bg-[#D6001C]", "text-white");
       }
 
@@ -324,11 +324,11 @@ function filtrosRender() {
         // Si ya está activo, lo removemos del array de área
         filtrosAreaActivos = filtrosAreaActivos.filter(filtro => filtro !== selectedFilter);
         e.currentTarget.classList.remove("bg-[#D6001C]", "text-white");
-        e.currentTarget.classList.add("bg-gray-400");
+        e.currentTarget.classList.add("bg-white");
       } else {
         // Si no está activo, lo agregamos al array de área
         filtrosAreaActivos.push(selectedFilter);
-        e.currentTarget.classList.remove("bg-gray-400");
+        e.currentTarget.classList.remove("bg-white");
         e.currentTarget.classList.add("bg-[#D6001C]", "text-white");
       }
 
@@ -467,7 +467,7 @@ const container = document.getElementById("carrerasElegidas");
 
 carrerasElegidas.forEach((carrerasElegidas) => {
   const card = document.createElement("div");
-  card.className = "bg-black/10 rounded-lg p-3 hover:bg-white/20 transition-colors cursor-pointer";
+  card.className = "bg-black/5 rounded-lg p-3 hover:bg-white/20 transition-colors cursor-pointer";
 
   card.innerHTML = `
                 <div class="flex items-center space-x-3">
@@ -486,31 +486,138 @@ const modalidades = [
 ]
 const containerModalidades = document.getElementById("modalidades");
 
-modalidades.forEach((modalidades) => {
-  const modalidadDiv = document.createElement("div");
-  modalidadDiv.classList.add("rounded-[8px]", "border", "border-gray-500/50", "bg-white/70", "shadow-lg", "text-left");
-  modalidadDiv.innerHTML = `
-          <div class="grid md:grid-cols-5 grid-cols-3 md:p-4 p-2">
-              <img src="${modalidades.imagen}" alt="${modalidades.nombre}" class="col-start-1 w-16 h-16 object-contain">
-              <div class="md:col-span-4 col-span-3">
-                  <h2 class="text-2xl font-bold">${modalidades.nombre}</h2>
-                  <p class="text-sm md:text-base mb-2">${modalidades.descripcion}</p>
-                  <h3 class="text-gray-600">Caracteristicas de la modalidad</h3>
-                  <ul class="list-disc text-sm md:text-base pl-5 md:pl-8">
-                      ${modalidades.caracteristicas.map(caracteristica => `<li>${caracteristica}</li>`).join('')}
-                  </ul>
-              </div>
-          </div>
-          <div class="flex justify-center w-full mb-2 border-t-1 p-2">
-              <button class="boton-cta modalidad-filter-btn text-xs md:text-base" data-filter="${modalidades.id}">Buscar carreras de modalidad ${modalidades.nombre}</button>
-          </div>
-        `;
-  containerModalidades.appendChild(modalidadDiv);
+function renderModalidades() {
+  const container = document.getElementById("modalidades");
+
+  container.innerHTML = modalidades.map(modalidad => `
+<div class="bg-white rounded-lg border border-gray-200 shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+  <!-- Header de la tarjeta -->
+  <div class="p-4 md:p-6">
+    <div class="flex flex-col md:flex-row md:items-start gap-4">
+      <!-- Imagen -->
+      <div class="flex justify-center md:justify-start">
+        <img src="${modalidad.imagen}" alt="${modalidad.nombre}"
+          class="w-16 h-16 md:w-20 md:h-20 object-contain rounded-lg">
+      </div>
+
+      <!-- Contenido principal -->
+      <div class="flex-1 text-left">
+        <h3 class="md:text-2xl font-bold text-gray-800 mb-2">
+          ${modalidad.nombre}
+        </h3>
+        <p class="text-xs md:text-base text-gray-600 leading-relaxed">
+          ${modalidad.descripcion}
+        </p>
+      </div>
+    </div>
+
+    <!-- Sección de características -->
+    <div class="mt-4 md:mt-6">
+      <!-- Header de características (clickeable en mobile) -->
+      <div class="flex items-center justify-between md:justify-start mobile-expand-trigger md:cursor-default"
+        onclick="toggleCharacteristics(${modalidad.id})">
+        <h3 class="font-semibold text-gray-700">
+          Características
+        </h3>
+        <!-- Botón de expandir (solo visible en mobile) -->
+        <button class="md:hidden text-gray-500 p-1 transform transition rotate-180" id="expand-btn-${modalidad.id}">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Lista de características -->
+      <div class="transition-all transform md:expanded ease-in-out duration-300 collapsed mt-3" id="characteristics-${modalidad.id}">
+        <ul class="space-y-2 pl-4">
+          ${modalidad.caracteristicas.map(caracteristica => `
+          <li class="list-disc">
+            <span class="text-xs md:text-base text-gray-600">
+              ${caracteristica}
+            </span>
+          </li>
+          `).join('')}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer con botón de acción -->
+  <div class="px-4 py-3 md:px-6 md:py-4 bg-gray-50 border-t border-gray-200">
+    <button class="boton-cta flex justify-center items-center" data-filter="${modalidad.id}" id="boton-modalidad">
+      <svg class="md:w-5 md:h-5 w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+      </svg>
+      <span class="text-xs md:text-base">
+        Buscar carreras ${modalidad.nombre.toLowerCase()}
+      </span>
+    </button>
+  </div>
+</div>`).join('');
+}
+
+// Función para toggle de características en mobile
+function toggleCharacteristics(modalidadId) {
+  // Solo funciona en mobile
+  if (window.innerWidth >= 768) return;
+
+  const content = document.getElementById(`characteristics-${modalidadId}`);
+  const button = document.getElementById(`expand-btn-${modalidadId}`);
+
+  if (!content || !button) return;
+
+  const isCollapsed = content.classList.contains('collapsed');
+
+  if (isCollapsed) {
+    // Expandir
+    content.classList.remove('collapsed');
+    content.classList.add('max-h-[500px]','opacity-100');
+    button.classList.add('rotate-none');
+  } else {
+    // Colapsar
+    content.classList.remove('max-h-[500px]','opacity-100');
+    content.classList.add('collapsed');
+    button.classList.remove('rotate-none');
+  }
+}
+
+// Función para manejar el resize de ventana
+function handleResize() {
+  const isMobile = window.innerWidth < 768;
+
+  modalidades.forEach(modalidad => {
+    const content = document.getElementById(`characteristics-${modalidad.id}`);
+    const button = document.getElementById(`expand-btn-${modalidad.id}`);
+
+    if (!content || !button) return;
+
+    if (!isMobile) {
+      // En desktop, siempre expandido
+      content.classList.remove('collapsed');
+      content.classList.add('max-h-[500px]','opacity-100');
+    } else {
+      // En mobile, comenzar colapsado
+      if (!content.classList.contains('max-h-[500px]','opacity-100')) {
+        content.classList.add('collapsed');
+        content.classList.remove('max-h-[500px]','opacity-100');
+      }
+    }
+  });
+}
+
+// Event listeners
+window.addEventListener('resize', handleResize);
+
+// Iniciar componente
+document.addEventListener('DOMContentLoaded', function () {
+  renderModalidades();
+  handleResize()
 });
 
 // Event listeners para los botones de modalidades
 document.addEventListener('DOMContentLoaded', function () {
-  const botonesModalidad = document.querySelectorAll('.modalidad-filter-btn');
+  const botonesModalidad = document.querySelectorAll("#boton-modalidad");
 
   botonesModalidad.forEach(button => {
     button.addEventListener('click', function (e) {
@@ -523,16 +630,16 @@ document.addEventListener('DOMContentLoaded', function () {
       filtrosActivos.push(modalidadFilter);
 
       // Actualizar estado visual de todos los filtros
-      const botonesFiltros = containerFiltros.querySelectorAll(".filtro-btn");
+      const botonesFiltros = containerFiltros.querySelectorAll("#boton-filtro");
       botonesFiltros.forEach(btn => {
         btn.classList.remove("bg-[#D6001C]", "text-white");
-        btn.classList.add("bg-gray-400");
+        btn.classList.add("bg-white");
       });
 
-      const botonesFiltrosArea = containerFiltrosArea.querySelectorAll(".filtro-btn");
+      const botonesFiltrosArea = containerFiltrosArea.querySelectorAll("#boton-filtro");
       botonesFiltrosArea.forEach(btn => {
         btn.classList.remove("bg-[#D6001C]", "text-white");
-        btn.classList.add("bg-gray-400");
+        btn.classList.add("bg-white");
       });
 
       filtrosActivos.forEach(filtroId => {
@@ -540,12 +647,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const activeBtnArea = containerFiltrosArea.querySelector(`[data-filter="${filtroId}"]`);
 
         if (activeBtn) {
-          activeBtn.classList.remove("bg-gray-400");
+          activeBtn.classList.remove("bg-white");
           activeBtn.classList.add("bg-[#D6001C]", "text-white");
         }
 
         if (activeBtnArea) {
-          activeBtnArea.classList.remove("bg-gray-400");
+          activeBtnArea.classList.remove("bg-white");
           activeBtnArea.classList.add("bg-[#D6001C]", "text-white");
         }
       });

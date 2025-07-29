@@ -403,610 +403,29 @@
       </div>
     </div>
   </nav>
-  <style>
-/* ===== COLORES DE MARCA UCASAL ===== */
-:root {
-  --ucasal-red: #D6001C;      /* PANTONE 2035 C */
-  --ucasal-blue: #002F6C;     /* PANTONE 294 C */
-  --ucasal-white: #FFFFFF;
-  --ucasal-black: #000000;
-  --ucasal-gray-light: #F8F9FA;
-  --ucasal-gray-medium: #E9ECEF;
-}
-
-/* ===== OPCIÓN 2: Patrón geométrico sutil - BRAND VERSION ===== */
-.hero-bg-option-2-brand {
-  background: linear-gradient(135deg, var(--ucasal-gray-light) 0%, var(--ucasal-gray-medium) 100%);
-  background-image:
-    radial-gradient(circle at 25% 25%, rgba(0, 47, 108, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(214, 0, 28, 0.08) 0%, transparent 50%),
-    linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.15) 50%, transparent 60%);
-  background-size: 120px 120px, 120px 120px, 60px 60px;
-  position: relative;
-}
-
-.hero-bg-option-2-brand::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100px;
-  background: linear-gradient(to bottom, 
-    transparent 0%, 
-    rgba(255, 255, 255, 0.4) 50%, 
-    var(--ucasal-white) 100%);
-  pointer-events: none;
-}
-
-.carreras-section-option-2-brand {
-  background: linear-gradient(to bottom,
-    rgba(255, 255, 255, 0.4) 0%,
-    rgba(255, 255, 255, 0.3) 10%,
-    rgba(255, 255, 255, 0.9) 30%,
-    var(--ucasal-white) 50%);
-  position: relative;
-}
-
-/* ===== OPCIÓN 5: Mesh gradient moderno - BRAND VERSION ===== */
-.hero-bg-option-5-brand {
-  background:
-    radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(214, 0, 28, 0.12) 0%, transparent 60%),
-    radial-gradient(circle at 40% 40%, rgba(0, 47, 108, 0.08) 0%, transparent 50%),
-    linear-gradient(135deg, var(--ucasal-gray-light) 0%, var(--ucasal-gray-medium) 100%);
-  position: relative;
-}
-
-.hero-bg-option-5-brand::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 120px;
-  background: linear-gradient(to bottom,
-    transparent 0%,
-    rgba(255, 255, 255, 0.3) 40%,
-    rgba(255, 255, 255, 0.7) 70%,
-    var(--ucasal-white) 100%);
-  pointer-events: none;
-}
-
-/* ===== OPCIÓN 6: Ondas fluidas animadas - BRAND VERSION ===== */
-.hero-bg-option-6-brand {
-  background: linear-gradient(135deg, var(--ucasal-gray-light) 0%, var(--ucasal-white) 50%, var(--ucasal-gray-medium) 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-bg-option-6-brand::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background:
-    radial-gradient(ellipse 800px 600px at 50% 0%, rgba(0, 47, 108, 0.12) 0%, transparent 50%),
-    radial-gradient(ellipse 600px 400px at 100% 100%, rgba(214, 0, 28, 0.10) 0%, transparent 50%);
-  animation: waveFloat 8s ease-in-out infinite;
-}
-
-.hero-bg-option-6-brand::after {
-  content: '';
-  position: absolute;
-  bottom: -50px;
-  left: 0;
-  right: 0;
-  height: 150px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z' fill='%23ffffff'/%3E%3C/svg%3E") no-repeat;
-  background-size: cover;
-  z-index: 1;
-}
-
-/* ===== OPCIÓN 7: Gradiente dinámico con partículas - BRAND VERSION ===== */
-.hero-bg-option-7-brand {
-  background:
-    radial-gradient(circle at 20% 20%, rgba(0, 47, 108, 0.15) 0%, transparent 40%),
-    radial-gradient(circle at 80% 80%, rgba(214, 0, 28, 0.12) 0%, transparent 40%),
-    radial-gradient(circle at 60% 40%, rgba(255, 255, 255, 0.4) 0%, transparent 40%),
-    linear-gradient(135deg, var(--ucasal-gray-light) 0%, var(--ucasal-white) 50%, var(--ucasal-gray-medium) 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-bg-option-7-brand::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image:
-    radial-gradient(circle at 25% 75%, rgba(0, 47, 108, 0.06) 2px, transparent 2px),
-    radial-gradient(circle at 75% 25%, rgba(214, 0, 28, 0.06) 1px, transparent 1px),
-    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.4) 1px, transparent 1px);
-  background-size: 100px 100px, 150px 150px, 20px 20px;
-  animation: particleFloat 15s linear infinite;
-}
-
-.hero-bg-option-7-brand::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 120px;
-  background: linear-gradient(to bottom,
-    transparent 0%,
-    rgba(255, 255, 255, 0.2) 20%,
-    rgba(255, 255, 255, 0.5) 50%,
-    rgba(255, 255, 255, 0.8) 80%,
-    var(--ucasal-white) 100%);
-  clip-path: polygon(0 40%, 100% 0%, 100% 100%, 0% 100%);
-}
-/* ===== OPCIÓN 9: Gradiente líquido moderno - BRAND VERSION (RECOMENDADA) ===== */
-.hero-bg-option-9 {
-  background:
-    radial-gradient(ellipse at top left, rgba(0, 47, 108, 0.18) 0%, transparent 50%),
-    radial-gradient(ellipse at top right, rgba(214, 0, 28, 0.12) 0%, transparent 50%),
-    radial-gradient(ellipse at bottom center, rgba(255, 255, 255, 0.5) 0%, transparent 50%),
-    linear-gradient(135deg, var(--ucasal-gray-light) 0%, var(--ucasal-white) 30%, var(--ucasal-gray-light) 70%, var(--ucasal-gray-medium) 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-bg-option-9::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background:
-    conic-gradient(from 0deg at 50% 50%,
-      transparent 0deg,
-      rgba(0, 47, 108, 0.06) 60deg,
-      transparent 120deg,
-      rgba(214, 0, 28, 0.06) 180deg,
-      transparent 240deg,
-      rgba(0, 47, 108, 0.06) 300deg,
-      transparent 360deg);
-  animation: rotateGradient 20s linear infinite;
-}
-
-.hero-bg-option-9::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 10px;
-  background:
-    radial-gradient(ellipse 100% 100% at 50% 100%, var(--ucasal-white) 0%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.9) 60%, var(--ucasal-white) 100%);
-}
-/* ===== OPCIÓN 9: Gradiente líquido moderno - BRAND VERSION ENHANCED ===== */
-.hero-bg-option-9-brand {
-  background:
-    radial-gradient(ellipse at top left, rgba(0, 47, 108, 0.28) 0%, transparent 50%),
-    radial-gradient(ellipse at top right, rgba(214, 0, 28, 0.22) 0%, transparent 50%),
-    radial-gradient(ellipse at bottom center, rgba(255, 255, 255, 0.7) 0%, transparent 50%),
-    linear-gradient(135deg, var(--ucasal-gray-light) 0%, var(--ucasal-white) 30%, var(--ucasal-gray-light) 70%, var(--ucasal-gray-medium) 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-bg-option-9-brand::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background:
-    conic-gradient(from 0deg at 50% 50%,
-      transparent 0deg,
-      rgba(0, 47, 108, 0.12) 60deg,
-      transparent 120deg,
-      rgba(214, 0, 28, 0.10) 180deg,
-      transparent 240deg,
-      rgba(0, 47, 108, 0.12) 300deg,
-      transparent 360deg);
-  animation: rotateGradient 20s linear infinite;
-}
-
-.hero-bg-option-9-brand::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 20px;
-  background:
-    radial-gradient(ellipse 100% 100% at 50% 100%, var(--ucasal-white) 0%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.9) 60%, var(--ucasal-white) 100%);
-}
-
-/* ===== VERSIÓN ALTERNATIVA CON COLORES AÚN MÁS INTENSOS ===== */
-.hero-bg-option-9-brand-intense {
-  background:
-    radial-gradient(ellipse at top left, rgba(0, 47, 108, 0.35) 0%, rgba(0, 47, 108, 0.08) 70%, transparent 100%),
-    radial-gradient(ellipse at top right, rgba(214, 0, 28, 0.28) 0%, rgba(214, 0, 28, 0.06) 70%, transparent 100%),
-    radial-gradient(ellipse at bottom center, rgba(255, 255, 255, 0.8) 0%, transparent 60%),
-    radial-gradient(ellipse at center, rgba(248, 249, 250, 0.9) 0%, transparent 80%),
-    linear-gradient(135deg, var(--ucasal-gray-light) 0%, var(--ucasal-white) 30%, var(--ucasal-gray-light) 70%, var(--ucasal-gray-medium) 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-bg-option-9-brand-intense::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background:
-    conic-gradient(from 0deg at 50% 50%,
-      transparent 0deg,
-      rgba(0, 47, 108, 0.15) 45deg,
-      rgba(0, 47, 108, 0.08) 75deg,
-      transparent 120deg,
-      rgba(214, 0, 28, 0.12) 165deg,
-      rgba(214, 0, 28, 0.06) 195deg,
-      transparent 240deg,
-      rgba(0, 47, 108, 0.15) 285deg,
-      rgba(0, 47, 108, 0.08) 315deg,
-      transparent 360deg);
-  animation: rotateGradient 20s linear infinite;
-}
-
-.hero-bg-option-9-brand-intense::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 20px;
-  background:
-    radial-gradient(ellipse 100% 100% at 50% 100%, var(--ucasal-white) 0%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.9) 60%, var(--ucasal-white) 100%);
-}
-
-/* ===== VERSIÓN CON PATRONES ADICIONALES PARA MÁS DEFINICIÓN ===== */
-.hero-bg-option-9-brand-defined {
-  background:
-    /* Patrones sutiles para más textura */
-    repeating-radial-gradient(circle at 20% 20%, 
-      transparent 0px, 
-      rgba(0, 47, 108, 0.02) 1px, 
-      transparent 2px, 
-      transparent 40px),
-    repeating-radial-gradient(circle at 80% 80%, 
-      transparent 0px, 
-      rgba(214, 0, 28, 0.02) 1px, 
-      transparent 2px, 
-      transparent 60px),
-    /* Gradientes principales más intensos */
-    radial-gradient(ellipse at top left, rgba(0, 47, 108, 0.32) 0%, rgba(0, 47, 108, 0.05) 60%, transparent 100%),
-    radial-gradient(ellipse at top right, rgba(214, 0, 28, 0.25) 0%, rgba(214, 0, 28, 0.04) 60%, transparent 100%),
-    radial-gradient(ellipse at bottom center, rgba(255, 255, 255, 0.75) 0%, transparent 50%),
-    linear-gradient(135deg, var(--ucasal-gray-light) 0%, var(--ucasal-white) 30%, var(--ucasal-gray-light) 70%, var(--ucasal-gray-medium) 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-bg-option-9-brand-defined::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background:
-    conic-gradient(from 0deg at 50% 50%,
-      transparent 0deg,
-      rgba(0, 47, 108, 0.18) 30deg,
-      rgba(0, 47, 108, 0.12) 60deg,
-      rgba(0, 47, 108, 0.06) 90deg,
-      transparent 120deg,
-      rgba(214, 0, 28, 0.15) 150deg,
-      rgba(214, 0, 28, 0.10) 180deg,
-      rgba(214, 0, 28, 0.05) 210deg,
-      transparent 240deg,
-      rgba(0, 47, 108, 0.18) 270deg,
-      rgba(0, 47, 108, 0.12) 300deg,
-      rgba(0, 47, 108, 0.06) 330deg,
-      transparent 360deg);
-  animation: rotateGradient 25s linear infinite;
-}
-
-.hero-bg-option-9-brand-defined::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 20px;
-  background:
-    radial-gradient(ellipse 100% 100% at 50% 100%, var(--ucasal-white) 0%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.9) 60%, var(--ucasal-white) 100%);
-}
-
-/* ===== ANIMACIÓN MEJORADA ===== */
-@keyframes rotateGradient {
-  0% { 
-    transform: rotate(0deg) scale(1); 
-    opacity: 0.8;
-  }
-  25% { 
-    transform: rotate(90deg) scale(1.05); 
-    opacity: 1;
-  }
-  50% { 
-    transform: rotate(180deg) scale(1); 
-    opacity: 0.9;
-  }
-  75% { 
-    transform: rotate(270deg) scale(1.05); 
-    opacity: 1;
-  }
-  100% { 
-    transform: rotate(360deg) scale(1); 
-    opacity: 0.8;
-  }
-}
-
-/* ===== RESPONSIVE PARA COLORES INTENSOS ===== */
-@media (max-width: 768px) {
-  .hero-bg-option-9-brand,
-  .hero-bg-option-9-brand-intense,
-  .hero-bg-option-9-brand-defined {
-    /* Reducir un poco la intensidad en móviles para mejor legibilidad */
-    filter: brightness(1.1) contrast(0.95);
-  }
-  
-  .hero-bg-option-9-brand::after,
-  .hero-bg-option-9-brand-intense::after,
-  .hero-bg-option-9-brand-defined::after {
-    height: 60px;
-  }
-}
-
-/* ===== UTILIDAD PARA AJUSTAR INTENSIDAD DINÁMICAMENTE ===== */
-.color-intensity-low {
-  filter: brightness(0.9) saturate(0.8);
-}
-
-.color-intensity-medium {
-  filter: brightness(1) saturate(1);
-}
-
-.color-intensity-high {
-  filter: brightness(1.1) saturate(1.2);
-}
-
-.color-intensity-max {
-  filter: brightness(1.2) saturate(1.4);
-}
-
-/* ===== OPCIÓN 10: Efecto de profundidad con sombras - BRAND VERSION ===== */
-.hero-bg-option-10-brand {
-  background: linear-gradient(135deg, var(--ucasal-gray-light) 0%, var(--ucasal-white) 50%, var(--ucasal-gray-medium) 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-bg-option-10-brand::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(0, 47, 108, 0.12) 0%, transparent 40%),
-    radial-gradient(circle at 70% 70%, rgba(214, 0, 28, 0.10) 0%, transparent 40%),
-    radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0.7) 0%, transparent 30%);
-  filter: blur(1px);
-}
-
-.hero-bg-option-10-brand::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 120px;
-  background: linear-gradient(to bottom,
-    transparent 0%,
-    rgba(255, 255, 255, 0.3) 25%,
-    rgba(255, 255, 255, 0.7) 60%,
-    var(--ucasal-white) 100%);
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M0,0 C300,80 900,40 1200,0 L1200,120 L0,120 Z' fill='white'/%3E%3C/svg%3E") no-repeat;
-  mask-size: cover;
-}
-
-/* ===== NUEVA OPCIÓN: Elegante Corporativa - BRAND VERSION ===== */
-.hero-bg-brand-corporate {
-  background:
-    linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 100%),
-    radial-gradient(circle at 25% 25%, rgba(0, 47, 108, 0.08) 0%, transparent 100%),
-    radial-gradient(circle at 75% 75%, rgba(214, 0, 28, 0.06) 0%, transparent 100%),
-    linear-gradient(135deg, var(--ucasal-white) 0%, var(--ucasal-gray-light) 50%, var(--ucasal-gray-medium) 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-bg-brand-corporate::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background:
-    repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 2px,
-      rgba(0, 47, 108, 0.02) 2px,
-      rgba(0, 47, 108, 0.02) 4px
-    ),
-    repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 2px,
-      rgba(214, 0, 28, 0.02) 2px,
-      rgba(214, 0, 28, 0.02) 4px
-    );
-  animation: subtleShift 12s ease-in-out infinite;
-}
-
-.hero-bg-brand-corporate::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100px;
-  background: linear-gradient(to bottom,
-    transparent 0%,
-    rgba(255, 255, 255, 0.5) 50%,
-    var(--ucasal-white) 100%);
-  clip-path: ellipse(100% 100% at 50% 100%);
-}
-
-@keyframes subtleShift {
-  0%, 100% { opacity: 0.3; transform: translateX(0); }
-  50% { opacity: 0.6; transform: translateX(10px); }
-}
-
-/* ===== SECCIONES DE CARRERAS CORRESPONDIENTES ===== */
-.carreras-section-brand {
-  background: var(--ucasal-white);
-  position: relative;
-}
-
-.carreras-section-brand::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 10px;
-  background:
-    radial-gradient(circle at 25% 25%, rgba(0, 47, 108, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(214, 0, 28, 0.03) 0%, transparent 50%);
-  background-size: 100px 100px, 150px 150px;
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-/* ===== ANIMACIONES ===== */
-@keyframes waveFloat {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(1deg); }
-}
-
-@keyframes particleFloat {
-  0% { transform: translateX(0) translateY(0); }
-  100% { transform: translateX(-100px) translateY(-50px); }
-}
-
-@keyframes rotateGradient {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* ===== RESPONSIVE ADJUSTMENTS ===== */
-@media (max-width: 768px) {
-  .hero-bg-option-6-brand::after,
-  .hero-bg-option-7-brand::after,
-  .hero-bg-option-10-brand::after,
-  .hero-bg-brand-corporate::after {
-    height: 20px;
-  }
-
-  .hero-bg-option-9-brand::after {
-    height: 60px;
-  }
-
-  .hero-bg-option-6-brand::before,
-  .hero-bg-option-7-brand::before,
-  .hero-bg-option-9-brand::before,
-  .hero-bg-option-10-brand::before,
-  .hero-bg-brand-corporate::before {
-    filter: blur(1px);
-  }
-
-  /* Reducir intensidad en móviles */
-  .hero-bg-option-7-brand,
-  .hero-bg-option-9-brand {
-    background-size: 80% 80%;
-  }
-}
-
-/* ===== UTILIDADES DE MARCA ===== */
-.brand-text-primary {
-  color: var(--ucasal-blue);
-}
-
-.brand-text-secondary {
-  color: var(--ucasal-red);
-}
-
-.brand-bg-primary {
-  background-color: var(--ucasal-blue);
-}
-
-.brand-bg-secondary {
-  background-color: var(--ucasal-red);
-}
-
-.brand-border-primary {
-  border-color: var(--ucasal-blue);
-}
-
-.brand-border-secondary {
-  border-color: var(--ucasal-red);
-}
-
-/* ===== EFECTOS ESPECIALES PARA ELEMENTOS INTERACTIVOS ===== */
-.brand-hover-effect {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.brand-hover-effect:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(0, 47, 108, 0.15);
-}
-
-.brand-glass-effect {
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-  </style>
   <!-- Hero Section -->
-  <main class="hero-bg-option-9-brand relative w-full overflow-hidden font-sans pb-12">
+  <main class="hero-bg-option-9 relative w-full overflow-hidden font-sans pb-12">
     <div class="relative z-10 contenedor @container">
       <div class="grid lg:grid-cols-2 gap-4 mt-24 @[768px]:mt-24 lg:mt-36 items-center">
         <!-- COLUMNA IZQUIERDA -->
-        <div class="order-1 space-y-4 lg:space-y-6">
+        <div class="order-1 space-y-4 lg:space-y-6 pr-0 lg:pr-36 @[768px]:pr-6">
           <!-- <p class="text-md font-bold text-white">
             Inscripciones 2025 abiertas
           </p> -->
           <!-- Titulo página -->
-          <h1 class="text-black font-bold">
+          <h1 class="text-black font-bold hidden lg:block">
             Somos tu punto de partida para llegar más lejos. Estudiá en UCASAL
           </h1>
+          <h1 class="text-black font-bold block lg:hidden">
+            Tu punto de partida para llegar más lejos. Estudiá en UCASAL
+          </h1>
           <!-- Descripcion página -->
-          <h3 class="text-lg text-gray-800">
+          <h3 class="text-lg text-gray-800 hidden lg:block">
             Desde 1963, formamos personas que se animan a transformar su realidad con educación de calidad. Somos un
             sinónimo de excelencia, innovación educativa y compromiso con el desarrollo humano.<br>
+          </h3>
+          <h3 class="text-lg text-gray-800 block lg:hidden">
+            Somos un sinónimo de excelencia, innovación educativa y compromiso con el desarrollo humano.<br>
           </h3>
           <!-- CTA -->
           <button onclick="location.href='#carreras'" class="boton-cta">Explorar Carreras
@@ -1017,15 +436,15 @@
           </button>
           <!-- Datos -->
           <div class="grid grid-cols-4 md:grid-cols-8 items-center text-center text-[#002F6C] font-semibold">
-            <h3 class="md:col-start-1 text-sm leading-tight">+40<br><span class="text-base">Carreras</span></h3>
-            <h3 class="md:col-start-3 text-sm leading-tight">+50<br><span class="text-base ml-1">Años</span></h3>
-            <h3 class="md:col-start-5 text-sm leading-tight">+15k<br><span class="text-base">Estudiantes</span></h3>
-            <h3 class="md:col-start-7 text-sm leading-tight">+10000<br><span class="text-base">Graduados</span></h3>
+            <span class="md:col-start-1 text-lg leading-tight">+40<br><span class="text-base">Carreras</span></span>
+            <span class="md:col-start-3 text-lg leading-tight">+50<br><span class="text-base ml-1">Años</span></span>
+            <span class="md:col-start-5 text-lg leading-tight">+15k<br><span class="text-base">Estudiantes</span></span>
+            <span class="md:col-start-7 text-lg leading-tight">+10000<br><span class="text-base">Graduados</span></span>
           </div>
         </div>
         <!-- COLUMNA DERECHA -->
         <div class="order-2 space-y-2 lg:space-y-6">
-          <div class="bg-white/50 backdrop-blur-lg px-6 py-2 my-0 rounded-lg shadow-lg border-white/20">
+          <div class="brand-glass-effect backdrop-blur-lg px-6 py-2 my-0 rounded-lg shadow-lg border-white/30 border-2">
             <!-- Slider de Testimonios -->
             <div class="flex items-center justify-between my-2">
               <h3 class="text-lg font-bold">Historias de Éxito</h3>
@@ -1046,7 +465,7 @@
                 </button>
               </div>
             </div>
-            <div class="bg-black/10 p-4 rounded-lg">
+            <div class="bg-black/5 p-4 rounded-lg">
               <div class="flex items-start space-x-4 transition-opacity" id="contenido-testimonial">
                 <img id="imagen-testimonial" class="w-12 h-12 rounded-full" />
                 <div class="flex-1">
@@ -1078,228 +497,244 @@
   </main>
   <!-- Carreras -->
   <section class="carreras-section-brand font-sans">
-    <div class="">
-      <div class="w-full max-w-4xl p-6 mx-auto">
-        <div class="text-center mb-5 font-bold">
-          <h1>Elige tu Modalidad de Estudio</h1>
-          <p class="text-sm font-semibold"><!-- Si se desea una subdescripcion --></p>
-        </div>
-        <div class="grid grid-cols-2 gap-6" id="modalidades">
-          <!-- Se genera dinamicamente -->
+    <div class="w-full max-w-4xl p-6 mx-auto">
+      <div class="text-center mb-5 font-bold">
+        <h2>Conocé nuestras Modalidades de Estudio</h2>
+        <p class="text-sm font-semibold"><!-- Si se desea una subdescripcion --></p>
+      </div>
+      <div class="grid grid-cols-2 gap-6" id="modalidades">
+        <!-- Se genera dinamicamente -->
+      </div>
+    </div>
+    <div class="w-full max-w-4xl p-6 mx-auto" id="carreras">
+      <div class="text-center mb-5 font-bold">
+        <h1>¡Explora todas nuestras carreras!</h1>
+        <p class="text-sm font-semibold"><!-- Si se desea una subdescripcion --></p>
+      </div>
+    </div>
+    <!-- Barra de busqueda -->
+    <div class="contenedor space-y-4">
+      <div class="relative">
+        <input type="text" id="search-bar" placeholder="Buscar carreras..."
+          class="w-full px-4 py-2 border border-gray-400 rounded-[8px] focus:outline-none focus:ring-1 focus:ring-gray-500">
+        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+          <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
         </div>
       </div>
-      <div class="w-full max-w-4xl p-6 mx-auto" id="carreras">
-        <div class="text-center mb-5 font-bold">
-          <h1>¡Explora todas nuestras carreras!</h1>
-          <p class="text-sm font-semibold"><!-- Si se desea una subdescripcion --></p>
-        </div>
+      <!-- Filtros -->
+      <h3 class="max-sm:text-sm">Buscar por filtros</h3>
+      <div class="flex flex-row gap-4 overflow-auto mb-2" id="filtros">
+        <!-- Dinamicamente -->
       </div>
-      <!-- Barra de busqueda -->
-      <div class="contenedor space-y-4">
-        <div class="relative">
-          <input type="text" id="search-bar" placeholder="Buscar carreras..."
-            class="w-full px-4 py-2 border border-gray-400 rounded-[8px] focus:outline-none focus:ring-1 focus:ring-gray-500">
-          <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-            </svg>
-          </div>
-        </div>
-        <!-- Filtros -->
-        <h3 class="max-sm:text-sm">Buscar por filtros</h3>
-        <div class="flex flex-row gap-4 overflow-auto mb-2" id="filtros">
-          <!-- Dinamicamente -->
-        </div>
-        <h3 class="max-sm:text-sm">Buscar por area</h3>
-        <div class="flex flex-row gap-4 overflow-auto mb-2" id="filtros-categoria">
-          <!-- Dinamicamente -->
-        </div>
+      <h3 class="max-sm:text-sm">Buscar por area</h3>
+      <div class="flex flex-row gap-4 overflow-auto mb-2" id="filtros-categoria">
+        <!-- Dinamicamente -->
       </div>
-      <!-- Carreras -->
-      <div class="contenedor relative bg-gradient-to-b from-gray-100 via-white to-gray-100 py-2 rounded-xl shadow-inner">
-        <!-- Scroll indicator at top -->
-        <div class="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-gray-200/60 to-transparent z-10 pointer-events-none flex items-end justify-center">
-        </div>
-        <!-- Main grid container -->
-        <div class="grid md:grid-cols-4 grid-cols-2 gap-4 md:gap-8 overflow-y-scroll h-[800px] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 relative" id="listaCarreras">
-          <!-- Dinamicamente -->
-        </div>
-        <!-- Scroll indicator at bottom -->
-        <div class="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-gray-200/60 to-transparent z-10 pointer-events-none flex items-end justify-center pb-2">
-        </div>
+    </div>
+    <!-- Carreras -->
+    <div class="contenedor relative bg-gradient-to-b from-gray-100 via-white to-gray-100 py-2 rounded-xl shadow-inner">
+      <!-- Scroll indicator at top -->
+      <div
+        class="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-gray-200/60 to-transparent z-10 pointer-events-none flex items-end justify-center">
+      </div>
+      <!-- Main grid container -->
+      <div
+        class="grid md:grid-cols-4 grid-cols-2 gap-4 md:gap-8 overflow-y-scroll h-[800px] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 relative"
+        id="listaCarreras">
+        <!-- Dinamicamente -->
+      </div>
+      <!-- Scroll indicator at bottom -->
+      <div
+        class="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-gray-200/60 to-transparent z-10 pointer-events-none flex items-end justify-center pb-2">
       </div>
     </div>
   </section>
   <!-- Formulario -->
-  <div class="w-full max-w-4xl px-6 pt-6 mx-auto" id="formu">
+  <!-- <div class="w-full max-w-4xl px-6 pt-6 mx-auto" id="formu">
     <div class="text-center font-bold">
       <h1 class="font-sans">¿Te quedaron dudas? ¡Solicitá más información!</h1>
     </div>
+  </div> -->
+  <div class="relative md:bg-center md:bg-no-repeat md:bg-cover md:bg-[url('./public/fondo_graduados.jpg')]">
+    <div class="absolute inset-0 hidden md:block bg-black/30"></div>
+    <div class="min-md:flex min-md:flex-row contenedor min-md:gap-24 mt-6">
+      <div class="min-md:flex-1 min-md:pt-12 text-center w-full max-w-4xl px-6 pt-6 mx-auto">
+        <h1 class="md:text-white z-10 relative font-bold">¡Solicitá más información!</h1>
+        <p class="md:text-white z-10 relative text-lg md:block hidden">Tu futuro empieza con una decisión. ¿Estás listo?
+        </p>
+      </div>
+      <form id="pedidoinfo" method="post" enctype="multipart/form-data" action="/postulantes_mail1.php"
+        autocomplete="on"
+        class="max-md:border-gray-200 max-md:border-2 border-y-2 border-gray-100 max-md:shadow-lg p-5 min-md:w-[40%] min-md:flex-shrink-0 bg-white z-50">
+        <!-- input defaul -->
+        <input type="hidden" value="4" name="id_origen" id="id_origen" />
+        <!-- <input type="hidden" value=" " name="apellido" id="apellido" /> -->
+        <input type="hidden" value="postulantes" name="tabla" />
+        <input type="hidden" id="addr" name="addr" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" />
+        <input type="hidden" id="agent" name="agent" value="<?php echo $_SERVER['HTTP_USER_AGENT']; ?>" />
+        <input type="hidden" name="utm_source" value="<?php echo $utm_source; ?>" />
+        <input type="hidden" name="utm_medium" value="<?php echo $utm_medium; ?>" />
+        <input type="hidden" name="utm_term" value="<?php echo $utm_term; ?>" />
+        <input type="hidden" name="utm_content" value="<?php echo $utm_content; ?>" />
+        <input type="hidden" name="utm_campaign" value="<?php echo $utm_campaign; ?>" />
+        <input type="hidden" name="idconversion" value="<?php echo $idconversion; ?>" />
+        <input type="hidden" name="campaignid" value="<?php echo $campaignid; ?>" />
+        <input type="hidden" name="referer" value="<?php echo $referer; ?>" />
+        <input name="gclid" type="hidden" value="<?php echo $gclid; ?>" />
+        <input type="hidden" name="tkp" value="/landing/enviado-distancia-2021.php">
+        <input type="hidden" name="fkp" value="/landing/enviado-distancia-2021.php?id=404">
+
+        <!-- Nombre y Apellido -->
+        <div class="grid md:grid-cols-3 md:gap-6">
+          <div class="relative z-0 w-full mb-4 group">
+            <input type="text" name="nombre" id="nombre" pattern="[A-Za-záéíóúÁÉÍÓÚñÑ\s]+"
+              onkeypress="return /[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/i.test(event.key)"
+              class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-gray-900 border border-gray-300 appearance-none bg-white/80 focus:outline-none focus:ring-0 focus:border-blue-600"
+              placeholder="Nombre" required tabindex="1" />
+          </div>
+          <div class="relative z-0 w-full mb-4 group">
+            <input type="text" name="apellido" id="apellido" pattern="[A-Za-záéíóúÁÉÍÓÚñÑ\s]+"
+              onkeypress="return /[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/i.test(event.key)"
+              class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-gray-900 border border-gray-300 appearance-none bg-white/80 focus:outline-none focus:ring-0 focus:border-blue-600"
+              placeholder="Apellido" required tabindex="2" />
+          </div>
+          <!-- Email -->
+          <div class="relative z-0 w-full mb-4 group">
+            <input type="email" name="email" id="email"
+              class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-gray-900 border border-gray-300 appearance-none bg-white/80 focus:outline-none focus:ring-0 focus:border-blue-600"
+              placeholder="Email" required tabindex="2" />
+          </div>
+        </div>
+
+        <!-- DNI -->
+        <!-- <div class="relative z-0 w-full mb-4 group">
+        <input type="text" name="dni" id="dni" pattern="[0-9]{7,8}" maxlength="8" inputmode="numeric"
+          class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-gray-900 border rounded-[8px]  border-gray-300 appearance-none bg-white/80 focus:outline-none focus:ring-0 focus:border-blue-600"
+          placeholder="DNI para Promociones" tabindex="3"
+          onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" />
+      </div> -->
+
+        <!-- Carrera -->
+        <div class="relative z-0 w-full mb-4 group grid grid-cols-2 md:grid-cols-4 gap-4">
+          <select name="modo" id="modo"
+            class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600"
+            required onchange="cambiar_modo();" tabindex="5">
+            <!-- Opciones del select -->
+            <option value="" disabled selected>Modalidad</option>
+            <option value="1">Presencial</option>
+            <option value="7">Digital</option>
+          </select>
+
+          <?php
+          if ($cbx_sede > 0) {
+            echo '
+        <input name="cbx_provincia" id="cbx_provincia1" type="hidden" value="' . $cbx_provincia . '">
+        <input name="cbx_sede" id="cbx_sede1" type="hidden" value="' . $cbx_sede . '">
+        ';
+          } else {
+            echo '
+          <!-- Provincia -->
+          <div class="relative z-0 w-full group">
+            <div class="select-wrapper" data-tooltip="Seleccioná una modalidad primero">
+              <select name="cbx_provincia" id="cbx_provincia" disabled
+                class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600 boton-inactivo-form"
+                required onchange="cargar_sedes();" tabindex="5">
+                <option value="" disabled selected>Provincia</option>
+              </select>
+            </div>
+          </div>
+          
+          <!-- Sede -->
+          <div class="relative z-0 w-full group">
+            <div class="select-wrapper" data-tooltip="Seleccioná una provincia primero">
+              <select name="cbx_sede" id="cbx_sede" onchange="cargar_carreras()" disabled
+                class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600 boton-inactivo-form"
+                required tabindex="6">
+                <option value="" disabled selected>Sede</option>
+              </select>
+            </div>
+          </div>
+        ';
+          }
+          ?>
+          <div class="select-wrapper" data-tooltip="Seleccioná una sede primero">
+            <select name="cbx_carrera" id="cbx_carrera"
+              class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600 boton-inactivo-form"
+              required tabindex="4">
+              <!-- Opciones del select -->
+              <option value="" disabled selected>Seleccionar Carrera</option>
+            </select>
+          </div>
+        </div>
+        <!-- Teléfono -->
+        <div class="grid grid-cols-8 gap-4 md:grid-cols-3">
+          <div class="relative z-0 w-full col-span-3 mt-6 md:col-span-1 group">
+            <div class="relative w-full group @container">
+              <input name="tipo_tel" tabindex="9" type="hidden" value="cel" />
+              <input type="text"
+                class="block @[768px]:w-[500px] w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:outline-none focus:ring-0 focus:border-blue-600 form-control form-control-sm input-style"
+                id="phone" name="ddi_pais" />
+              <label for="tel"
+                class="absolute md:text-base text-[0.7rem] text-black duration-300 transform md:-translate-y-1 scale-75 -top-1 left-0 -z-10 origin-[0] -mt-4">Código
+                país</label>
+            </div>
+          </div>
+          <div class="relative max-md:col-span-2 mt-6 group">
+            <div class="relative z-0 w-full group">
+              <input type="text" name="cod_area" id="cod" size="4" maxLength="4"
+                class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:outline-none focus:ring-0 focus:border-blue-600"
+                placeholder="Ej: 387" required tabindex="5" oninput="validarLongitudTelefono(this, 4)" />
+              <label for="cod"
+                class="absolute md:text-base text-[0.7rem] text-black duration-300 transform md:-translate-y-1 scale-75 -top-1 left-0 -z-10 origin-[0] -mt-4">Código
+                Área
+              </label>
+            </div>
+          </div>
+          <div class="relative z-0 w-full max-md:col-span-3 mt-6 group">
+            <div class="relative">
+              <span
+                class="text-[0.8rem] absolute left-0 top-[55%] transform -translate-y-1/2 text-gray-700 border px-1 border-gray-500 bg-white/80 left-0.5 flex items-center h-[1.25rem] mt-0">15</span>
+              <input type="text" name="tel" id="tel" size="8" maxLength="8"
+                class="block w-full px-0 pt-2 pb-1 text-sm text-black border border-gray-300 shadow-sm pl-7 bg-white/80 focus:outline-none focus:ring-0 focus:border-blue-600"
+                placeholder="Ej: 7790015" required tabindex="6" oninput="validarLongitudTelefono(this, 8)" />
+              <label for="tel"
+                class="absolute text-md text-black duration-300 transform -translate-y-1 scale-75 -top-1 left-0 -z-10 origin-[0] -mt-4">N&uacute;mero
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- reCAPTCHA -->
+        <div class="flex justify-center mt-3 g-recaptcha" tabindex="10" data-callback="reCALLBACK"
+          data-sitekey="6LetQBEjAAAAAMewiwE_zXYFkT0IV-dx8_wW39ft"></div>
+
+        <!-- Botón de envío -->
+        <div class="flex justify-center mt-4">
+          <button id="formButton" type="submit"
+            class="text-white bg-[#242F41] hover:bg-blue-800 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center transition-colors duration-200 ease-in-out scale-105 boton-inactivo-form"
+            tabindex="11" onclick="check()" disabled>
+            Enviar
+          </button>
+          <div id="spinnerContainer" class="hidden" role="status">
+            <svg class="w-8 h-8 text-gray-200 animate-spin fill-[#B11111]" viewBox="0 0 100 101" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                fill="currentColor" />
+              <path
+                d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                fill="currentFill" />
+            </svg>
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
-  <form id="pedidoinfo" method="post" enctype="multipart/form-data" action="/postulantes_mail1.php" autocomplete="on"
-    class="border-gray-200 border-2 shadow-lg p-5 contenedor">
-    <!-- input defaul -->
-    <input type="hidden" value="4" name="id_origen" id="id_origen" />
-    <!-- <input type="hidden" value=" " name="apellido" id="apellido" /> -->
-    <input type="hidden" value="postulantes" name="tabla" />
-    <input type="hidden" id="addr" name="addr" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" />
-    <input type="hidden" id="agent" name="agent" value="<?php echo $_SERVER['HTTP_USER_AGENT']; ?>" />
-    <input type="hidden" name="utm_source" value="<?php echo $utm_source; ?>" />
-    <input type="hidden" name="utm_medium" value="<?php echo $utm_medium; ?>" />
-    <input type="hidden" name="utm_term" value="<?php echo $utm_term; ?>" />
-    <input type="hidden" name="utm_content" value="<?php echo $utm_content; ?>" />
-    <input type="hidden" name="utm_campaign" value="<?php echo $utm_campaign; ?>" />
-    <input type="hidden" name="idconversion" value="<?php echo $idconversion; ?>" />
-    <input type="hidden" name="campaignid" value="<?php echo $campaignid; ?>" />
-    <input type="hidden" name="referer" value="<?php echo $referer; ?>" />
-    <input name="gclid" type="hidden" value="<?php echo $gclid; ?>" />
-    <input type="hidden" name="tkp" value="/landing/enviado-distancia-2021.php">
-    <input type="hidden" name="fkp" value="/landing/enviado-distancia-2021.php?id=404">
-
-    <!-- Nombre y Apellido -->
-    <div class="grid md:grid-cols-3 md:gap-6">
-      <div class="relative z-0 w-full mb-4 group">
-        <input type="text" name="nombre" id="nombre" pattern="[A-Za-záéíóúÁÉÍÓÚñÑ\s]+"
-          onkeypress="return /[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/i.test(event.key)"
-          class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-gray-900 border border-gray-300 appearance-none bg-white/80 focus:outline-none focus:ring-0 focus:border-blue-600"
-          placeholder="Nombre" required tabindex="1" />
-      </div>
-      <div class="relative z-0 w-full mb-4 group">
-        <input type="text" name="apellido" id="apellido" pattern="[A-Za-záéíóúÁÉÍÓÚñÑ\s]+"
-          onkeypress="return /[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/i.test(event.key)"
-          class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-gray-900 border border-gray-300 appearance-none bg-white/80 focus:outline-none focus:ring-0 focus:border-blue-600"
-          placeholder="Apellido" required tabindex="2" />
-      </div>
-      <!-- Email -->
-      <div class="relative z-0 w-full mb-4 group">
-        <input type="email" name="email" id="email"
-          class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-gray-900 border border-gray-300 appearance-none bg-white/80 focus:outline-none focus:ring-0 focus:border-blue-600"
-          placeholder="Email" required tabindex="2" />
-      </div>
-    </div>
-
-    <!-- DNI -->
-    <!-- <div class="relative z-0 w-full mb-4 group">
-      <input type="text" name="dni" id="dni" pattern="[0-9]{7,8}" maxlength="8" inputmode="numeric"
-        class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-gray-900 border rounded-[8px]  border-gray-300 appearance-none bg-white/80 focus:outline-none focus:ring-0 focus:border-blue-600"
-        placeholder="DNI para Promociones" tabindex="3"
-        onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" />
-    </div> -->
-
-    <!-- Carrera -->
-    <div class="relative z-0 w-full mb-4 group grid grid-cols-2 md:grid-cols-4 gap-4">
-      <select name="modo" id="modo"
-        class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600"
-        required onchange="cambiar_modo();" tabindex="5">
-        <!-- Opciones del select -->
-        <option value="" disabled selected>Modalidad</option>
-        <option value="1">Presencial</option>
-        <option value="7">Digital</option>
-      </select>
-
-      <?php
-        if ($cbx_sede > 0) {
-          echo '
-      <input name="cbx_provincia" id="cbx_provincia1" type="hidden" value="' . $cbx_provincia . '">
-      <input name="cbx_sede" id="cbx_sede1" type="hidden" value="' . $cbx_sede . '">
-      ';
-        } else {
-          echo '
-        <!-- Provincia -->
-        <div class="relative z-0 w-full group">
-          <div class="select-wrapper" data-tooltip="Seleccioná una modalidad primero">
-            <select name="cbx_provincia" id="cbx_provincia" disabled
-              class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600 boton-inactivo-form"
-              required onchange="cargar_sedes();" tabindex="5">
-              <option value="" disabled selected>Provincia</option>
-            </select>
-          </div>
-        </div>
-        
-        <!-- Sede -->
-        <div class="relative z-0 w-full group">
-          <div class="select-wrapper" data-tooltip="Seleccioná una provincia primero">
-            <select name="cbx_sede" id="cbx_sede" onchange="cargar_carreras()" disabled
-              class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600 boton-inactivo-form"
-              required tabindex="6">
-              <option value="" disabled selected>Sede</option>
-            </select>
-          </div>
-        </div>
-      ';
-        }
-        ?>
-      <div class="select-wrapper" data-tooltip="Seleccioná una sede primero">
-        <select name="cbx_carrera" id="cbx_carrera"
-          class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:ring-blue-600 focus:border-blue-600 boton-inactivo-form"
-          required tabindex="4">
-          <!-- Opciones del select -->
-          <option value="" disabled selected>Seleccionar Carrera</option>
-        </select>
-      </div>
-    </div>
-    <!-- Teléfono -->
-    <div class="grid grid-cols-8 gap-4 md:grid-cols-3">
-      <div class="relative z-0 w-full col-span-3 mt-6 md:col-span-1 group">
-        <div class="relative w-full group @container">
-          <input name="tipo_tel" tabindex="9" type="hidden" value="cel" />
-          <input type="text" class="block @[768px]:w-[500px] md:w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:outline-none focus:ring-0 focus:border-blue-600 form-control form-control-sm input-style"
-            id="phone" name="ddi_pais" />
-          <label for="tel"
-            class="absolute md:text-base text-[0.7rem] text-black duration-300 transform md:-translate-y-1 scale-75 -top-1 left-0 -z-10 origin-[0] -mt-4">Código país</label>
-        </div>
-      </div>
-      <div class="relative max-md:col-span-2 mt-6 group">
-        <div class="relative z-0 w-full group">
-          <input type="text" name="cod_area" id="cod" size="4" maxLength="4"
-            class="block w-full px-0 pt-2 pb-1 pl-2 text-sm text-black border border-gray-300 shadow-sm bg-white/80 focus:outline-none focus:ring-0 focus:border-blue-600"
-            placeholder="Ej: 387" required tabindex="5" oninput="validarLongitudTelefono(this, 4)" />
-          <label for="cod"
-            class="absolute md:text-base text-[0.7rem] text-black duration-300 transform md:-translate-y-1 scale-75 -top-1 left-0 -z-10 origin-[0] -mt-4">Código Área
-          </label>
-        </div>
-      </div>
-      <div class="relative z-0 w-full max-md:col-span-3 mt-6 group">
-        <div class="relative">
-          <span
-            class="text-[0.8rem] absolute left-0 top-[55%] transform -translate-y-1/2 text-gray-700 border px-1 border-gray-500 bg-white/80 left-0.5 flex items-center h-[1.25rem] mt-0">15</span>
-          <input type="text" name="tel" id="tel" size="8" maxLength="8"
-            class="block w-full px-0 pt-2 pb-1 text-sm text-black border border-gray-300 shadow-sm pl-7 bg-white/80 focus:outline-none focus:ring-0 focus:border-blue-600"
-            placeholder="Ej: 7790015" required tabindex="6" oninput="validarLongitudTelefono(this, 8)" />
-          <label for="tel"
-            class="absolute text-md text-black duration-300 transform -translate-y-1 scale-75 -top-1 left-0 -z-10 origin-[0] -mt-4">N&uacute;mero
-          </label>
-        </div>
-      </div>
-    </div>
-
-    <!-- reCAPTCHA -->
-    <div class="flex justify-center mt-3 g-recaptcha" tabindex="10" data-callback="reCALLBACK"
-      data-sitekey="6LetQBEjAAAAAMewiwE_zXYFkT0IV-dx8_wW39ft"></div>
-
-    <!-- Botón de envío -->
-    <div class="flex justify-center mt-4">
-      <button id="formButton" type="submit"
-        class="text-white bg-[#242F41] hover:bg-blue-800 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center transition-colors duration-200 ease-in-out scale-105 boton-inactivo-form"
-        tabindex="11" onclick="check()" disabled>
-        Enviar
-      </button>
-      <div id="spinnerContainer" class="hidden" role="status">
-        <svg class="w-8 h-8 text-gray-200 animate-spin fill-[#B11111]" viewBox="0 0 100 101" fill="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-            fill="currentColor" />
-          <path
-            d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-            fill="currentFill" />
-        </svg>
-        <span class="sr-only">Loading...</span>
-      </div>
-    </div>
-  </form>
   <div id="financiavenecia" class="mb-5"></div>
   <!-- FINANCIA ARANCELES -->
   <div class="relative bg-fixed bg-center bg-cover"
@@ -1905,3 +1340,4 @@
 </body>
 
 </html>
+
