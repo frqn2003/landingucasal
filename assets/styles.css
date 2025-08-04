@@ -389,3 +389,114 @@ h3 {
         user-select: none;
     }
 }
+
+/* ===== ANIMACIÓN DEL MENÚ NAVBAR ===== */
+#navbar-menu {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#navbar-menu.menu-open {
+    max-height: 400px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animación de los elementos del menú */
+#navbar-menu ul {
+    transform: translateY(-20px);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+}
+
+#navbar-menu.menu-open ul {
+    transform: translateY(0);
+}
+
+/* Animación individual de los elementos de la lista */
+#navbar-menu li {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#navbar-menu.menu-open li {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Retrasos escalonados para cada elemento */
+#navbar-menu.menu-open li:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+#navbar-menu.menu-open li:nth-child(2) {
+    transition-delay: 0.15s;
+}
+
+#navbar-menu.menu-open li:nth-child(3) {
+    transition-delay: 0.2s;
+}
+
+#navbar-menu.menu-open li:nth-child(4) {
+    transition-delay: 0.25s;
+}
+
+/* Efecto hover mejorado para los enlaces del menú */
+#navbar-menu a {
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+#navbar-menu a:hover {
+    background-color: rgba(214, 0, 28, 0.1);
+    padding-left: 1rem;
+}
+
+/* Animación del botón hamburguesa */
+#menu-button {
+    transition: transform 0.2s ease;
+}
+
+/* Backdrop blur cuando el menú está abierto */
+#navbar-menu.menu-open ul {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Animación de entrada suave para el contenedor del menú */
+#navbar-menu.menu-open {
+    animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideDown {
+    0% {
+        max-height: 0;
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        max-height: 400px;
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animación de salida suave */
+#navbar-menu:not(.menu-open) {
+    animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideUp {
+    0% {
+        max-height: 400px;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        max-height: 0;
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}

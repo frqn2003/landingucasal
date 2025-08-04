@@ -5,12 +5,22 @@ let isMenuOpen = false;
 
 function toggleMenu() {
   isMenuOpen = !isMenuOpen;
+  
   if (isMenuOpen) {
+    // Abrir menú con animación
     menu.classList.remove('hidden');
+    // Forzar un reflow para que la transición funcione
+    menu.offsetHeight;
+    menu.classList.add('menu-open');
   } else {
-    if (!isMenuOpen) {
-      menu.classList.add('hidden');
-    }
+    // Cerrar menú con animación
+    menu.classList.remove('menu-open');
+    // Esperar a que termine la animación antes de ocultar
+    setTimeout(() => {
+      if (!isMenuOpen) {
+        menu.classList.add('hidden');
+      }
+    }, 300); // Duración de la transición
   }
 }
 
@@ -414,9 +424,10 @@ function renderCarreras() {
 
       return nombreNormalizado.includes(textoNormalizado) ||
         descripcionNormalizada.includes(textoNormalizado);
+
     });
   }
-
+  console.log(carrerasFiltradas)
   // Aplicar filtros principales - TODOS deben cumplirse (lógica AND)
   if (filtrosActivos.length > 0) {
     carrerasFiltradas = carrerasFiltradas.filter(career => {
@@ -434,21 +445,36 @@ function renderCarreras() {
         // Comparación más precisa para categorías
         const categoryNormalized = normalizeText(career.category);
         const areaIdNormalized = normalizeText(areaId);
-
         // Verificar coincidencias parciales en ambas direcciones
         return categoryNormalized.includes(areaIdNormalized) ||
           areaIdNormalized.includes(categoryNormalized);
       });
     });
   }
+
   function obtenerNombreModalidad(modalities) {
     if (modalities.includes(1) && modalities.includes(7)) return 'Presencial y Virtual';
     if (modalities.includes(1)) return 'Presencial';
     return 'Virtual';
   }
+  /* Se puede hacer funcion por si lo uso mucho */
+  const erroresCarreras = carrerasFiltradas.length
+  if (erroresCarreras === 0) {
+    containerCarreras.innerHTML = `<div>NO HAY CARRERAS</div> `
 
-  // Renderizado visual
-  containerCarreras.innerHTML = carrerasFiltradas.map(career => `
+    if (textoBusqueda && (filtrosActivos > 0 || filtrosAreaActivos > 0)) {
+      containerCarreras.innerHTML = `<div>NO HAY CARRERAS POR ESTA BUSQUEDA O FILTRO</div> `
+    }
+    else if (filtrosActivos > 0 || filtrosAreaActivos > 0) {
+      containerCarreras.innerHTML = `<div>NO HAY CARRERAS POR ESTE FILTRO</div> `
+    }
+    else if (textoBusqueda) {
+      containerCarreras.innerHTML = `<div>NO HAY CARRERAS CON ESTA BUSQUEDA</div> `
+    }
+
+  } else {
+    // Renderizado visual
+    containerCarreras.innerHTML = carrerasFiltradas.map(career => `
       <div class="border border-gray-500 shadow-md p-3 sm:p-4 space-y-3 sm:space-y-2 h-fit">
         <div class="grid grid-cols-2 space-y-2 sm:space-y-0">
           <div class="flex justify-start">
@@ -481,6 +507,7 @@ function renderCarreras() {
         </div>
       </div>
     `).join('');
+  }
 }
 
 searchInput.addEventListener("input", (e) => {
@@ -631,6 +658,7 @@ function handleResize() {
     if (!isMobile) {
       // En desktop, siempre expandido
       content.classList.toggle("collapsed")
+      content.classList.add('max-h-[500px]', 'opacity-100');
     } else {
       // En mobile, comenzar colapsado
       if (!content.classList.contains('max-h-[500px]', 'opacity-100')) {
