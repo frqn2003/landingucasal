@@ -1,3 +1,39 @@
+const navButton = document.getElementById("menu-button");
+const menu = document.getElementById("navbar-menu");
+
+let isMenuOpen = false;
+
+function toggleMenu() {
+  isMenuOpen = !isMenuOpen;
+  if (isMenuOpen) {
+    menu.classList.remove('hidden');
+  } else {
+    if (!isMenuOpen) {
+      menu.classList.add('hidden');
+    }
+  }
+}
+
+navButton.addEventListener("click", toggleMenu);
+
+const menuLinks = menu.querySelectorAll('a');
+menuLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    if (isMenuOpen) {
+      toggleMenu();
+    }
+  });
+});
+
+document.addEventListener('click', (event) => {
+  const clickDentroMenu = menu.contains(event.target);
+  const clickEnBoton = navButton.contains(event.target);
+
+  if (!clickDentroMenu && !clickEnBoton && isMenuOpen) {
+    toggleMenu()
+  }
+});
+
 /* --------------------- Filtros y carreras ----------------------------- */
 const careers = [
   {
@@ -572,11 +608,11 @@ function toggleCharacteristics(modalidadId) {
   if (isCollapsed) {
     // Expandir
     content.classList.remove('collapsed');
-    content.classList.add('max-h-[500px]','opacity-100');
+    content.classList.add('max-h-[500px]', 'opacity-100');
     button.classList.add('rotate-none');
   } else {
     // Colapsar
-    content.classList.remove('max-h-[500px]','opacity-100');
+    content.classList.remove('max-h-[500px]', 'opacity-100');
     content.classList.add('collapsed');
     button.classList.remove('rotate-none');
   }
@@ -594,13 +630,11 @@ function handleResize() {
 
     if (!isMobile) {
       // En desktop, siempre expandido
-      content.classList.remove('collapsed');
-      content.classList.add('max-h-[500px]','opacity-100');
+      content.classList.toggle("collapsed")
     } else {
       // En mobile, comenzar colapsado
-      if (!content.classList.contains('max-h-[500px]','opacity-100')) {
-        content.classList.add('collapsed');
-        content.classList.remove('max-h-[500px]','opacity-100');
+      if (!content.classList.contains('max-h-[500px]', 'opacity-100')) {
+        content.classList.toggle("collapsed")
       }
     }
   });
