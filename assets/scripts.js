@@ -5,7 +5,7 @@ let isMenuOpen = false;
 
 function toggleMenu() {
   isMenuOpen = !isMenuOpen;
-  
+
   if (isMenuOpen) {
     // Abrir menú con animación
     menu.classList.remove('hidden');
@@ -45,869 +45,11 @@ document.addEventListener('click', (event) => {
 });
 
 /* --------------------- Filtros y carreras ----------------------------- */
-const careers = [
-  {
-    codcar: 1,
-    name: "Licenciatura en Comunicaciones Sociales",
-    description: "",
-    modality: [1, 7],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales",
-    image: "https://placehold.co/60x60",
-  },
-  {
-    codcar: 4,
-    name: "Profesorado en Inglés",
-    description: "",
-    modality: [1],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Educación e Idiomas",
-    image: "",
-  },
-  {
-    codcar: 9,
-    name: "Tecnicatura Universitaria en Secretariado Ejecutivo",
-    description: "",
-    modality: [1, 7],
-    duration: "2 años",
-    popular: true,
-    featured: false,
-    category: "Administración",
-    image: "",
-  },
-  {
-    codcar: 10,
-    name: "Licenciatura en Economía",
-    description: "",
-    modality: [1, 7],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Económicas",
-    image: "",
-  },
-  {
-    codcar: 11,
-    name: "Licenciatura en Administración de Empresas",
-    description: "",
-    modality: [1, 7],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Administración",
-    image: "",
-  },
-  {
-    codcar: 14,
-    name: "Contador Público",
-    description: "Capacitación en contabilidad, finanzas e impuestos.",
-    modality: [1],
-    duration: "4 años",
-    popular: true,
-    featured: true,
-    category: "Ciencias Económicas",
-    image: "https://placehold.co/60x60",
-  },
-  {
-    codcar: 15,
-    name: "Licenciatura en Comercialización",
-    description: "",
-    modality: [1, 7],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Administración",
-    image: "",
-  },
-  {
-    codcar: 16,
-    name: "Abogacía",
-    description: "Formación integral en derecho para el ejercicio de la profesión.",
-    modality: [1, 7],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales y Humanidades",
-    image: "https://placehold.co/60x60",
-  },
-  {
-    codcar: 17,
-    name: "Licenciatura en Relaciones Internacionales",
-    description: "",
-    modality: [1, 7],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales y Humanidades",
-    image: "",
-  },
-  {
-    codcar: 18,
-    name: "Ingeniería Civil",
-    description: "",
-    modality: [1],
-    duration: "5 años",
-    popular: true,
-    featured: false,
-    category: "Ingeniería",
-    image: "",
-  },
-  {
-    codcar: 19,
-    name: "Ingeniería Industrial",
-    description: "",
-    modality: [1],
-    duration: "5 años",
-    popular: true,
-    featured: false,
-    category: "Ingeniería",
-    image: "",
-  },
-  {
-    codcar: 26,
-    name: "Arquitectura",
-    description: "",
-    modality: [1],
-    duration: "5 años",
-    popular: true,
-    featured: false,
-    category: "Arquitectura",
-    image: "",
-  },
-  {
-    codcar: 30,
-    name: "Licenciatura en Relaciones Públicas e Institucionales",
-    description: "",
-    modality: [1, 7],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales",
-    image: "",
-  },
-  {
-    codcar: 31,
-    name: "Profesorado en Educación Física",
-    description: "",
-    modality: [1],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Educación y Salud",
-    image: "",
-  },
-  {
-    codcar: 32,
-    name: "Licenciatura en Educación Física",
-    description: "",
-    modality: [1],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Educación y Salud",
-    image: "",
-  },
-  {
-    codcar: 46,
-    name: "Licenciatura en Criminalística",
-    description: "",
-    modality: [1],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales",
-    image: "",
-  },
-  {
-    codcar: 47,
-    name: "Profesorado Universitario en Educación Inicial",
-    description: "",
-    modality: [1],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Educación",
-    image: "",
-  },
-  {
-    codcar: 53,
-    name: "Formación Docente para Profesionales",
-    description: "",
-    modality: [1],
-    duration: "1&frac12; años", //Año y medio
-    popular: true,
-    featured: false,
-    category: "Educación",
-    image: "",
-  },
-  {
-    codcar: 56,
-    name: "Tecnicatura Universitaria en Podología",
-    description: "",
-    modality: [1],
-    duration: "3 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias de la Salud",
-    image: "",
-  },
-  {
-    codcar: 58,
-    name: "Licenciatura en Ciencia de Datos",
-    description: "",
-    modality: [7],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Ingenieria y Tecnología",
-    image: "",
-  },
-  {
-    codcar: 68,
-    name: "Perito en Accidentología",
-    description: "",
-    modality: [1],
-    duration: "2 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales y Humanidades",
-    image: "",
-  },
-  {
-    codcar: 69,
-    name: "Licenciatura en Psicopedagogía",
-    description: "",
-    modality: [1],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales y Humanidades",
-    image: "",
-  },
-  {
-    codcar: 70,
-    name: "Licenciatura en Terapia Ocupacional",
-    description: "",
-    modality: [1],
-    duration: "5 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias de la Salud",
-    image: "",
-  },
-  {
-    codcar: 84,
-    name: "Ingeniería en Informatica",
-    description: "",
-    modality: [1],
-    duration: "5 años",
-    popular: true,
-    featured: true,
-    category: "Ingeniería y Tecnología",
-    image: "https://placehold.co/60x60",
-  },
-  {
-    codcar: 86,
-    name: "Licenciatura en Turismo",
-    description: "",
-    modality: [1, 7],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales y Humanidades",
-    image: "",
-  },
-  {
-    codcar: 94,
-    name: "Licenciatura en Inglés (Ciclo de Complementación Curricular)",
-    description: "",
-    modality: [1],
-    duration: "2 años + tesina",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales, Idiomas",
-    image: "",
-  },
-  {
-    codcar: 96,
-    name: "Tecnicatura Universitaria en Gestión de Calidad",
-    description: "",
-    modality: [7],
-    duration: "2&frac12; años",
-    popular: true,
-    featured: false,
-    category: "Administración",
-    image: "",
-  },
-  {
-    codcar: 100,
-    name: "Licenciatura en Filosofía",
-    description: "",
-    modality: [1],
-    duration: "5 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales y Humanidades",
-    image: "",
-  },
-  {
-    codcar: 104,
-    name: "Licenciatura en Educación Física - Ciclo de Complementación Curricular",
-    description: "",
-    modality: [1],
-    duration: "1&frac12; años",
-    popular: true,
-    featured: false,
-    category: "Educación y Salud",
-    image: "",
-  },
-  {
-    codcar: 105,
-    name: "Licenciatura en Psicología",
-    description: "",
-    modality: [1],
-    duration: "5 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales y Humanidades",
-    image: "",
-  },
-  {
-    codcar: 109,
-    name: "Traductor Público en Inglés",
-    description: "",
-    modality: [1],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales e Idiomas",
-    image: "",
-  },
-  {
-    codcar: 113,
-    name: "Licenciatura en Gestión Educativa",
-    description: "",
-    modality: [1, 7],
-    duration: "2 años",
-    popular: true,
-    featured: false,
-    category: "Educación",
-    image: "",
-  },
-  {
-    codcar: 117,
-    name: "Ingenieria en Telecomunicaciones",
-    description: "",
-    modality: [1],
-    duration: "5 años",
-    popular: true,
-    featured: false,
-    category: "Ingeniería y Tecnología",
-    image: "",
-  },
-  {
-    codcar: 123,
-    name: "Ciencias Veterinarias",
-    description: "",
-    modality: [1],
-    duration: "5&frac12; años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Agrarias y Veterinarias",
-    image: "",
-  },
-  {
-    codcar: 132,
-    name: "Licenciatura en Ciencias Políticas",
-    description: "",
-    modality: [1],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales y Humanidades",
-    image: "",
-  },
-      {
-    codcar: 133,
-    name: "Licenciatura en Administración Agropecuaria",
-    description: "",
-    modality: [1, 7],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Económicas y Administración",
-    image: "",
-  },
-    {
-    codcar: 138,
-    name: "Licenciatura en Higiene y Seguridad en el Trabajo",
-    description: "",
-    modality: [1, 7],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Ingeniería",
-    image: "",
-  },
-      {
-    codcar: 139,
-    name: "Licenciatura en Artes Musicales",
-    description: "",
-    modality: [1],
-    duration: "5 años",
-    popular: true,
-    featured: false,
-    category: "Artes",
-    image: "",
-  },
-      {
-    codcar: 142,
-    name: "Licenciatura en Trabajo Social",
-    description: "",
-    modality: [1],
-    duration: "5 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales y Humanidades",
-    image: "",
-  },
-      {
-    codcar: 146,
-    name: "Escribanía (Ciclo de Complementación Curricular)",
-    description: "",
-    modality: [1],
-    duration: "1&frac12; años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales y Humanidades",
-    image: "",
-  },
-      {
-    codcar: 148,
-    name: "Licenciatura en Diseño de Interiores - Ciclo de complementación Curricular",
-    description: "",
-    modality: [1],
-    duration: "1 año",
-    popular: true,
-    featured: false,
-    category: "Arquitectura",
-    image: "",
-  },
-      {
-    codcar: 161,
-    name: "Tecnicatura en Gestión de Bancos, Empresas Financieras y de Seguros",
-    description: "",
-    modality: [7],
-    duration: "3 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Económicas y Administración",
-    image: "",
-  },
-      {
-    codcar: 173,
-    name: "Diseño Industrial",
-    description: "",
-    modality: [1],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Arquitectura",
-    image: "",
-  },
-      {
-    codcar: 175,
-    name: "Guía Universitario de Turismo",
-    description: "",
-    modality: [1, 7],
-    duration: "2&frac12; años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales y Humanidades",
-    image: "",
-  },
-      {
-    codcar: 179,
-    name: "Licenciatura en Diseño de Interiores",
-    description: "",
-    modality: [1],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Arquitectura",
-    image: "",
-  },
-      {
-    codcar: 185,
-    name: "Licenciatura en Gestión Eficiente de la Energía",
-    description: "",
-    modality: [7],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Arquitectura",
-    image: "",
-  },
-      {
-    codcar: 186,
-    name: "Licenciatura en Entrenamiento Deportivo - Ciclo de Complementación Curricular",
-    description: "",
-    modality: [1, 7],
-    duration: "1&frac12; años",
-    popular: true,
-    featured: false,
-    category: "Salud y Educación",
-    image: "",
-  },
-      {
-    codcar: 187,
-    name: "Licenciatura en Lenguajes Expresivos - Ciclo de Complementación Curricular",
-    description: "",
-    modality: [1, 7],
-    duration: "1&frac12; años",
-    popular: true,
-    featured: false,
-    category: "Salud y Educación",
-    image: "",
-  },
-      {
-    codcar: 194,
-    name: "Licenciatura en Educación Física - Ciclo de Complementación Curricular",
-    description: "",
-    modality: [1, 7],
-    duration: "1&frac12; años",
-    popular: true,
-    featured: false,
-    category: "Salud y Educación",
-    image: "",
-  },
-      {
-    codcar: 196,
-    name: "Licenciatura en Seguridad - Ciclo de Complementación Curricular",
-    description: "",
-    modality: [1, 7],
-    duration: "2 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales",
-    image: "",
-  },
-      {
-    codcar: 214,
-    name: "Licenciatura en Comercio Internacional",
-    description: "",
-    modality: [1, 7],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Económicas y Administración",
-    image: "",
-  },
-      {
-    codcar: 220,
-    name: "Licenciatura en Imagen y Sonido",
-    description: "",
-    modality: [1],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales y Artes",
-    image: "",
-  },
-      {
-    codcar: 221,
-    name: "Licenciatura en Diseño Gráfico",
-    description: "",
-    modality: [1],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales y Artes",
-    image: "",
-  },
-      {
-    codcar: 222,
-    name: "Licenciatura en Publicidad",
-    description: "",
-    modality: [1],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales y Artes",
-    image: "",
-  },
-      {
-    codcar: 223,
-    name: "Licenciatura en Periodismo",
-    description: "",
-    modality: [1],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales y Artes",
-    image: "",
-  },
-      {
-    codcar: 231,
-    name: "Licenciatura en Producción Animal",
-    description: "",
-    modality: [1],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Agrarias y Veterinarias",
-    image: "",
-  },
-      {
-    codcar: 241,
-    name: "Especialización en Dirección Estratégica de las Organizaciones",
-    description: "",
-    modality: [1],
-    duration: "1&frac12; años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales y Administración",
-    image: "",
-  },
-      {
-    codcar: 244,
-    name: "Corredor Inmobiliario y Martillero Público",
-    description: "",
-    modality: [1, 7],
-    duration: "2&frac12; años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales y Humanidades",
-    image: "",
-  },
-      {
-    codcar: 249,
-    name: "Profesorado en Campo Disciplinar según Titulación de Base",
-    description: "",
-    modality: [1],
-    duration: "2 años",
-    popular: true,
-    featured: false,
-    category: "Educación",
-    image: "",
-  },
-      {
-    codcar: 250,
-    name: "Licenciatura en Administración de Negocios Digitales",
-    description: "",
-    modality: [1,7],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Económicas y Administración",
-    image: "",
-  },
-      {
-    codcar: 320,
-    name: "Licenciatura en Teología",
-    description: "",
-    modality: [1],
-    duration: "5 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales",
-    image: "",
-  },
-      {
-    codcar: 332,
-    name: "Licenciatura en Trabajo Social - Ciclo Complementación Curricular",
-    description: "",
-    modality: [1],
-    duration: "2 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales y Humanidades",
-    image: "",
-  },
-      {
-    codcar: 336,
-    name: "Licenciatura en Recursos Humanos",
-    description: "",
-    modality: [1, 7],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Económicas y Administración",
-    image: "",
-  },
-      {
-    codcar: 340,
-    name: "Licenciatura en Kinesiología y Fisioterapia",
-    description: "",
-    modality: [1],
-    duration: "5 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias de la Salud",
-    image: "",
-  },
-      {
-    codcar: 341,
-    name: "Licenciatura en Podología - Ciclo de Complementación Curricular",
-    description: "",
-    modality: [1],
-    duration: "1&frac12; años",
-    popular: true,
-    featured: false,
-    category: "Ciencias de la Salud",
-    image: "",
-  },
-      {
-    codcar: 342,
-    name: "Licenciatura en Fonoaudiología",
-    description: "",
-    modality: [1],
-    duration: "5 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias de la Salud",
-    image: "",
-  },
-      {
-    codcar: 343,
-    name: "Profesorado Universitario en Educación Primaria",
-    description: "",
-    modality: [1],
-    duration: "4 años",
-    popular: true,
-    featured: false,
-    category: "Educación",
-    image: "",
-  },
-      {
-    codcar: 349,
-    name: "Especialización en Derecho de Familia",
-    description: "",
-    modality: [1, 7],
-    duration: "20 meses",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales y Humanidades",
-    image: "",
-  },
-      {
-    codcar: 355,
-    name: "Escribanía",
-    description: "",
-    modality: [1, 7],
-    duration: "4&frac12; años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales y Humanidades",
-    image: "",
-  },
-      {
-    codcar: 360,
-    name: "Tecnicatura en Seguridad Informática",
-    description: "",
-    modality: [7],
-    duration: "2&frac12; años",
-    popular: true,
-    featured: false,
-    category: "Ingeniería y Tecnología",
-    image: "",
-  },
-      {
-    codcar: 361,
-    name: "Licenciatura en Criminología - Ciclo de Complementación Curricular",
-    description: "",
-    modality: [7],
-    duration: "2 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales y Humanidades",
-    image: "",
-  },
-      {
-    codcar: 363,
-    name: "Procuración",
-    description: "",
-    modality: [1, 7],
-    duration: "3 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales y Humanidades",
-    image: "",
-  },
-      {
-    codcar: 368,
-    name: "Licenciatura en Administración y Gestión Universitaria - Ciclo de Complementación Curricular",
-    description: "",
-    modality: [7],
-    duration: "2 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Económicas y Económicas",
-    image: "",
-  },
-      {
-    codcar: 371,
-    name: "Licenciatura en Bioimágenes - Ciclo Complementario",
-    description: "",
-    modality: [1],
-    duration: "2 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias de la Salud y Tecnología",
-    image: "",
-  },
-      {
-    codcar: 372,
-    name: "Tecnicatura en Administración y Gestión Judicial",
-    description: "",
-    modality: [1],
-    duration: "2 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales y Administración",
-    image: "",
-  },
-      {
-    codcar: 378,
-    name: "Organización y Dirección de Eventos y Ceremonial",
-    description: "",
-    modality: [7],
-    duration: "2 años",
-    popular: true,
-    featured: false,
-    category: "Ciencias Sociales",
-    image: "",
-  },
-      {
-    codcar: 383,
-    name: "Tecnicatura en Operaciones Mineras",
-    description: "",
-    modality: [7],
-    duration: "3 años",
-    popular: true,
-    featured: false,
-    category: "Ingeniería y Tecnología",
-    image: "",
-  },
-]
-
-const filtros = [
-  { id: "popular", name: "Más Populares", filter: career => career.popular },
-  { id: "featured", name: "Destacadas", filter: career => career.featured },
-  { id: "1", name: "Presencial", filter: career => career.modality.includes(1) },
-  { id: "7", name: "Virtual/Online", filter: career => career.modality.includes(7) },
-];
 
 const containerCarreras = document.getElementById("listaCarreras");
 const containerFiltros = document.getElementById("filtros");
 const searchInput = document.getElementById("search-bar");
 const containerFiltrosArea = document.getElementById("filtros-categoria");
-
-const filtrosArea = ["ingeniería", "tecnología", "económicas", "salud", "sociales", "Humanidades", "Administración", "Idiomas", "educación", "Ciencias Agrarias y Veterinarias", "Artes", "Arquitectura"]
 
 let textoBusqueda = "";
 let filtroActivo = null;
@@ -916,235 +58,250 @@ let filtroActivo = null;
 filtrosActivos = [];
 filtrosAreaActivos = []; // Nuevo array para filtros de área
 
-// Función helper para manejar estilos de botones de manera más robusta
-function toggleButtonStyle(button, isActive) {
-  // Remover todas las clases de estilo primero
-  button.classList.remove("bg-white", "bg-[#D6001C]", "text-white", "text-gray-700");
+fetch('assets/datosCarreras.json')
+  .then((response) => response.json())
+  .then((json) => {
+    const careers = json.careers
+    const filtros = json.filtros
+    const filtrosArea = json.filtrosArea || ["ingeniería", "tecnología", "económicas", "salud", "sociales", "Humanidades", "Administración", "Idiomas", "educación", "Ciencias Agrarias y Veterinarias", "Artes", "Arquitectura"]
+    const modalidades = json.modalidades || [
+      { id: 1, nombre: "Presencial", descripcion: "Estudiá en un campus pensado para vos. Aprendé, conectá y crecé con actividades deportivas, culturales y académicas.", imagen: "https://placehold.co/60x60", caracteristicas: ["Sedes en todo el país.", "Interacción diaria con compañeros.", "Aulas equipadas y tecnología educativa.", "Conexión con el mundo laboral.", "Ambiente universitario activo."] },
+      { id: 7, nombre: "Digital", descripcion: "Desc", imagen: "https://placehold.co/60x60", caracteristicas: [1, 2, 3, 4, 5] }
+    ]
 
-  // Forzar un reflow del DOM (especialmente útil en móviles)
-  button.offsetHeight;
+    // Función helper para manejar estilos de botones de manera más robusta
+    function toggleButtonStyle(button, isActive) {
+      // Remover todas las clases de estilo primero
+      button.classList.remove("bg-white", "bg-[#D6001C]", "text-white", "text-gray-700");
 
-  if (isActive) {
-    button.classList.add("bg-[#D6001C]", "text-white");
-  } else {
-    button.classList.add("bg-white");
-  }
+      // Forzar un reflow del DOM (especialmente útil en móviles)
+      button.offsetHeight;
 
-  // Forzar otro reflow para asegurar que los cambios se apliquen
-  requestAnimationFrame(() => {
-    button.offsetHeight;
-  });
-}
+      if (isActive) {
+        button.classList.add("bg-[#D6001C]", "text-white");
+      } else {
+        button.classList.add("bg-white");
+      }
 
-function filtrosRender() {
-  // Renderizar filtros para desktop
-  containerFiltros.innerHTML = filtros.map(filter => `
+      // Forzar otro reflow para asegurar que los cambios se apliquen
+      requestAnimationFrame(() => {
+        button.offsetHeight;
+      });
+    }
+
+    function filtrosRender() {
+      // Renderizar filtros para desktop
+      containerFiltros.innerHTML = filtros.map(filter => `
   <button class="cursor-pointer flex items-center space-x-2 px-4 py-2 rounded-[8px] bg-white border-2 border-gray-200 md:hover:bg-[#D6001C] md:hover:text-white md:text-base text-xs transition-colors" id="boton-filtro"
     data-filter="${filter.id}">
     <span>${filter.name}</span>
   </button>
 `).join('');
 
-  containerFiltrosArea.innerHTML = filtrosArea.map(filter => `
+      containerFiltrosArea.innerHTML = filtrosArea.map(filter => `
   <button class="cursor-pointer flex items-center space-x-2 px-4 py-2 rounded-[8px] bg-white border-2 border-gray-200 md:hover:bg-[#D6001C] md:hover:text-white md:text-base text-xs transition-colors" id="filtro-area-btn"
     data-filter="${filter}">
     <span>${filter.charAt(0).toUpperCase() + filter.slice(1)}</span>
   </button>
 `).join('');
 
-  // Event listeners para filtros principales (desktop)
-  const botones = containerFiltros.querySelectorAll("#boton-filtro");
-  botones.forEach(button => {
-    button.addEventListener("click", (e) => {
-      e.preventDefault();
-      handleFilterClick(e.currentTarget.dataset.filter, e.currentTarget, 'main');
-    });
-  });
-
-  // Event listeners para filtros de área (desktop)
-  const botonesArea = containerFiltrosArea.querySelectorAll("#filtro-area-btn");
-  botonesArea.forEach(button => {
-    button.addEventListener("click", (e) => {
-      e.preventDefault();
-      handleFilterClick(e.currentTarget.dataset.filter, e.currentTarget, 'area');
-    });
-  });
-
-
-  // Configurar funcionalidad del dropdown móvil
-  setupFiltersDropdown();
-
-  // Restaurar estado visual de filtros activos
-  setTimeout(() => {
-    updateAllFilterStates();
-  }, 10);
-}
-
-// Nueva función para manejar clicks de filtros
-function handleFilterClick(filterId, buttonElement, filterType) {
-  if (filterType === 'main') {
-    if (filtrosActivos.includes(filterId)) {
-      filtrosActivos = filtrosActivos.filter(filtro => filtro !== filterId);
-    } else {
-      filtrosActivos.push(filterId);
-    }
-  } else if (filterType === 'area') {
-    if (filtrosAreaActivos.includes(filterId)) {
-      filtrosAreaActivos = filtrosAreaActivos.filter(filtro => filtro !== filterId);
-    } else {
-      filtrosAreaActivos.push(filterId);
-    }
-  }
-
-  updateAllFilterStates();
-  updateActiveFiltersCount();
-  renderCarreras();
-}
-
-// Nueva función para actualizar estados de todos los filtros
-function updateAllFilterStates() {
-  // Actualizar filtros principales 
-  const botonesDesktop = containerFiltros.querySelectorAll("#boton-filtro");
-  botonesDesktop.forEach(btn => {
-    const isActive = filtrosActivos.includes(btn.dataset.filter);
-    toggleButtonStyle(btn, isActive);
-  });
-
-  // Actualizar filtros de área 
-  const botonesAreaDesktop = containerFiltrosArea.querySelectorAll("#filtro-area-btn");
-  botonesAreaDesktop.forEach(btn => {
-    const isActive = filtrosAreaActivos.includes(btn.dataset.filter);
-    toggleButtonStyle(btn, isActive);
-  });
-}
-
-// Nueva función para estilos de botones móviles
-function toggleButtonStyle(button, isActive) {
-  button.classList.remove("bg-white", "bg-[#D6001C]", "text-white", "text-gray-700", "border-gray-300", "border-[#D6001C]");
-  
-  if (isActive) {
-    button.classList.add("bg-[#D6001C]", "text-white", "border-[#D6001C]");
-  } else {
-    button.classList.add("bg-white", "text-gray-700", "border-gray-300");
-  }
-}
-
-// Nueva función para configurar el dropdown
-function setupFiltersDropdown() {
-  const FiltersBtn = document.getElementById("filters-btn");
-  const FiltersDropdown = document.getElementById("filters-dropdown");
-  const FiltersArrow = document.getElementById("filters-arrow");
-  const clearAllBtn = document.getElementById("clear-all-filters");
-
-  if (!FiltersBtn || !FiltersDropdown) return;
-
-  // Toggle dropdown
-  FiltersBtn.addEventListener("click", () => {
-    const isHidden = FiltersDropdown.classList.contains("hidden");
-    
-    if (isHidden) {
-      FiltersDropdown.classList.remove("hidden");
-      FiltersArrow.style.transform = "rotate(180deg)";
-    } else {
-      FiltersDropdown.classList.add("hidden");
-      FiltersArrow.style.transform = "rotate(0deg)";
-    }
-  });
-
-  // Limpiar todos los filtros
-  clearAllBtn?.addEventListener("click", () => {
-    filtrosActivos = [];
-    filtrosAreaActivos = [];
-    updateAllFilterStates();
-    updateActiveFiltersCount();
-    renderCarreras();
-  });
-
-
-  // Cerrar dropdown al hacer click fuera
-  document.addEventListener("click", (e) => {
-    if (!FiltersBtn.contains(e.target) && !FiltersDropdown.contains(e.target)) {
-      FiltersDropdown.classList.add("hidden");
-      FiltersArrow.style.transform = "rotate(0deg)";
-    }
-  });
-}
-
-// Nueva función para actualizar contador de filtros activos
-function updateActiveFiltersCount() {
-  const activeCount = filtrosActivos.length + filtrosAreaActivos.length;
-  const countElement = document.getElementById("active-filters-count");
-  
-  if (countElement) {
-    if (activeCount > 0) {
-      countElement.textContent = activeCount;
-      countElement.classList.remove("hidden");
-    } else {
-      countElement.classList.add("hidden");
-    }
-  }
-}
-function renderCarreras() {
-  let carrerasFiltradas = [...careers];
-
-  // Función auxiliar para normalizar texto (remover acentos y caracteres especiales)
-  function normalizeText(text) {
-    return text
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '') // Remover acentos
-      .replace(/[^\w\s]/g, '') // Remover caracteres especiales (comas, puntos, etc.)
-      .replace(/\s+/g, ' ') // Normalizar espacios múltiples
-      .trim();
-  }
-
-  // Buscar por texto
-  if (textoBusqueda.trim() !== "") {
-    const textoNormalizado = normalizeText(textoBusqueda);
-    carrerasFiltradas = carrerasFiltradas.filter(career => {
-      const nombreNormalizado = normalizeText(career.name);
-      const descripcionNormalizada = normalizeText(career.description);
-
-      return nombreNormalizado.includes(textoNormalizado) ||
-        descripcionNormalizada.includes(textoNormalizado);
-
-    });
-  }
-  console.log(carrerasFiltradas)
-  // Aplicar filtros principales - TODOS deben cumplirse (lógica AND)
-  if (filtrosActivos.length > 0) {
-    carrerasFiltradas = carrerasFiltradas.filter(career => {
-      return filtrosActivos.every(filtroId => {
-        const filtro = filtros.find(f => f.id === filtroId);
-        return filtro ? filtro.filter(career) : false;
+      // Event listeners para filtros principales (desktop)
+      const botones = containerFiltros.querySelectorAll("#boton-filtro");
+      botones.forEach(button => {
+        button.addEventListener("click", (e) => {
+          e.preventDefault();
+          handleFilterClick(e.currentTarget.dataset.filter, e.currentTarget, 'main');
+        });
       });
-    });
-  }
 
-  // Aplicar filtros de área - AL MENOS UNO debe cumplirse (lógica OR)
-  if (filtrosAreaActivos.length > 0) {
-    carrerasFiltradas = carrerasFiltradas.filter(career => {
-      return filtrosAreaActivos.some(areaId => {
-        // Comparación más precisa para categorías
-        const categoryNormalized = normalizeText(career.category);
-        const areaIdNormalized = normalizeText(areaId);
-        // Verificar coincidencias parciales en ambas direcciones
-        return categoryNormalized.includes(areaIdNormalized) ||
-          areaIdNormalized.includes(categoryNormalized);
+      // Event listeners para filtros de área (desktop)
+      const botonesArea = containerFiltrosArea.querySelectorAll("#filtro-area-btn");
+      botonesArea.forEach(button => {
+        button.addEventListener("click", (e) => {
+          e.preventDefault();
+          handleFilterClick(e.currentTarget.dataset.filter, e.currentTarget, 'area');
+        });
       });
-    });
-  }
 
-  function obtenerNombreModalidad(modalities) {
-    if (modalities.includes(1) && modalities.includes(7)) return 'Presencial y Virtual';
-    if (modalities.includes(1)) return 'Presencial';
-    return 'Virtual';
-  }
+      // Configurar funcionalidad del dropdown móvil
+      setupFiltersDropdown();
 
-  // Renderizado visual con handler de errores para resultados vacíos
-  if (carrerasFiltradas.length === 0) {
-    // Mostrar mensaje de error cuando no hay coincidencias
-    containerCarreras.innerHTML = `
+      // Restaurar estado visual de filtros activos
+      setTimeout(() => {
+        updateAllFilterStates();
+      }, 10);
+    }
+
+    // Nueva función para manejar clicks de filtros
+    function handleFilterClick(filterId, buttonElement, filterType) {
+      if (filterType === 'main') {
+        if (filtrosActivos.includes(filterId)) {
+          filtrosActivos = filtrosActivos.filter(filtro => filtro !== filterId);
+        } else {
+          filtrosActivos.push(filterId);
+        }
+      } else if (filterType === 'area') {
+        if (filtrosAreaActivos.includes(filterId)) {
+          filtrosAreaActivos = filtrosAreaActivos.filter(filtro => filtro !== filterId);
+        } else {
+          filtrosAreaActivos.push(filterId);
+        }
+      }
+
+      updateAllFilterStates();
+      updateActiveFiltersCount();
+      renderCarreras();
+    }
+
+    // Nueva función para actualizar estados de todos los filtros
+    function updateAllFilterStates() {
+      // Actualizar filtros principales 
+      const botonesDesktop = containerFiltros.querySelectorAll("#boton-filtro");
+      botonesDesktop.forEach(btn => {
+        const isActive = filtrosActivos.includes(btn.dataset.filter);
+        toggleButtonStyle(btn, isActive);
+      });
+
+      // Actualizar filtros de área 
+      const botonesAreaDesktop = containerFiltrosArea.querySelectorAll("#filtro-area-btn");
+      botonesAreaDesktop.forEach(btn => {
+        const isActive = filtrosAreaActivos.includes(btn.dataset.filter);
+        toggleButtonStyle(btn, isActive);
+      });
+    }
+
+    // Nueva función para configurar el dropdown
+    function setupFiltersDropdown() {
+      const FiltersBtn = document.getElementById("filters-btn");
+      const FiltersDropdown = document.getElementById("filters-dropdown");
+      const FiltersArrow = document.getElementById("filters-arrow");
+      const clearAllBtn = document.getElementById("clear-all-filters");
+
+      if (!FiltersBtn || !FiltersDropdown) return;
+
+      // Toggle dropdown
+      FiltersBtn.addEventListener("click", () => {
+        const isHidden = FiltersDropdown.classList.contains("hidden");
+
+        if (isHidden) {
+          FiltersDropdown.classList.remove("hidden");
+          FiltersArrow.style.transform = "rotate(180deg)";
+        } else {
+          FiltersDropdown.classList.add("hidden");
+          FiltersArrow.style.transform = "rotate(0deg)";
+        }
+      });
+
+      // Limpiar todos los filtros
+      clearAllBtn?.addEventListener("click", () => {
+        filtrosActivos = [];
+        filtrosAreaActivos = [];
+        updateAllFilterStates();
+        updateActiveFiltersCount();
+        renderCarreras();
+      });
+
+      // Cerrar dropdown al hacer click fuera
+      document.addEventListener("click", (e) => {
+        if (!FiltersBtn.contains(e.target) && !FiltersDropdown.contains(e.target)) {
+          FiltersDropdown.classList.add("hidden");
+          FiltersArrow.style.transform = "rotate(0deg)";
+        }
+      });
+    }
+
+    // Nueva función para actualizar contador de filtros activos
+    function updateActiveFiltersCount() {
+      const activeCount = filtrosActivos.length + filtrosAreaActivos.length;
+      const countElement = document.getElementById("active-filters-count");
+
+      if (countElement) {
+        if (activeCount > 0) {
+          countElement.textContent = activeCount;
+          countElement.classList.remove("hidden");
+        } else {
+          countElement.classList.add("hidden");
+        }
+      }
+    }
+
+    function renderCarreras() {
+      let carrerasFiltradas = [...careers];
+
+      // Función auxiliar para normalizar texto (remover acentos y caracteres especiales)
+      function normalizeText(text) {
+        return text
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '') // Remover acentos
+          .replace(/[^\w\s]/g, '') // Remover caracteres especiales (comas, puntos, etc.)
+          .replace(/\s+/g, ' ') // Normalizar espacios múltiples
+          .trim();
+      }
+
+      // Buscar por texto
+      if (textoBusqueda.trim() !== "") {
+        const textoNormalizado = normalizeText(textoBusqueda);
+        carrerasFiltradas = carrerasFiltradas.filter(career => {
+          const nombreNormalizado = normalizeText(career.name);
+          const descripcionNormalizada = normalizeText(career.description);
+
+          return nombreNormalizado.includes(textoNormalizado) ||
+            descripcionNormalizada.includes(textoNormalizado);
+        });
+      }
+
+      // Aplicar filtros principales - TODOS deben cumplirse (lógica AND)
+      if (filtrosActivos.length > 0) {
+        carrerasFiltradas = carrerasFiltradas.filter(career => {
+          return filtrosActivos.every(filtroId => {
+            const filtro = filtros.find(f => f.id === filtroId);
+            if (!filtro) return false;
+
+            // Aplicar filtro según su tipo definido en JSON
+            switch (filtro.filterType) {
+              case 'popular':
+                return career.popular === true;
+              case 'featured':
+                return career.featured === true;
+              case 'modality':
+                return career.modality.includes(filtro.value);
+              case 'duration':
+                // Extraer número de años de la duración (ej: "3 años" -> 3)
+                const durationMatch = career.duration.match(/(\d+)/);
+                const careerYears = durationMatch ? parseInt(durationMatch[1]) : 0;
+                return careerYears <= filtro.maxYears;
+              default:
+                return false;
+            }
+          });
+        });
+      }
+
+      // Aplicar filtros de área - AL MENOS UNO debe cumplirse (lógica OR)
+      if (filtrosAreaActivos.length > 0) {
+        carrerasFiltradas = carrerasFiltradas.filter(career => {
+          return filtrosAreaActivos.some(areaId => {
+            // Comparación más precisa para categorías
+            const categoryNormalized = normalizeText(career.category);
+            const areaIdNormalized = normalizeText(areaId);
+            // Verificar coincidencias parciales en ambas direcciones
+            return categoryNormalized.includes(areaIdNormalized) ||
+              areaIdNormalized.includes(categoryNormalized);
+          });
+        });
+      }
+
+      function obtenerNombreModalidad(modalities) {
+        if (modalities.includes(1) && modalities.includes(7)) return 'Presencial y Virtual';
+        if (modalities.includes(1)) return 'Presencial';
+        return 'Virtual';
+      }
+
+      // Renderizado visual con handler de errores para resultados vacíos
+      if (carrerasFiltradas.length === 0) {
+        // Mostrar mensaje de error cuando no hay coincidencias
+        containerCarreras.innerHTML = `
       <div class="col-span-full flex flex-col items-center justify-center py-12 px-6 text-center">
         <div class="bg-gray-50 rounded-lg p-8 max-w-md mx-auto">
           <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1154,10 +311,10 @@ function renderCarreras() {
             No se encontraron carreras
           </h3>
           <p class="text-gray-600 mb-4">
-            ${textoBusqueda.trim() !== "" 
-              ? `No hay carreras que coincidan con "${textoBusqueda}" y los filtros seleccionados.`
-              : "No hay carreras que coincidan con los filtros seleccionados."
-            }
+            ${textoBusqueda.trim() !== ""
+            ? `No hay carreras que coincidan con "${textoBusqueda}" y los filtros seleccionados.`
+            : "No hay carreras que coincidan con los filtros seleccionados."
+          }
           </p>
           <div class="space-y-2">
             <p class="text-sm text-gray-500">Intentá:</p>
@@ -1177,9 +334,9 @@ function renderCarreras() {
         </div>
       </div>
     `;
-  } else {
-    // Renderizado normal cuando hay resultados
-    containerCarreras.innerHTML = carrerasFiltradas.map(career => `
+      } else {
+        // Renderizado normal cuando hay resultados
+        containerCarreras.innerHTML = carrerasFiltradas.map(career => `
         <div class="border border-gray-500 shadow-md p-3 sm:p-4 space-y-3 sm:space-y-2 h-fit">
           <div class="grid grid-cols-2 space-y-2 sm:space-y-0">
             <div class="flex justify-start">
@@ -1212,36 +369,225 @@ function renderCarreras() {
           </div>
         </div>
       `).join('');
-  }
-}
+      }
+    }
 
-// Función para limpiar todos los filtros y la búsqueda
-function limpiarFiltrosYBusqueda() {
-  // Limpiar búsqueda
-  textoBusqueda = "";
-  if (searchInput) {
-    searchInput.value = "";
-  }
-  
-  // Limpiar filtros
-  filtrosActivos = [];
-  filtrosAreaActivos = [];
-  
-  // Actualizar estados visuales
-  updateAllFilterStates();
-  updateActiveFiltersCount();
-  
-  // Renderizar carreras sin filtros
-  renderCarreras();
-}
+    // Hacer las funciones accesibles globalmente
+    window.limpiarFiltrosYBusqueda = function () {
+      // Limpiar búsqueda
+      textoBusqueda = "";
+      if (searchInput) {
+        searchInput.value = "";
+      }
 
-searchInput.addEventListener("input", (e) => {
-  textoBusqueda = e.target.value;
-  renderCarreras();
-});
+      // Limpiar filtros
+      filtrosActivos = [];
+      filtrosAreaActivos = [];
 
-filtrosRender();
-renderCarreras();
+      // Actualizar estados visuales
+      updateAllFilterStates();
+      updateActiveFiltersCount();
+
+      // Renderizar carreras sin filtros
+      renderCarreras();
+    }
+
+    searchInput.addEventListener("input", (e) => {
+      textoBusqueda = e.target.value;
+      renderCarreras();
+    });
+
+    filtrosRender();
+    renderCarreras();
+
+    /* --------------------- Modalidad (ahora desde JSON) ----------------------------- */
+
+    const containerModalidades = document.getElementById("modalidades");
+
+    function renderModalidades() {
+      const container = document.getElementById("modalidades");
+
+      container.innerHTML = modalidades.map(modalidad => `
+        <div class="bg-white rounded-lg border border-gray-200 shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+          <!-- Header de la tarjeta -->
+          <div class="p-4 md:p-6">
+            <div class="flex flex-col md:flex-row md:items-start gap-4">
+              <!-- Imagen -->
+              <div class="flex justify-center md:justify-start">
+                <img src="${modalidad.imagen}" alt="${modalidad.nombre}"
+                  class="w-16 h-16 md:w-20 md:h-20 object-contain rounded-lg">
+              </div>
+
+              <!-- Contenido principal -->
+              <div class="flex-1 text-left">
+                <h3 class="md:text-2xl font-bold text-gray-800 mb-2">
+                  ${modalidad.nombre}
+                </h3>
+                <p class="text-xs md:text-base text-gray-600 leading-relaxed">
+                  ${modalidad.descripcion}
+                </p>
+              </div>
+            </div>
+
+            <!-- Sección de características -->
+            <div class="mt-4 md:mt-6">
+              <!-- Header de características (clickeable en mobile) -->
+              <div class="flex items-center justify-between md:justify-start mobile-expand-trigger md:cursor-default"
+                onclick="toggleCharacteristics(${modalidad.id})">
+                <h3 class="font-semibold text-gray-700">
+                  Características
+                </h3>
+                <!-- Botón de expandir (solo visible en mobile) -->
+                <button class="md:hidden text-gray-500 p-1 transform transition rotate-180" id="expand-btn-${modalidad.id}">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Lista de características -->
+              <div class="transition-all transform md:expanded ease-in-out duration-300 collapsed mt-3" id="characteristics-${modalidad.id}">
+                <ul class="space-y-1 pl-4 md:pl-6">
+                  ${modalidad.caracteristicas.map(caracteristica => `
+                  <li class="list-disc">
+                    <span class="text-xs md:text-base text-gray-600">
+                      ${caracteristica}
+                    </span>
+                  </li>
+                  `).join('')}
+                </ul>
+                <!-- Footer con botón de acción -->
+                <div class="py-3 md:px-6 md:py-4 border-t border-gray-200">
+                  <button class="boton-cta flex justify-center items-center" data-filter="${modalidad.id}" id="boton-modalidad">
+                    <svg class="md:w-5 md:h-5 w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    <span class="text-xs md:text-base">
+                      Buscar carreras ${modalidad.nombre.toLowerCase()}
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`).join('');
+    }
+
+    // Función para toggle de características en mobile
+    window.toggleCharacteristics = function (modalidadId) {
+      // Solo funciona en mobile
+      if (window.innerWidth >= 768) return;
+
+      const content = document.getElementById(`characteristics-${modalidadId}`);
+      const button = document.getElementById(`expand-btn-${modalidadId}`);
+
+      if (!content || !button) return;
+
+      const isCollapsed = content.classList.contains('collapsed');
+
+      if (isCollapsed) {
+        // Expandir
+        content.classList.remove('collapsed');
+        content.classList.add('max-h-[500px]', 'opacity-100');
+        content.classList.add('max-h-[500px]', 'opacity-100');
+        button.classList.add('rotate-none');
+      } else {
+        // Colapsar
+        content.classList.remove('max-h-[500px]', 'opacity-100');
+        content.classList.remove('max-h-[500px]', 'opacity-100');
+        content.classList.add('collapsed');
+        button.classList.remove('rotate-none');
+      }
+    }
+
+    // Función para manejar el resize de ventana
+    function handleResize() {
+      const isMobile = window.innerWidth < 768;
+
+      modalidades.forEach(modalidad => {
+        const content = document.getElementById(`characteristics-${modalidad.id}`);
+        const button = document.getElementById(`expand-btn-${modalidad.id}`);
+
+        if (!content || !button) return;
+
+        if (!isMobile) {
+          // En desktop, siempre expandido
+          content.classList.remove('collapsed');
+          content.classList.add('max-h-[500px]', 'opacity-100');
+        } else {
+          // En mobile, comenzar colapsado
+          if (!content.classList.contains('max-h-[500px]', 'opacity-100')) {
+            content.classList.add('collapsed');
+            content.classList.remove('max-h-[500px]', 'opacity-100');
+          }
+        }
+      });
+    }
+
+    // Event listeners
+    window.addEventListener('resize', handleResize);
+
+    // Iniciar componente
+    document.addEventListener('DOMContentLoaded', function () {
+      renderModalidades();
+      handleResize()
+    });
+
+    // Event listeners para los botones de modalidades
+    document.addEventListener('DOMContentLoaded', function () {
+      const botonesModalidad = document.querySelectorAll("#boton-modalidad");
+
+      botonesModalidad.forEach(button => {
+        button.addEventListener('click', function (e) {
+          const modalidadFilter = e.currentTarget.dataset.filter;
+
+          // Limpiar filtros activos anteriores
+          filtrosActivos = [];
+
+          // Agregar el filtro de modalidad
+          filtrosActivos.push(modalidadFilter);
+
+          // Actualizar estado visual de todos los filtros
+          const botonesFiltros = containerFiltros.querySelectorAll("#boton-filtro");
+          botonesFiltros.forEach(btn => {
+            btn.classList.remove("bg-[#D6001C]", "text-white");
+            btn.classList.add("bg-white");
+          });
+
+          const botonesFiltrosArea = containerFiltrosArea.querySelectorAll("#boton-filtro");
+          botonesFiltrosArea.forEach(btn => {
+            btn.classList.remove("bg-[#D6001C]", "text-white");
+            btn.classList.add("bg-white");
+          });
+
+          filtrosActivos.forEach(filtroId => {
+            const activeBtn = containerFiltros.querySelector(`[data-filter="${filtroId}"]`);
+            const activeBtnArea = containerFiltrosArea.querySelector(`[data-filter="${filtroId}"]`);
+
+            if (activeBtn) {
+              activeBtn.classList.remove("bg-white");
+              activeBtn.classList.add("bg-[#D6001C]", "text-white");
+            }
+
+            if (activeBtnArea) {
+              activeBtnArea.classList.remove("bg-white");
+              activeBtnArea.classList.add("bg-[#D6001C]", "text-white");
+            }
+          });
+
+          // Renderizar carreras con el filtro aplicado
+          renderCarreras();
+
+          // Navegar a la sección de carreras
+          window.location.href = '#carreras';
+        });
+      });
+    });
+  })
+
+
+
 /* --------------------- Carreras Mas Elegidas ----------------------------- */
 
 const carrerasElegidas = [
@@ -1267,194 +613,7 @@ carrerasElegidas.forEach((carrerasElegidas) => {
             `;
   container.appendChild(card);
 });
-/* --------------------- Modalidad ----------------------------- */
-const modalidades = [
-  { id: 1, nombre: "Presencial", descripcion: "Estudiá en un campus pensado para vos. Aprendé, conectá y crecé con actividades deportivas, culturales y académicas.", imagen: "https://placehold.co/60x60", caracteristicas: ["Sedes en todo el país.", "Interacción diaria con compañeros.", "Aulas equipadas y tecnología educativa.", "Conexión con el mundo laboral.", "Ambiente universitario activo."] },
-  { id: 7, nombre: "Digital", descripcion: "Desc", imagen: "https://placehold.co/60x60", caracteristicas: [1, 2, 3, 4, 5] },
-]
-const containerModalidades = document.getElementById("modalidades");
 
-function renderModalidades() {
-  const container = document.getElementById("modalidades");
-
-  container.innerHTML = modalidades.map(modalidad => `
-<div class="bg-white rounded-lg border border-gray-200 shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-  <!-- Header de la tarjeta -->
-  <div class="p-4 md:p-6">
-    <div class="flex flex-col md:flex-row md:items-start gap-4">
-      <!-- Imagen -->
-      <div class="flex justify-center md:justify-start">
-        <img src="${modalidad.imagen}" alt="${modalidad.nombre}"
-          class="w-16 h-16 md:w-20 md:h-20 object-contain rounded-lg">
-      </div>
-
-      <!-- Contenido principal -->
-      <div class="flex-1 text-left">
-        <h3 class="md:text-2xl font-bold text-gray-800 mb-2">
-          ${modalidad.nombre}
-        </h3>
-        <p class="text-xs md:text-base text-gray-600 leading-relaxed">
-          ${modalidad.descripcion}
-        </p>
-      </div>
-    </div>
-
-    <!-- Sección de características -->
-    <div class="mt-4 md:mt-6">
-      <!-- Header de características (clickeable en mobile) -->
-      <div class="flex items-center justify-between md:justify-start mobile-expand-trigger md:cursor-default"
-        onclick="toggleCharacteristics(${modalidad.id})">
-        <h3 class="font-semibold text-gray-700">
-          Características
-        </h3>
-        <!-- Botón de expandir (solo visible en mobile) -->
-        <button class="md:hidden text-gray-500 p-1 transform transition rotate-180" id="expand-btn-${modalidad.id}">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-          </svg>
-        </button>
-      </div>
-
-      <!-- Lista de características -->
-      <div class="transition-all transform md:expanded ease-in-out duration-300 collapsed mt-3" id="characteristics-${modalidad.id}">
-        <ul class="space-y-1 pl-4 md:pl-6">
-          ${modalidad.caracteristicas.map(caracteristica => `
-          <li class="list-disc">
-            <span class="text-xs md:text-base text-gray-600">
-              ${caracteristica}
-            </span>
-          </li>
-          `).join('')}
-        </ul>
-        <!-- Footer con botón de acción -->
-        <div class="py-3 md:px-6 md:py-4 border-t border-gray-200">
-          <button class="boton-cta flex justify-center items-center" data-filter="${modalidad.id}" id="boton-modalidad">
-            <svg class="md:w-5 md:h-5 w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-            </svg>
-            <span class="text-xs md:text-base">
-              Buscar carreras ${modalidad.nombre.toLowerCase()}
-            </span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>`).join('');
-}
-
-// Función para toggle de características en mobile
-function toggleCharacteristics(modalidadId) {
-  // Solo funciona en mobile
-  if (window.innerWidth >= 768) return;
-
-  const content = document.getElementById(`characteristics-${modalidadId}`);
-  const button = document.getElementById(`expand-btn-${modalidadId}`);
-
-  if (!content || !button) return;
-
-  const isCollapsed = content.classList.contains('collapsed');
-
-  if (isCollapsed) {
-    // Expandir
-    content.classList.remove('collapsed');
-    content.classList.add('max-h-[500px]', 'opacity-100');
-    content.classList.add('max-h-[500px]', 'opacity-100');
-    button.classList.add('rotate-none');
-  } else {
-    // Colapsar
-    content.classList.remove('max-h-[500px]', 'opacity-100');
-    content.classList.remove('max-h-[500px]', 'opacity-100');
-    content.classList.add('collapsed');
-    button.classList.remove('rotate-none');
-  }
-}
-
-// Función para manejar el resize de ventana
-function handleResize() {
-  const isMobile = window.innerWidth < 768;
-
-  modalidades.forEach(modalidad => {
-    const content = document.getElementById(`characteristics-${modalidad.id}`);
-    const button = document.getElementById(`expand-btn-${modalidad.id}`);
-
-    if (!content || !button) return;
-
-    if (!isMobile) {
-      // En desktop, siempre expandido
-      content.classList.remove('collapsed');
-      content.classList.add('max-h-[500px]', 'opacity-100');
-    } else {
-      // En mobile, comenzar colapsado
-      if (!content.classList.contains('max-h-[500px]', 'opacity-100')) {
-        content.classList.add('collapsed');
-        content.classList.remove('max-h-[500px]', 'opacity-100');
-      }
-    }
-  });
-}
-
-// Event listeners
-window.addEventListener('resize', handleResize);
-
-// Iniciar componente
-document.addEventListener('DOMContentLoaded', function () {
-  renderModalidades();
-  handleResize()
-});
-
-// Event listeners para los botones de modalidades
-document.addEventListener('DOMContentLoaded', function () {
-  const botonesModalidad = document.querySelectorAll("#boton-modalidad");
-
-  botonesModalidad.forEach(button => {
-    button.addEventListener('click', function (e) {
-      const modalidadFilter = e.currentTarget.dataset.filter;
-
-      // Limpiar filtros activos anteriores
-      filtrosActivos = [];
-
-      // Agregar el filtro de modalidad
-      filtrosActivos.push(modalidadFilter);
-
-      // Actualizar estado visual de todos los filtros
-      const botonesFiltros = containerFiltros.querySelectorAll("#boton-filtro");
-      botonesFiltros.forEach(btn => {
-        btn.classList.remove("bg-[#D6001C]", "text-white");
-        btn.classList.add("bg-white");
-      });
-
-      const botonesFiltrosArea = containerFiltrosArea.querySelectorAll("#boton-filtro");
-      botonesFiltrosArea.forEach(btn => {
-        btn.classList.remove("bg-[#D6001C]", "text-white");
-        btn.classList.add("bg-white");
-      });
-
-      filtrosActivos.forEach(filtroId => {
-        const activeBtn = containerFiltros.querySelector(`[data-filter="${filtroId}"]`);
-        const activeBtnArea = containerFiltrosArea.querySelector(`[data-filter="${filtroId}"]`);
-
-        if (activeBtn) {
-          activeBtn.classList.remove("bg-white");
-          activeBtn.classList.add("bg-[#D6001C]", "text-white");
-        }
-
-        if (activeBtnArea) {
-          activeBtnArea.classList.remove("bg-white");
-          activeBtnArea.classList.add("bg-[#D6001C]", "text-white");
-        }
-      });
-
-      // Renderizar carreras con el filtro aplicado
-      renderCarreras();
-
-      // Navegar a la sección de carreras
-      window.location.href = '#carreras';
-    });
-  });
-});
 /* ---------------------- Generador de carruseles ---------------------------- */
 class GenericCarousel {
   constructor({ items, selectors, autoPlayDelay = 3000 }) {
@@ -1598,15 +757,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // Aca se agregan mas carruseles si se desea, seguir la corriente de lo ya escrito
   const testimonios = [
     {
-      title: "María González",
-      subtitle: "Ingeniería en Sistemas",
-      text: "UCASAL me dio las herramientas para conseguir mi trabajo soñado.",
-      image: "https://placehold.co/60x60",
+      title: "Benjamin Elizalde",
+      subtitle: "Licenciatura en comercialización",
+      text: "La facultad esta siempre a disposición",
+      image: "./public/benja.png",
     },
     {
-      title: "Carlos Mendoza",
-      subtitle: "Medicina",
-      text: "La formación integral fue clave en mi desarrollo.",
+      title: "Ebaneo Valdez Kao.",
+      subtitle: "Ingeniería en Informática ",
+      text: "Puedo ejercer mi profesión desde cualquier parte del mundo",
       image: "https://placehold.co/60x60",
     },
     {
@@ -1632,7 +791,7 @@ document.addEventListener("DOMContentLoaded", () => {
   new GenericCarousel({
     items: testimonios,
     selectors: {
-      container: "#contenido-testimonial",
+      container: "#contenido-testimonial", //ID de donde va a ir.
       image: "#imagen-testimonial",
       text: "#texto-testimonial",
       title: "#nombre-testimonial",
@@ -2172,3 +1331,77 @@ function validarLongitudTelefono(inputTelefono, longitudMaxima) {
 
   inputTelefono.value = telefonoLimpio;
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  fetch('assets/datosLanding.json')
+    .then(response => {
+      if (!response.ok) throw new Error('No se pudo cargar el JSON');
+      return response.json();
+    })
+    .then(json => {
+      const banner = json.banner;
+      const videoURL = json.videoURL;
+      const elementoVideo = document.getElementById('video');
+      const elementoPromocion = document.getElementById('promo');
+      const datosTarjeta = json.tarjeta;
+
+      // Actualiza el componente de Tarjeta Macro
+      document.getElementById('tarjetaMacro').innerHTML = `
+            <img class="w-1/3 p-4 bg-white rounded-2xl" src="${datosTarjeta.macro.imagen}" alt="tarjeta macro">
+            <p class="text-md">${datosTarjeta.macro.descripcion}</p>
+        `;
+
+      // Actualiza el componente de Tarjeta Naranja
+      document.getElementById('tarjetaNaranja').innerHTML = `
+            <img class="w-1/3 p-4 bg-white rounded-2xl" src="${datosTarjeta.naranja.imagen}" alt="tarjeta naranja">
+            <p class="text-md">${datosTarjeta.naranja.descripcion}</p>
+        `;
+
+      // Actualiza el componente de Tarjeta Banco
+      document.getElementById('tarjetaBanco').innerHTML = `
+            <img class="w-1/3 p-4 bg-white rounded-2xl" src="${datosTarjeta.banco.imagen}" alt="tarjeta banco">
+            <p class="text-md">${datosTarjeta.banco.descripcion}</p>
+        `;
+
+      let index = 0;
+
+      // Funci�n para obtener la promoci�n activa seg�n la fecha actual
+      function obtenerPromocionActiva() {
+        const fechaActual = new Date();
+
+        // Buscar la promoci�n que corresponde a la fecha actual
+        const promocionActiva = json.promociones_dinamicas.find(promocion => {
+          const fechaInicio = new Date(promocion.fecha_inicio);
+          const fechaFin = new Date(promocion.fecha_fin);
+          return fechaActual >= fechaInicio && fechaActual <= fechaFin;
+        });
+
+        // Si no se encuentra una promoci�n activa, usar la promoci�n fallback
+        return promocionActiva ? promocionActiva.mensajes : json.promocion_fallback;
+      }
+
+      // Obtener los mensajes de la promoci�n activa
+      const promociones = obtenerPromocionActiva();
+
+      // Inicializar el contenido de la promoci�n con el primer mensaje
+      elementoPromocion.innerHTML = promociones[index];
+
+      // Funci�n para cambiar el texto de la promoci�n cada 3 segundos
+      function cambiarTexto() {
+        index = (index + 1) % promociones.length;
+        elementoPromocion.innerHTML = promociones[index];
+      }
+
+      // Iniciar el intervalo para cambiar el texto
+      setInterval(cambiarTexto, 2500);
+
+    })
+    .catch(error => {
+      console.error('Error al cargar las promociones:', error);
+      // Mostrar mensaje de fallback en caso de error
+      const elementoPromocion = document.getElementById('promo');
+      if (elementoPromocion) {
+        elementoPromocion.innerHTML = "&#127942;Constru�<span class='text-sm font-extrabold lg:text-lg'>&nbsp;<strong>tu historia</strong></span>";
+      }
+    });
+});
