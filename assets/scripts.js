@@ -19,7 +19,7 @@ const careers = [
     duration: "4 años",
     popular: true,
     featured: false,
-    category: "Idiomas",
+    category: "Educación e Idiomas",
     image: "",
   },
   {
@@ -151,7 +151,7 @@ const careers = [
     duration: "4 años",
     popular: true,
     featured: false,
-    category: "Profesorados y Educación",
+    category: "Educación y Salud",
     image: "",
   },
   {
@@ -162,7 +162,7 @@ const careers = [
     duration: "4 años",
     popular: true,
     featured: false,
-    category: "Profesorados y Educación",
+    category: "Educación y Salud",
     image: "",
   },
   {
@@ -184,7 +184,7 @@ const careers = [
     duration: "4 años",
     popular: true,
     featured: false,
-    category: "Profesorado y Educación",
+    category: "Educación",
     image: "",
   },
   {
@@ -195,7 +195,7 @@ const careers = [
     duration: "1&frac12; años", //Año y medio
     popular: true,
     featured: false,
-    category: "Profesorado y Educación",
+    category: "Educación",
     image: "",
   },
   {
@@ -210,50 +210,643 @@ const careers = [
     image: "",
   },
   {
-    codcar: 96,
-    name: "Ingeniería en Informatica",
-    description: "Desarrollo de software y gestión de sistemas informáticos.",
+    codcar: 58,
+    name: "Licenciatura en Ciencia de Datos",
+    description: "",
     modality: [7],
     duration: "4 años",
+    popular: true,
+    featured: false,
+    category: "Ingenieria y Tecnología",
+    image: "",
+  },
+  {
+    codcar: 68,
+    name: "Perito en Accidentología",
+    description: "",
+    modality: [1],
+    duration: "2 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales y Humanidades",
+    image: "",
+  },
+  {
+    codcar: 69,
+    name: "Licenciatura en Psicopedagogía",
+    description: "",
+    modality: [1],
+    duration: "4 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales y Humanidades",
+    image: "",
+  },
+  {
+    codcar: 70,
+    name: "Licenciatura en Terapia Ocupacional",
+    description: "",
+    modality: [1],
+    duration: "5 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias de la Salud",
+    image: "",
+  },
+  {
+    codcar: 84,
+    name: "Ingeniería en Informatica",
+    description: "",
+    modality: [1],
+    duration: "5 años",
     popular: true,
     featured: true,
     category: "Ingeniería y Tecnología",
     image: "https://placehold.co/60x60",
   },
   {
-    codcar: 11,
-    name: "Licenciatura en Administración de Empresas",
-    description: "Gestión y dirección estratégica de organizaciones.",
+    codcar: 86,
+    name: "Licenciatura en Turismo",
+    description: "",
     modality: [1, 7],
     duration: "4 años",
     popular: true,
     featured: false,
-    category: "Ciencias Económicas",
-    image: "https://placehold.co/60x60",
+    category: "Ciencias Sociales y Humanidades",
+    image: "",
+  },
+  {
+    codcar: 94,
+    name: "Licenciatura en Inglés (Ciclo de Complementación Curricular)",
+    description: "",
+    modality: [1],
+    duration: "2 años + tesina",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales, Idiomas",
+    image: "",
+  },
+  {
+    codcar: 96,
+    name: "Tecnicatura Universitaria en Gestión de Calidad",
+    description: "",
+    modality: [7],
+    duration: "2&frac12; años",
+    popular: true,
+    featured: false,
+    category: "Administración",
+    image: "",
+  },
+  {
+    codcar: 100,
+    name: "Licenciatura en Filosofía",
+    description: "",
+    modality: [1],
+    duration: "5 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales y Humanidades",
+    image: "",
+  },
+  {
+    codcar: 104,
+    name: "Licenciatura en Educación Física - Ciclo de Complementación Curricular",
+    description: "",
+    modality: [1],
+    duration: "1&frac12; años",
+    popular: true,
+    featured: false,
+    category: "Educación y Salud",
+    image: "",
+  },
+  {
+    codcar: 105,
+    name: "Licenciatura en Psicología",
+    description: "",
+    modality: [1],
+    duration: "5 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales y Humanidades",
+    image: "",
+  },
+  {
+    codcar: 109,
+    name: "Traductor Público en Inglés",
+    description: "",
+    modality: [1],
+    duration: "4 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales e Idiomas",
+    image: "",
+  },
+  {
+    codcar: 113,
+    name: "Licenciatura en Gestión Educativa",
+    description: "",
+    modality: [1, 7],
+    duration: "2 años",
+    popular: true,
+    featured: false,
+    category: "Educación",
+    image: "",
+  },
+  {
+    codcar: 117,
+    name: "Ingenieria en Telecomunicaciones",
+    description: "",
+    modality: [1],
+    duration: "5 años",
+    popular: true,
+    featured: false,
+    category: "Ingeniería y Tecnología",
+    image: "",
   },
   {
     codcar: 123,
     name: "Ciencias Veterinarias",
-    description: "Formación médica integral para la atención de la salud.",
+    description: "",
     modality: [1],
-    duration: "4 años",
-    popular: false,
-    featured: true,
-    category: "Ciencias de la Salud",
-    image: "https://placehold.co/60x60",
+    duration: "5&frac12; años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Agrarias y Veterinarias",
+    image: "",
   },
   {
-    codcar: 244,
-    name: "Corredor Inmobiliario y Martillero Público",
-    description: "Formación médica integral para la atención de la salud.",
+    codcar: 132,
+    name: "Licenciatura en Ciencias Políticas",
+    description: "",
+    modality: [1],
+    duration: "4 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales y Humanidades",
+    image: "",
+  },
+      {
+    codcar: 133,
+    name: "Licenciatura en Administración Agropecuaria",
+    description: "",
     modality: [1, 7],
     duration: "4 años",
-    popular: false,
-    featured: true,
-    category: "Ciencias de la Salud",
-    image: "https://placehold.co/60x60",
+    popular: true,
+    featured: false,
+    category: "Ciencias Económicas y Administración",
+    image: "",
   },
-
+    {
+    codcar: 138,
+    name: "Licenciatura en Higiene y Seguridad en el Trabajo",
+    description: "",
+    modality: [1, 7],
+    duration: "4 años",
+    popular: true,
+    featured: false,
+    category: "Ingeniería",
+    image: "",
+  },
+      {
+    codcar: 139,
+    name: "Licenciatura en Artes Musicales",
+    description: "",
+    modality: [1],
+    duration: "5 años",
+    popular: true,
+    featured: false,
+    category: "Artes",
+    image: "",
+  },
+      {
+    codcar: 142,
+    name: "Licenciatura en Trabajo Social",
+    description: "",
+    modality: [1],
+    duration: "5 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales y Humanidades",
+    image: "",
+  },
+      {
+    codcar: 146,
+    name: "Escribanía (Ciclo de Complementación Curricular)",
+    description: "",
+    modality: [1],
+    duration: "1&frac12; años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales y Humanidades",
+    image: "",
+  },
+      {
+    codcar: 148,
+    name: "Licenciatura en Diseño de Interiores - Ciclo de complementación Curricular",
+    description: "",
+    modality: [1],
+    duration: "1 año",
+    popular: true,
+    featured: false,
+    category: "Arquitectura",
+    image: "",
+  },
+      {
+    codcar: 161,
+    name: "Tecnicatura en Gestión de Bancos, Empresas Financieras y de Seguros",
+    description: "",
+    modality: [7],
+    duration: "3 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Económicas y Administración",
+    image: "",
+  },
+      {
+    codcar: 173,
+    name: "Diseño Industrial",
+    description: "",
+    modality: [1],
+    duration: "4 años",
+    popular: true,
+    featured: false,
+    category: "Arquitectura",
+    image: "",
+  },
+      {
+    codcar: 175,
+    name: "Guía Universitario de Turismo",
+    description: "",
+    modality: [1, 7],
+    duration: "2&frac12; años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales y Humanidades",
+    image: "",
+  },
+      {
+    codcar: 179,
+    name: "Licenciatura en Diseño de Interiores",
+    description: "",
+    modality: [1],
+    duration: "4 años",
+    popular: true,
+    featured: false,
+    category: "Arquitectura",
+    image: "",
+  },
+      {
+    codcar: 185,
+    name: "Licenciatura en Gestión Eficiente de la Energía",
+    description: "",
+    modality: [7],
+    duration: "4 años",
+    popular: true,
+    featured: false,
+    category: "Arquitectura",
+    image: "",
+  },
+      {
+    codcar: 186,
+    name: "Licenciatura en Entrenamiento Deportivo - Ciclo de Complementación Curricular",
+    description: "",
+    modality: [1, 7],
+    duration: "1&frac12; años",
+    popular: true,
+    featured: false,
+    category: "Salud y Educación",
+    image: "",
+  },
+      {
+    codcar: 187,
+    name: "Licenciatura en Lenguajes Expresivos - Ciclo de Complementación Curricular",
+    description: "",
+    modality: [1, 7],
+    duration: "1&frac12; años",
+    popular: true,
+    featured: false,
+    category: "Salud y Educación",
+    image: "",
+  },
+      {
+    codcar: 194,
+    name: "Licenciatura en Educación Física - Ciclo de Complementación Curricular",
+    description: "",
+    modality: [1, 7],
+    duration: "1&frac12; años",
+    popular: true,
+    featured: false,
+    category: "Salud y Educación",
+    image: "",
+  },
+      {
+    codcar: 196,
+    name: "Licenciatura en Seguridad - Ciclo de Complementación Curricular",
+    description: "",
+    modality: [1, 7],
+    duration: "2 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales",
+    image: "",
+  },
+      {
+    codcar: 214,
+    name: "Licenciatura en Comercio Internacional",
+    description: "",
+    modality: [1, 7],
+    duration: "4 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Económicas y Administración",
+    image: "",
+  },
+      {
+    codcar: 220,
+    name: "Licenciatura en Imagen y Sonido",
+    description: "",
+    modality: [1],
+    duration: "4 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales y Artes",
+    image: "",
+  },
+      {
+    codcar: 221,
+    name: "Licenciatura en Diseño Gráfico",
+    description: "",
+    modality: [1],
+    duration: "4 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales y Artes",
+    image: "",
+  },
+      {
+    codcar: 222,
+    name: "Licenciatura en Publicidad",
+    description: "",
+    modality: [1],
+    duration: "4 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales y Artes",
+    image: "",
+  },
+      {
+    codcar: 223,
+    name: "Licenciatura en Periodismo",
+    description: "",
+    modality: [1],
+    duration: "4 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales y Artes",
+    image: "",
+  },
+      {
+    codcar: 231,
+    name: "Licenciatura en Producción Animal",
+    description: "",
+    modality: [1],
+    duration: "4 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Agrarias y Veterinarias",
+    image: "",
+  },
+      {
+    codcar: 241,
+    name: "Especialización en Dirección Estratégica de las Organizaciones",
+    description: "",
+    modality: [1],
+    duration: "1&frac12; años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales y Administración",
+    image: "",
+  },
+      {
+    codcar: 244,
+    name: "Corredor Inmobiliario y Martillero Público",
+    description: "",
+    modality: [1, 7],
+    duration: "2&frac12; años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales y Humanidades",
+    image: "",
+  },
+      {
+    codcar: 249,
+    name: "Profesorado en Campo Disciplinar según Titulación de Base",
+    description: "",
+    modality: [1],
+    duration: "2 años",
+    popular: true,
+    featured: false,
+    category: "Educación",
+    image: "",
+  },
+      {
+    codcar: 250,
+    name: "Licenciatura en Administración de Negocios Digitales",
+    description: "",
+    modality: [1,7],
+    duration: "4 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Económicas y Administración",
+    image: "",
+  },
+      {
+    codcar: 320,
+    name: "Licenciatura en Teología",
+    description: "",
+    modality: [1],
+    duration: "5 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales",
+    image: "",
+  },
+      {
+    codcar: 332,
+    name: "Licenciatura en Trabajo Social - Ciclo Complementación Curricular",
+    description: "",
+    modality: [1],
+    duration: "2 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales y Humanidades",
+    image: "",
+  },
+      {
+    codcar: 336,
+    name: "Licenciatura en Recursos Humanos",
+    description: "",
+    modality: [1, 7],
+    duration: "4 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Económicas y Administración",
+    image: "",
+  },
+      {
+    codcar: 340,
+    name: "Licenciatura en Kinesiología y Fisioterapia",
+    description: "",
+    modality: [1],
+    duration: "5 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias de la Salud",
+    image: "",
+  },
+      {
+    codcar: 341,
+    name: "Licenciatura en Podología - Ciclo de Complementación Curricular",
+    description: "",
+    modality: [1],
+    duration: "1&frac12; años",
+    popular: true,
+    featured: false,
+    category: "Ciencias de la Salud",
+    image: "",
+  },
+      {
+    codcar: 342,
+    name: "Licenciatura en Fonoaudiología",
+    description: "",
+    modality: [1],
+    duration: "5 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias de la Salud",
+    image: "",
+  },
+      {
+    codcar: 343,
+    name: "Profesorado Universitario en Educación Primaria",
+    description: "",
+    modality: [1],
+    duration: "4 años",
+    popular: true,
+    featured: false,
+    category: "Educación",
+    image: "",
+  },
+      {
+    codcar: 349,
+    name: "Especialización en Derecho de Familia",
+    description: "",
+    modality: [1, 7],
+    duration: "20 meses",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales y Humanidades",
+    image: "",
+  },
+      {
+    codcar: 355,
+    name: "Escribanía",
+    description: "",
+    modality: [1, 7],
+    duration: "4&frac12; años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales y Humanidades",
+    image: "",
+  },
+      {
+    codcar: 360,
+    name: "Tecnicatura en Seguridad Informática",
+    description: "",
+    modality: [7],
+    duration: "2&frac12; años",
+    popular: true,
+    featured: false,
+    category: "Ingeniería y Tecnología",
+    image: "",
+  },
+      {
+    codcar: 361,
+    name: "Licenciatura en Criminología - Ciclo de Complementación Curricular",
+    description: "",
+    modality: [7],
+    duration: "2 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales y Humanidades",
+    image: "",
+  },
+      {
+    codcar: 363,
+    name: "Procuración",
+    description: "",
+    modality: [1, 7],
+    duration: "3 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales y Humanidades",
+    image: "",
+  },
+      {
+    codcar: 368,
+    name: "Licenciatura en Administración y Gestión Universitaria - Ciclo de Complementación Curricular",
+    description: "",
+    modality: [7],
+    duration: "2 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Económicas y Económicas",
+    image: "",
+  },
+      {
+    codcar: 371,
+    name: "Licenciatura en Bioimágenes - Ciclo Complementario",
+    description: "",
+    modality: [1],
+    duration: "2 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias de la Salud y Tecnología",
+    image: "",
+  },
+      {
+    codcar: 372,
+    name: "Tecnicatura en Administración y Gestión Judicial",
+    description: "",
+    modality: [1],
+    duration: "2 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales y Administración",
+    image: "",
+  },
+      {
+    codcar: 378,
+    name: "Organización y Dirección de Eventos y Ceremonial",
+    description: "",
+    modality: [7],
+    duration: "2 años",
+    popular: true,
+    featured: false,
+    category: "Ciencias Sociales",
+    image: "",
+  },
+      {
+    codcar: 383,
+    name: "Tecnicatura en Operaciones Mineras",
+    description: "",
+    modality: [7],
+    duration: "3 años",
+    popular: true,
+    featured: false,
+    category: "Ingeniería y Tecnología",
+    image: "",
+  },
 ]
 
 const filtros = [
@@ -268,7 +861,7 @@ const containerFiltros = document.getElementById("filtros");
 const searchInput = document.getElementById("search-bar");
 const containerFiltrosArea = document.getElementById("filtros-categoria");
 
-const filtrosArea = ["ingeniería", "tecnología", "económicas", "salud", "sociales", "Humanidades", "Administración", "Idiomas"]
+const filtrosArea = ["ingeniería", "tecnología", "económicas", "salud", "sociales", "Humanidades", "Administración", "Idiomas", "educación", "Ciencias Agrarias y Veterinarias", "Artes", "Arquitectura"]
 
 let textoBusqueda = "";
 let filtroActivo = null;
@@ -277,84 +870,174 @@ let filtroActivo = null;
 filtrosActivos = [];
 filtrosAreaActivos = []; // Nuevo array para filtros de área
 
+// Función helper para manejar estilos de botones de manera más robusta
+function toggleButtonStyle(button, isActive) {
+  // Remover todas las clases de estilo primero
+  button.classList.remove("bg-white", "bg-[#D6001C]", "text-white", "text-gray-700");
+
+  // Forzar un reflow del DOM (especialmente útil en móviles)
+  button.offsetHeight;
+
+  if (isActive) {
+    button.classList.add("bg-[#D6001C]", "text-white");
+  } else {
+    button.classList.add("bg-white");
+  }
+
+  // Forzar otro reflow para asegurar que los cambios se apliquen
+  requestAnimationFrame(() => {
+    button.offsetHeight;
+  });
+}
+
 function filtrosRender() {
+  // Renderizar filtros para desktop
   containerFiltros.innerHTML = filtros.map(filter => `
-  <button class="cursor-pointer flex items-center space-x-2 px-4 py-2 rounded-[8px] bg-white border-2 border-gray-200 hover:bg-[#D6001C] hover:text-white transition-colors md:text-base text-xs" id="boton-filtro"
+  <button class="cursor-pointer flex items-center space-x-2 px-4 py-2 rounded-[8px] bg-white border-2 border-gray-200 md:hover:bg-[#D6001C] md:hover:text-white md:text-base text-xs transition-colors" id="boton-filtro"
     data-filter="${filter.id}">
     <span>${filter.name}</span>
   </button>
 `).join('');
 
   containerFiltrosArea.innerHTML = filtrosArea.map(filter => `
-  <button class="filtro-area-btn cursor-pointer flex items-center space-x-2 px-4 py-2 rounded-[8px] bg-white border-2 border-gray-200 hover:bg-[#D6001C] hover:text-white transition-colors md:text-base text-xs" 
+  <button class="cursor-pointer flex items-center space-x-2 px-4 py-2 rounded-[8px] bg-white border-2 border-gray-200 md:hover:bg-[#D6001C] md:hover:text-white md:text-base text-xs transition-colors" id="filtro-area-btn"
     data-filter="${filter}">
     <span>${filter.charAt(0).toUpperCase() + filter.slice(1)}</span>
   </button>
 `).join('');
 
-  // Event listeners para filtros principales
+  // Event listeners para filtros principales (desktop)
   const botones = containerFiltros.querySelectorAll("#boton-filtro");
   botones.forEach(button => {
     button.addEventListener("click", (e) => {
-      const selectedFilter = e.currentTarget.dataset.filter;
-
-      if (filtrosActivos.includes(selectedFilter)) {
-        // Si ya está activo, lo removemos del array
-        filtrosActivos = filtrosActivos.filter(filtro => filtro !== selectedFilter);
-        e.currentTarget.classList.remove("bg-[#D6001C]", "text-white");
-        e.currentTarget.classList.add("bg-white");
-      } else {
-        // Si no está activo, lo agregamos al array
-        filtrosActivos.push(selectedFilter);
-        e.currentTarget.classList.remove("bg-white");
-        e.currentTarget.classList.add("bg-[#D6001C]", "text-white");
-      }
-
-      renderCarreras();
+      e.preventDefault();
+      handleFilterClick(e.currentTarget.dataset.filter, e.currentTarget, 'main');
     });
   });
 
-  // Event listeners para filtros de área (independientes)
-  const botonesArea = containerFiltrosArea.querySelectorAll(".filtro-area-btn");
+  // Event listeners para filtros de área (desktop)
+  const botonesArea = containerFiltrosArea.querySelectorAll("#filtro-area-btn");
   botonesArea.forEach(button => {
     button.addEventListener("click", (e) => {
-      const selectedFilter = e.currentTarget.dataset.filter;
-
-      if (filtrosAreaActivos.includes(selectedFilter)) {
-        // Si ya está activo, lo removemos del array de área
-        filtrosAreaActivos = filtrosAreaActivos.filter(filtro => filtro !== selectedFilter);
-        e.currentTarget.classList.remove("bg-[#D6001C]", "text-white");
-        e.currentTarget.classList.add("bg-white");
-      } else {
-        // Si no está activo, lo agregamos al array de área
-        filtrosAreaActivos.push(selectedFilter);
-        e.currentTarget.classList.remove("bg-white");
-        e.currentTarget.classList.add("bg-[#D6001C]", "text-white");
-      }
-
-      renderCarreras();
+      e.preventDefault();
+      handleFilterClick(e.currentTarget.dataset.filter, e.currentTarget, 'area');
     });
   });
 
-  // Restaurar estado visual de filtros principales activos
-  filtrosActivos.forEach(filtroId => {
-    const activeBtn = containerFiltros.querySelector(`[data-filter="${filtroId}"]`);
-    if (activeBtn) {
-      activeBtn.classList.remove("bg-gray-400");
-      activeBtn.classList.add("bg-[#D6001C]", "text-white");
+
+  // Configurar funcionalidad del dropdown móvil
+  setupFiltersDropdown();
+
+  // Restaurar estado visual de filtros activos
+  setTimeout(() => {
+    updateAllFilterStates();
+  }, 10);
+}
+
+// Nueva función para manejar clicks de filtros
+function handleFilterClick(filterId, buttonElement, filterType) {
+  if (filterType === 'main') {
+    if (filtrosActivos.includes(filterId)) {
+      filtrosActivos = filtrosActivos.filter(filtro => filtro !== filterId);
+    } else {
+      filtrosActivos.push(filterId);
+    }
+  } else if (filterType === 'area') {
+    if (filtrosAreaActivos.includes(filterId)) {
+      filtrosAreaActivos = filtrosAreaActivos.filter(filtro => filtro !== filterId);
+    } else {
+      filtrosAreaActivos.push(filterId);
+    }
+  }
+
+  updateAllFilterStates();
+  updateActiveFiltersCount();
+  renderCarreras();
+}
+
+// Nueva función para actualizar estados de todos los filtros
+function updateAllFilterStates() {
+  // Actualizar filtros principales 
+  const botonesDesktop = containerFiltros.querySelectorAll("#boton-filtro");
+  botonesDesktop.forEach(btn => {
+    const isActive = filtrosActivos.includes(btn.dataset.filter);
+    toggleButtonStyle(btn, isActive);
+  });
+
+  // Actualizar filtros de área 
+  const botonesAreaDesktop = containerFiltrosArea.querySelectorAll("#filtro-area-btn");
+  botonesAreaDesktop.forEach(btn => {
+    const isActive = filtrosAreaActivos.includes(btn.dataset.filter);
+    toggleButtonStyle(btn, isActive);
+  });
+}
+
+// Nueva función para estilos de botones móviles
+function toggleButtonStyle(button, isActive) {
+  button.classList.remove("bg-white", "bg-[#D6001C]", "text-white", "text-gray-700", "border-gray-300", "border-[#D6001C]");
+  
+  if (isActive) {
+    button.classList.add("bg-[#D6001C]", "text-white", "border-[#D6001C]");
+  } else {
+    button.classList.add("bg-white", "text-gray-700", "border-gray-300");
+  }
+}
+
+// Nueva función para configurar el dropdown
+function setupFiltersDropdown() {
+  const FiltersBtn = document.getElementById("filters-btn");
+  const FiltersDropdown = document.getElementById("filters-dropdown");
+  const FiltersArrow = document.getElementById("filters-arrow");
+  const clearAllBtn = document.getElementById("clear-all-filters");
+
+  if (!FiltersBtn || !FiltersDropdown) return;
+
+  // Toggle dropdown
+  FiltersBtn.addEventListener("click", () => {
+    const isHidden = FiltersDropdown.classList.contains("hidden");
+    
+    if (isHidden) {
+      FiltersDropdown.classList.remove("hidden");
+      FiltersArrow.style.transform = "rotate(180deg)";
+    } else {
+      FiltersDropdown.classList.add("hidden");
+      FiltersArrow.style.transform = "rotate(0deg)";
     }
   });
 
-  // Restaurar estado visual de filtros de área activos
-  filtrosAreaActivos.forEach(filtroId => {
-    const activeBtnArea = containerFiltrosArea.querySelector(`[data-filter="${filtroId}"]`);
-    if (activeBtnArea) {
-      activeBtnArea.classList.remove("bg-gray-400");
-      activeBtnArea.classList.add("bg-[#D6001C]", "text-white");
+  // Limpiar todos los filtros
+  clearAllBtn?.addEventListener("click", () => {
+    filtrosActivos = [];
+    filtrosAreaActivos = [];
+    updateAllFilterStates();
+    updateActiveFiltersCount();
+    renderCarreras();
+  });
+
+
+  // Cerrar dropdown al hacer click fuera
+  document.addEventListener("click", (e) => {
+    if (!FiltersBtn.contains(e.target) && !FiltersDropdown.contains(e.target)) {
+      FiltersDropdown.classList.add("hidden");
+      FiltersArrow.style.transform = "rotate(0deg)";
     }
   });
 }
 
+// Nueva función para actualizar contador de filtros activos
+function updateActiveFiltersCount() {
+  const activeCount = filtrosActivos.length + filtrosAreaActivos.length;
+  const countElement = document.getElementById("active-filters-count");
+  
+  if (countElement) {
+    if (activeCount > 0) {
+      countElement.textContent = activeCount;
+      countElement.classList.remove("hidden");
+    } else {
+      countElement.classList.add("hidden");
+    }
+  }
+}
 function renderCarreras() {
   let carrerasFiltradas = [...careers];
 
@@ -411,40 +1094,98 @@ function renderCarreras() {
     return 'Virtual';
   }
 
-  // Renderizado visual
-  containerCarreras.innerHTML = carrerasFiltradas.map(career => `
-      <div class="border border-gray-500 shadow-md p-3 sm:p-4 space-y-3 sm:space-y-2 h-fit">
-        <div class="grid grid-cols-2 space-y-2 sm:space-y-0">
-          <div class="flex justify-start">
-            <img src="${career.image}" alt="${career.name}" class="object-contain w-12 h-12 sm:w-16 sm:h-16">
+  // Renderizado visual con handler de errores para resultados vacíos
+  if (carrerasFiltradas.length === 0) {
+    // Mostrar mensaje de error cuando no hay coincidencias
+    containerCarreras.innerHTML = `
+      <div class="col-span-full flex flex-col items-center justify-center py-12 px-6 text-center">
+        <div class="bg-gray-50 rounded-lg p-8 max-w-md mx-auto">
+          <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.29-1.009-5.824-2.562M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+          </svg>
+          <h3 class="text-lg font-semibold text-gray-800 mb-2">
+            No se encontraron carreras
+          </h3>
+          <p class="text-gray-600 mb-4">
+            ${textoBusqueda.trim() !== "" 
+              ? `No hay carreras que coincidan con "${textoBusqueda}" y los filtros seleccionados.`
+              : "No hay carreras que coincidan con los filtros seleccionados."
+            }
+          </p>
+          <div class="space-y-2">
+            <p class="text-sm text-gray-500">Intentá:</p>
+            <ul class="text-sm text-gray-500 space-y-1">
+              ${textoBusqueda.trim() !== "" ? '<li>• Revisar la ortografía de tu búsqueda</li>' : ''}
+              <li>• Usar términos más generales</li>
+              <li>• Quitar algunos filtros</li>
+              <li>• Explorar otras áreas de estudio</li>
+            </ul>
           </div>
-          <div class="flex justify-end items-center space-x-2">
-            ${career.popular ? '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" /></svg>' : ''}
-            ${career.featured ? '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" /></svg>' : ''}
-          </div>
-        </div>
-        <h3 class="font-bold text-left text-base sm:text-lg">${career.name}</h3>
-        <div class="flex flex-col space-y-2 sm:grid sm:grid-rows-2 sm:gap-2 sm:space-y-0">
-          <div class="flex items-center justify-start">
-            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
-            <span class="text-xs sm:text-sm font-semibold px-1">${career.duration}</span>
-          </div>
-          <div class="flex items-center justify-start">
-            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" /></svg>
-            <span class="text-xs sm:text-sm font-semibold px-1">${obtenerNombreModalidad(career.modality)}</span>
-          </div>
-        </div>
-        <p class="text-gray-600 text-xs sm:text-sm text-left leading-relaxed">${career.description}</p>
-        <div class="flex flex-col space-y-3 sm:grid sm:grid-rows-2 sm:space-y-0">
-          <div class="flex justify-center sm:justify-start">
-            <span class="text-xs font-medium text-gray-700 bg-gray-200 h-fit py-1 px-2 rounded-sm">${career.category}</span>
-          </div>
-          <a href="#formu" class="boton-cta text-center justify-center inline-flex items-center w-full sm:w-auto mt-2 sm:mt-0">
-            Solicitar información
-          </a>
+          <button 
+            onclick="limpiarFiltrosYBusqueda()" 
+            class="mt-4 bg-[#D6001C] text-white px-4 py-2 rounded-lg hover:bg-[#B8001A] transition-colors text-sm font-medium"
+          >
+            Limpiar filtros y búsqueda
+          </button>
         </div>
       </div>
-    `).join('');
+    `;
+  } else {
+    // Renderizado normal cuando hay resultados
+    containerCarreras.innerHTML = carrerasFiltradas.map(career => `
+        <div class="border border-gray-500 shadow-md p-3 sm:p-4 space-y-3 sm:space-y-2 h-fit">
+          <div class="grid grid-cols-2 space-y-2 sm:space-y-0">
+            <div class="flex justify-start">
+              <img src="${career.image}" alt="${career.name}" class="object-contain w-12 h-12 sm:w-16 sm:h-16">
+            </div>
+            <div class="flex justify-end items-center space-x-2">
+              ${career.popular ? '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" /></svg>' : ''}
+              ${career.featured ? '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" /></svg>' : ''}
+            </div>
+          </div>
+          <h3 class="font-bold text-left text-base sm:text-lg">${career.name}</h3>
+          <div class="flex flex-col space-y-2 sm:grid sm:grid-rows-2 sm:gap-2 sm:space-y-0">
+            <div class="flex items-center justify-start">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+              <span class="text-xs sm:text-sm font-semibold px-1">${career.duration}</span>
+            </div>
+            <div class="flex items-center justify-start">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" /></svg>
+              <span class="text-xs sm:text-sm font-semibold px-1">${obtenerNombreModalidad(career.modality)}</span>
+            </div>
+          </div>
+          <p class="text-gray-600 text-xs sm:text-sm text-left leading-relaxed">${career.description}</p>
+          <div class="flex flex-col space-y-3 sm:grid sm:grid-rows-2 sm:space-y-0">
+            <div class="flex justify-center sm:justify-start">
+              <span class="text-xs font-medium text-gray-700 bg-gray-200 h-fit py-1 px-2 rounded-sm">${career.category}</span>
+            </div>
+            <a href="#formu" class="boton-cta text-center justify-center inline-flex items-center w-full sm:w-auto mt-2 sm:mt-0">
+              Solicitar información
+            </a>
+          </div>
+        </div>
+      `).join('');
+  }
+}
+
+// Función para limpiar todos los filtros y la búsqueda
+function limpiarFiltrosYBusqueda() {
+  // Limpiar búsqueda
+  textoBusqueda = "";
+  if (searchInput) {
+    searchInput.value = "";
+  }
+  
+  // Limpiar filtros
+  filtrosActivos = [];
+  filtrosAreaActivos = [];
+  
+  // Actualizar estados visuales
+  updateAllFilterStates();
+  updateActiveFiltersCount();
+  
+  // Renderizar carreras sin filtros
+  renderCarreras();
 }
 
 searchInput.addEventListener("input", (e) => {
@@ -529,7 +1270,7 @@ function renderModalidades() {
 
       <!-- Lista de características -->
       <div class="transition-all transform md:expanded ease-in-out duration-300 collapsed mt-3" id="characteristics-${modalidad.id}">
-        <ul class="space-y-2 pl-4">
+        <ul class="space-y-1 pl-4 md:pl-6">
           ${modalidad.caracteristicas.map(caracteristica => `
           <li class="list-disc">
             <span class="text-xs md:text-base text-gray-600">
@@ -538,22 +1279,22 @@ function renderModalidades() {
           </li>
           `).join('')}
         </ul>
+        <!-- Footer con botón de acción -->
+        <div class="py-3 md:px-6 md:py-4 border-t border-gray-200">
+          <button class="boton-cta flex justify-center items-center" data-filter="${modalidad.id}" id="boton-modalidad">
+            <svg class="md:w-5 md:h-5 w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            <span class="text-xs md:text-base">
+              Buscar carreras ${modalidad.nombre.toLowerCase()}
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Footer con botón de acción -->
-  <div class="px-4 py-3 md:px-6 md:py-4 bg-gray-50 border-t border-gray-200">
-    <button class="boton-cta flex justify-center items-center" data-filter="${modalidad.id}" id="boton-modalidad">
-      <svg class="md:w-5 md:h-5 w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-      </svg>
-      <span class="text-xs md:text-base">
-        Buscar carreras ${modalidad.nombre.toLowerCase()}
-      </span>
-    </button>
-  </div>
 </div>`).join('');
 }
 
@@ -572,11 +1313,11 @@ function toggleCharacteristics(modalidadId) {
   if (isCollapsed) {
     // Expandir
     content.classList.remove('collapsed');
-    content.classList.add('max-h-[500px]','opacity-100');
+    content.classList.add('max-h-[500px]', 'opacity-100');
     button.classList.add('rotate-none');
   } else {
     // Colapsar
-    content.classList.remove('max-h-[500px]','opacity-100');
+    content.classList.remove('max-h-[500px]', 'opacity-100');
     content.classList.add('collapsed');
     button.classList.remove('rotate-none');
   }
@@ -595,12 +1336,12 @@ function handleResize() {
     if (!isMobile) {
       // En desktop, siempre expandido
       content.classList.remove('collapsed');
-      content.classList.add('max-h-[500px]','opacity-100');
+      content.classList.add('max-h-[500px]', 'opacity-100');
     } else {
       // En mobile, comenzar colapsado
-      if (!content.classList.contains('max-h-[500px]','opacity-100')) {
+      if (!content.classList.contains('max-h-[500px]', 'opacity-100')) {
         content.classList.add('collapsed');
-        content.classList.remove('max-h-[500px]','opacity-100');
+        content.classList.remove('max-h-[500px]', 'opacity-100');
       }
     }
   });
