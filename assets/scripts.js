@@ -1,3 +1,49 @@
+const navButton = document.getElementById("menu-button");
+const menu = document.getElementById("navbar-menu");
+
+let isMenuOpen = false;
+
+function toggleMenu() {
+  isMenuOpen = !isMenuOpen;
+  
+  if (isMenuOpen) {
+    // Abrir menú con animación
+    menu.classList.remove('hidden');
+    // Forzar un reflow para que la transición funcione
+    menu.offsetHeight;
+    menu.classList.add('menu-open');
+  } else {
+    // Cerrar menú con animación
+    menu.classList.remove('menu-open');
+    // Esperar a que termine la animación antes de ocultar
+    setTimeout(() => {
+      if (!isMenuOpen) {
+        menu.classList.add('hidden');
+      }
+    }, 300); // Duración de la transición
+  }
+}
+
+navButton.addEventListener("click", toggleMenu);
+
+const menuLinks = menu.querySelectorAll('a');
+menuLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    if (isMenuOpen) {
+      toggleMenu();
+    }
+  });
+});
+
+document.addEventListener('click', (event) => {
+  const clickDentroMenu = menu.contains(event.target);
+  const clickEnBoton = navButton.contains(event.target);
+
+  if (!clickDentroMenu && !clickEnBoton && isMenuOpen) {
+    toggleMenu()
+  }
+});
+
 /* --------------------- Filtros y carreras ----------------------------- */
 const careers = [
   {
@@ -1061,9 +1107,10 @@ function renderCarreras() {
 
       return nombreNormalizado.includes(textoNormalizado) ||
         descripcionNormalizada.includes(textoNormalizado);
+
     });
   }
-
+  console.log(carrerasFiltradas)
   // Aplicar filtros principales - TODOS deben cumplirse (lógica AND)
   if (filtrosActivos.length > 0) {
     carrerasFiltradas = carrerasFiltradas.filter(career => {
@@ -1081,13 +1128,13 @@ function renderCarreras() {
         // Comparación más precisa para categorías
         const categoryNormalized = normalizeText(career.category);
         const areaIdNormalized = normalizeText(areaId);
-
         // Verificar coincidencias parciales en ambas direcciones
         return categoryNormalized.includes(areaIdNormalized) ||
           areaIdNormalized.includes(categoryNormalized);
       });
     });
   }
+
   function obtenerNombreModalidad(modalities) {
     if (modalities.includes(1) && modalities.includes(7)) return 'Presencial y Virtual';
     if (modalities.includes(1)) return 'Presencial';
@@ -1314,9 +1361,11 @@ function toggleCharacteristics(modalidadId) {
     // Expandir
     content.classList.remove('collapsed');
     content.classList.add('max-h-[500px]', 'opacity-100');
+    content.classList.add('max-h-[500px]', 'opacity-100');
     button.classList.add('rotate-none');
   } else {
     // Colapsar
+    content.classList.remove('max-h-[500px]', 'opacity-100');
     content.classList.remove('max-h-[500px]', 'opacity-100');
     content.classList.add('collapsed');
     button.classList.remove('rotate-none');
