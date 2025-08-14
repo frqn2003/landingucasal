@@ -59,19 +59,21 @@ let filtrosAreaActivos = [];
 document.addEventListener('DOMContentLoaded', function () {
   // 1. Cargar datos de landing (promociones, tarjetas)
   initLandingData();
-
+  
   // 2. Cargar datos de carreras y modalidades
   initCarrerasData();
-
+  
   // 3. Inicializar carruseles
   initCarousels();
-
+  
   // 4. Inicializar formulario
   initFormulario();
-
+  
   // 5. Inicializar componente potencia
   initPotencia();
-
+  
+  // 6. Inicializar carreras más elegidas
+  initCarrerasElegidas();
 });
 
 /* --------------------- Datos de landing ----------------------------- */
@@ -89,7 +91,7 @@ function initLandingData() {
         const tarjetasActivas = datosTarjeta
           .filter(tarjeta => tarjeta.activa === true)
           .sort((a, b) => a.orden - b.orden)
-
+        
         const contenedorTarjetas = document.getElementById('aranceles')
 
         if (contenedorTarjetas) {
@@ -100,8 +102,8 @@ function initLandingData() {
             divTarjeta.id = `tarjeta${tarjeta.id.charAt(0).toUpperCase() + tarjeta.id.slice(1)}`;
             divTarjeta.innerHTML = `
             <div class="flex flex-col items-center justify-center gap-3 mb-5 text-center">
-              <img class="md:w-1/4 w-1/2 p-4 bg-white rounded-2xl" src="${tarjeta.imagen}" alt="${tarjeta.nombre}">
-              <p class="md:text-base text-xs">${tarjeta.descripcion}</p>
+              <img class="md:w-1/4 w-1/3 p-4 bg-white rounded-2xl" src="${tarjeta.imagen}" alt="${tarjeta.nombre}">
+              <p class="text-md">${tarjeta.descripcion}</p>
             </div> `
             contenedorTarjetas.appendChild(divTarjeta)
           })
@@ -109,7 +111,7 @@ function initLandingData() {
       }
 
       generarTarjetas();
-
+      
       let index = 0;
 
       function obtenerPromocionActiva() {
@@ -150,10 +152,7 @@ function initCarrerasData() {
       const filtros = json.filtros
       const filtrosArea = json.filtrosArea
       const modalidades = json.modalidades
-      const carrerasElegidas = careers
-        .sort((a, b) => b.estudiantes - a.estudiantes)
-        .slice(0, 4);
-      console.log(carrerasElegidas)
+
       // Función helper para manejar estilos de botones
       function toggleButtonStyle(button, isActive) {
         button.classList.remove("bg-white", "bg-[#D6001C]", "text-white", "text-gray-700");
@@ -174,7 +173,7 @@ function initCarrerasData() {
         containerFiltros.innerHTML = filtros.map(filter => `
           <button class="cursor-pointer flex items-center space-x-2 px-4 py-2 rounded-[8px] bg-white border-2 border-gray-200 md:hover:bg-[#D6001C] md:hover:text-white md:text-base text-xs transition-colors" id="boton-filtro"
             data-filter="${filter.id}">
-            <span>${filter.nombre}</span>
+            <span>${filter.name}</span>
           </button>
         `).join('');
 
@@ -248,7 +247,6 @@ function initCarrerasData() {
         const FiltersDropdown = document.getElementById("filters-dropdown");
         const FiltersArrow = document.getElementById("filters-arrow");
         const clearAllBtn = document.getElementById("clear-all-filters");
-        const aplicarFiltros = document.getElementById("aplicar-filtros")
 
         if (!FiltersBtn || !FiltersDropdown) return;
 
@@ -263,14 +261,6 @@ function initCarrerasData() {
             FiltersArrow.style.transform = "rotate(0deg)";
           }
         });
-
-        aplicarFiltros.addEventListener("click", () => {
-          const isHidden = FiltersDropdown.classList.contains("hidden");
-          if (!isHidden) {
-            FiltersDropdown.classList.add("hidden")
-            FiltersArrow.style.transform = "rotate(0deg)";
-          }
-        })
 
         clearAllBtn?.addEventListener("click", () => {
           filtrosActivos = [];
@@ -318,8 +308,8 @@ function initCarrerasData() {
         if (textoBusqueda.trim() !== "") {
           const textoNormalizado = normalizeText(textoBusqueda);
           carrerasFiltradas = carrerasFiltradas.filter(career => {
-            const nombreNormalizado = normalizeText(career.nombre);
-            const descripcionNormalizada = normalizeText(career.descripcion);
+            const nombreNormalizado = normalizeText(career.name);
+            const descripcionNormalizada = normalizeText(career.description);
 
             return nombreNormalizado.includes(textoNormalizado) ||
               descripcionNormalizada.includes(textoNormalizado);
@@ -335,12 +325,12 @@ function initCarrerasData() {
               switch (filtro.filterType) {
                 case 'popular':
                   return career.popular === true;
-                case 'destacada':
-                  return career.destacada === true;
-                case 'modalidad':
-                  return career.modalidad.includes(filtro.value);
-                case 'duracion':
-                  const durationMatch = career.duracion.match(/(\d+)/);
+                case 'featured':
+                  return career.featured === true;
+                case 'modality':
+                  return career.modality.includes(filtro.value);
+                case 'duration':
+                  const durationMatch = career.duration.match(/(\d+)/);
                   const careerYears = durationMatch ? parseInt(durationMatch[1]) : 0;
                   return careerYears <= filtro.maxYears;
                 default:
@@ -353,7 +343,7 @@ function initCarrerasData() {
         if (filtrosAreaActivos.length > 0) {
           carrerasFiltradas = carrerasFiltradas.filter(career => {
             return filtrosAreaActivos.some(areaId => {
-              const categoryNormalized = normalizeText(career.categoria);
+              const categoryNormalized = normalizeText(career.category);
               const areaIdNormalized = normalizeText(areaId);
               return categoryNormalized.includes(areaIdNormalized) ||
                 areaIdNormalized.includes(categoryNormalized);
@@ -402,41 +392,39 @@ function initCarrerasData() {
             </div>
           `;
         } else {
-          containerCarreras.innerHTML = carrerasFiltradas.map(career => {
-            career.popular = career.estudiantes >= 1000 ? true : false;
-            return `
-            <div class="border border-gray-500 shadow-md p-3 sm:p-4 space-y-3 sm:space-y-2 h-max">
+          containerCarreras.innerHTML = carrerasFiltradas.map(career => `
+            <div class="border border-gray-500 shadow-md p-3 sm:p-4 space-y-3 sm:space-y-2">
               <div class="grid grid-cols-2 space-y-2 sm:space-y-0">
                 <div class="flex justify-start">
-                  <img src="${career.imagen}" alt="${career.nombre}" class="object-contain w-12 h-12 sm:w-16 sm:h-16">
+                  <img src="${career.image}" alt="${career.name}" class="object-contain w-12 h-12 sm:w-16 sm:h-16">
                 </div>
                 <div class="flex justify-end items-center space-x-2">
-                  ${career.popular ? '<img src="./public/areas/populares.svg" alt="Carrera destacada" class="w-5 h-5 sm:w-6 sm:h-6">' : ''}
-                  ${career.destacada ? '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" /></svg>' : ''}
+                  ${career.popular ? '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" /></svg>' : ''}
+                  ${career.featured ? '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" /></svg>' : ''}
                 </div>
               </div>
-              <h3 class="font-bold text-left text-base sm:text-lg">${career.nombre}</h3>
+              <h3 class="font-bold text-left text-base sm:text-lg">${career.name}</h3>
               <div class="flex flex-col space-y-2 sm:grid sm:grid-rows-2 sm:gap-2 sm:space-y-0">
                 <div class="flex items-center justify-start">
                   <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
-                  <span class="text-xs sm:text-sm font-semibold px-1">${career.duracion}</span>
+                  <span class="text-xs sm:text-sm font-semibold px-1">${career.duration}</span>
                 </div>
                 <div class="flex items-center justify-start">
                   <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" /></svg>
-                  <span class="text-xs sm:text-sm font-semibold px-1">${obtenerNombreModalidad(career.modalidad)}</span>
+                  <span class="text-xs sm:text-sm font-semibold px-1">${obtenerNombreModalidad(career.modality)}</span>
                 </div>
               </div>
-              <p class="text-gray-600 text-xs sm:text-sm text-left leading-relaxed">${career.descripcion}</p>
+              <p class="text-gray-600 text-xs sm:text-sm text-left leading-relaxed">${career.description}</p>
               <div class="flex flex-col space-y-3 sm:grid sm:grid-rows-2 sm:space-y-0">
                 <div class="flex justify-center sm:justify-start">
-                  <span class="text-xs font-medium text-gray-700 bg-gray-200 h-fit py-1 px-2 rounded-sm">${career.categoria}</span>
+                  <span class="text-xs font-medium text-gray-700 bg-gray-200 h-fit py-1 px-2 rounded-sm">${career.category}</span>
                 </div>
                 <a href="#formu" class="boton-cta text-center max-md:text-sm justify-center inline-flex items-center w-full sm:w-auto mt-2 sm:mt-0">
                   Más info
                 </a>
               </div>
             </div>
-          `}).join('');
+          `).join('');
         }
       }
 
@@ -471,9 +459,9 @@ function initCarrerasData() {
         if (!container || !modalidades) return;
 
         container.innerHTML = modalidades.map(modalidad => `
-          <div class="bg-white/80 backdrop-blur-lg rounded-lg border border-gray-200 shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 h-full flex flex-col max-md:h-fit">
-            <div class="p-4 md:p-5 flex-1 flex flex-col">
-              <div class="flex flex-col md:flex-row md:items-start gap-3">
+          <div class="bg-white rounded-lg border border-gray-200 shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="p-4 md:p-6">
+              <div class="flex flex-col md:flex-row md:items-start gap-4">
                 <div class="flex justify-center md:justify-start">
                   <img src="${modalidad.imagen}" alt="${modalidad.nombre}"
                     class="w-16 h-16 md:w-20 md:h-20 object-contain rounded-lg">
@@ -487,13 +475,13 @@ function initCarrerasData() {
                   </p>
                 </div>
               </div>
-              <div class="mt-2 md:mt-4 flex-1 flex flex-col md:justify-end">
+              <div class="mt-4 md:mt-6">
                 <div class="flex items-center justify-between md:justify-start mobile-expand-trigger md:cursor-default"
                   onclick="toggleCharacteristics(${modalidad.id})">
                   <h3 class="font-semibold text-gray-700">
                     Características
                   </h3>
-                  <button class="xl:hidden text-[#D6001C] p-1 transform transition rotate-180" id="expand-btn-${modalidad.id}">
+                  <button class="md:hidden text-[#D6001C] p-1 transform transition rotate-180" id="expand-btn-${modalidad.id}">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
@@ -509,7 +497,7 @@ function initCarrerasData() {
                     </li>
                     `).join('')}
                   </ul>
-                  <div class="pt-3 md:pt-4">
+                  <div class="py-3 md:px-6 md:py-4 border-t border-gray-200">
                     <button class="boton-cta flex justify-center items-center" data-filter="${modalidad.id}" id="boton-modalidad">
                       <svg class="md:w-5 md:h-5 w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -568,7 +556,7 @@ function initCarrerasData() {
 
       // Función para toggle de características en mobile
       window.toggleCharacteristics = function (modalidadId) {
-        if (window.innerWidth >= 1078) return;
+        if (window.innerWidth >= 768) return;
 
         const content = document.getElementById(`characteristics-${modalidadId}`);
         const button = document.getElementById(`expand-btn-${modalidadId}`);
@@ -587,10 +575,11 @@ function initCarrerasData() {
           button.classList.remove('rotate-none');
         }
       }
+
       // Función para manejar el resize de ventana
       function handleModalidadesResize() {
         if (!modalidades) return;
-
+        
         const isMobile = window.innerWidth < 768;
 
         modalidades.forEach(modalidad => {
@@ -610,36 +599,44 @@ function initCarrerasData() {
           }
         });
       }
-      window.addEventListener('resize', handleModalidadesResize);
-      /* --------------------- Carreras Más Elegidas ----------------------------- */
-      function renderCarrerasElegidas() {
-        const container = document.getElementById("carrerasElegidas");
-        if (container) {
-          carrerasElegidas.forEach((career) =>  {
-            career.modalidad.includes (7) ? career.nombre = career.nombre + " " + "(Online)" : career.nombre
-            const card = document.createElement("div");
-            card.className = "bg-black/5 rounded-lg p-3";
 
-            card.innerHTML = `
-        <div class="flex items-center space-x-3">
-          <div>
-            <div class="text-black font-medium text-sm">${career.nombre}</div>
-            <div class="text-black text-xs">+${career.estudiantes} estudiantes</div>
-          </div>
-        </div>
-      `;
-            container.appendChild(card);
-          });
-        }
-      }
+      window.addEventListener('resize', handleModalidadesResize);
+
       // Renderizar modalidades
       renderModalidades();
       handleModalidadesResize();
-      renderCarrerasElegidas()
     })
     .catch(error => {
       console.error('Error al cargar datos de carreras:', error);
     });
+}
+
+/* --------------------- Carreras Más Elegidas ----------------------------- */
+function initCarrerasElegidas() {
+  const carrerasElegidas = [
+    { nombre: "Abogacía", estudiantes: 1200 },
+    { nombre: "Contador Público", estudiantes: 950 },
+    { nombre: "Ingeniería en Sistemas", estudiantes: 800 },
+    { nombre: "Licenciatura en Administración de Empresas", estudiantes: 700 },
+  ]
+  const container = document.getElementById("carrerasElegidas");
+
+  if (container) {
+    carrerasElegidas.forEach((carrera) => {
+      const card = document.createElement("div");
+      card.className = "bg-black/5 rounded-lg p-3 hover:bg-white/20 transition-colors cursor-pointer";
+
+      card.innerHTML = `
+        <div class="flex items-center space-x-3">
+          <div>
+            <div class="text-black font-medium text-sm">${carrera.nombre}</div>
+            <div class="text-black text-xs">${carrera.estudiantes} estudiantes</div>
+          </div>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  }
 }
 
 /* --------------------- Carruseles ----------------------------- */
@@ -666,10 +663,10 @@ class GenericCarousel {
   cacheElements() {
     this.elements = {
       container: document.querySelector(this.selectors.container),
-      imagen: document.querySelector(this.selectors.imagen),
+      image: document.querySelector(this.selectors.image),
       text: document.querySelector(this.selectors.text),
-      titulo: document.querySelector(this.selectors.titulo),
-      subtitulo: document.querySelector(this.selectors.subtitulo),
+      title: document.querySelector(this.selectors.title),
+      subtitle: document.querySelector(this.selectors.subtitle),
       dots: document.querySelector(this.selectors.dots),
       prevBtn: document.querySelector(this.selectors.prevBtn),
       nextBtn: document.querySelector(this.selectors.nextBtn),
@@ -711,51 +708,13 @@ class GenericCarousel {
       this.elements.container.style.opacity = '0';
       await this.wait(100);
 
-      // Manejo mejorado de imágenes y SVG
-      if (this.elements.imagen && (item.imagen || item.icono)) {
-        if (item.icono) {
-          // Si es código SVG (icono), reemplazar el contenido del contenedor de imagen
-          if (this.elements.imagen.tagName === 'IMG') {
-            // Si el elemento es una img, crear un div contenedor
-            const svgContainer = document.createElement('div');
-            svgContainer.innerHTML = item.icono;
-            svgContainer.className = this.elements.imagen.className;
-            this.elements.imagen.parentNode.replaceChild(svgContainer, this.elements.imagen);
-            this.elements.imagen = svgContainer;
-          } else {
-            // Si ya es un contenedor, simplemente actualizar el contenido
-            this.elements.imagen.innerHTML = item.icono;
-          }
-          
-          // Aplicar descripcion como título si existe
-          if (item.descripcion) {
-            const svgElement = this.elements.imagen.querySelector('svg');
-            if (svgElement) {
-              svgElement.setAttribute('title', item.descripcion);
-              svgElement.setAttribute('aria-label', item.nombre || item.descripcion);
-            }
-          }
-        } else if (item.imagen) {
-          // Si es una imagen normal
-          if (this.elements.imagen.tagName !== 'IMG') {
-            // Si el elemento actual es un contenedor SVG, crear un img
-            const imgElement = document.createElement('img');
-            imgElement.className = this.elements.imagen.className;
-            imgElement.src = item.imagen;
-            imgElement.alt = item.descripcion || item.nombre || '';
-            this.elements.imagen.parentNode.replaceChild(imgElement, this.elements.imagen);
-            this.elements.imagen = imgElement;
-          } else {
-            // Si ya es una img, simplemente actualizar src y alt
-            this.elements.imagen.src = item.imagen;
-            this.elements.imagen.alt = item.descripcion || item.nombre || '';
-          }
-        }
+      if (this.elements.image && item.image) {
+        this.elements.image.src = item.image;
+        this.elements.image.alt = item.alt || '';
       }
-
-      if (this.elements.text) this.elements.text.textContent = item.descripcion || item.text || '';
-      if (this.elements.titulo) this.elements.titulo.textContent = item.nombre || item.titulo || '';
-      if (this.elements.subtitulo) this.elements.subtitulo.textContent = item.subtitulo || '';
+      if (this.elements.text) this.elements.text.textContent = item.text || '';
+      if (this.elements.title) this.elements.title.textContent = item.title || '';
+      if (this.elements.subtitle) this.elements.subtitle.textContent = item.subtitle || '';
 
       this.updateDots();
 
@@ -798,11 +757,6 @@ class GenericCarousel {
   }
 
   startAutoPlay() {
-    // Si autoPlayDelay es 0, null, undefined o false, no iniciar autoplay
-    if (!this.autoPlayDelay || this.autoPlayDelay <= 0) {
-      return;
-    }
-
     this.stopAutoPlay();
     this.autoPlayInterval = setInterval(() => this.nextItem(), this.autoPlayDelay);
   }
@@ -827,177 +781,91 @@ class GenericCarousel {
 function initCarousels() {
   const testimonios = [
     {
-      nombre: "Benjamin Elizalde",
-      subtitulo: "Licenciatura en comercialización",
-      descripcion: '"La facultad esta siempre a disposición"',
-      imagen: "./public/testimonios/benja.webp",
+      title: "Benjamin Elizalde",
+      subtitle: "Licenciatura en comercialización",
+      text: '"La facultad esta siempre a disposición"',
+      image: "./public/testimonios/benja.webp",
     },
     {
-      nombre: "Ebaneo Valdez Kao",
-      subtitulo: "Ingeniería en Informática", 
-      descripcion: '"Puedo ejercer mi profesión desde cualquier parte del del mundo"',
-      imagen: "./public/testimonios/kao.webp",
+      title: "Ebaneo Valdez Kao",
+      subtitle: "Ingeniería en Informática",
+      text: '"Puedo ejercer mi profesión desde cualquier parte del del mundo"',
+      image: "./public/testimonios/kao.webp",
     },
     {
-      nombre: "Luciana Gennari",
-      subtitulo: "Kinesiologia",
-      descripcion: '"Para poder rendir bien academicamente y en entrenamiento la universidad me da una ayuda gigante"',
-      imagen: "./public/testimonios/luciana.webp",
+      title: "Luciana Gennari",
+      subtitle: "Kinesiologia",
+      text: '"Para poder rendir bien academicamente y en entrenamiento la universidad me da una ayuda gigante"',
+      image: "./public/testimonios/luciana.webp",
     }
   ];
-  
+
   new GenericCarousel({
     items: testimonios,
     selectors: {
       container: "#contenido-testimonial",
-      imagen: "#imagen-testimonial",
+      image: "#imagen-testimonial",
       text: "#texto-testimonial",
-      titulo: "#nombre-testimonial",
-      subtitulo: "#carrera-testimonial",
+      title: "#nombre-testimonial",
+      subtitle: "#carrera-testimonial",
       dots: "#puntos-testimonios",
       prevBtn: "#prev-testimonial",
       nextBtn: "#next-testimonial"
     },
-    autoPlayDelay: 5000
+    autoPlayDelay: 3000
   });
 }
 
 /* --------------------- Componente Potencia ----------------------------- */
 function initPotencia() {
   const potencia = [
-    { id: "descanso", nombre: "Zonas de descanso", descripcion: "Espacios cómodos y tranquilos para relajarte y recargar energías entre clases.", icono: `<svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" > <rect x="8" y="24" width="32" height="12" rx="4" fill="#fff" stroke="#000" stroke-width="2"/> <rect x="12" y="14" width="24" height="12" rx="6" fill="#fff" stroke="#000" stroke-width="2"/> <rect x="10" y="36" width="4" height="6" rx="2" fill="#fff" stroke="#000" stroke-width="2"/> <rect x="34" y="36" width="4" height="6" rx="2" fill="#fff" stroke="#000" stroke-width="2"/> </svg>`, imagen: "./public/potencia/descanso.webp" },
-    { id: "deporte", nombre: "Espacios deportivos", descripcion: "Instalaciones deportivas de primer nivel para mantenerte activo y saludable.", icono: `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" stroke-width="3" stroke="#000000" fill="none" width="36" height="36"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle cx="33.69" cy="32" r="24.99" stroke-linecap="round"></circle><polygon points="33.43 20.18 22.84 27.88 26.89 40.32 39.98 40.32 44.02 27.88 33.43 20.18" stroke-linecap="round"></polygon><polyline points="40.41 7.92 33.43 13.48 26.59 8.04" stroke-linecap="round"></polyline><line x1="33.43" y1="20.18" x2="33.43" y2="13.48" stroke-linecap="round"></line><polyline points="58.68 32 50.6 25.92 53.78 17.14" stroke-linecap="round"></polyline><polyline points="40.72 55.99 44.02 46.39 54.05 46.49" stroke-linecap="round"></polyline><polyline points="25.61 55.65 22.55 46.39 13.26 46.39" stroke-linecap="round"></polyline><polyline points="8.7 32 15.99 25.97 13.16 17.76" stroke-linecap="round"></polyline><line x1="22.84" y1="27.88" x2="15.99" y2="25.97" stroke-linecap="round"></line><line x1="26.89" y1="40.32" x2="22.55" y2="46.39" stroke-linecap="round"></line><line x1="39.98" y1="40.32" x2="44.02" y2="46.39" stroke-linecap="round"></line><line x1="44.02" y1="27.89" x2="50.6" y2="25.92" stroke-linecap="round"></line></g></svg>`, imagen: "./public/potencia/deportes.webp" },
-    { id: "biblioteca", nombre: "Biblioteca y coworking", descripcion: "Acceso a una vasta colección de recursos académicos y espacios de estudio.", icono: `<svg width="36" height="36" viewBox="0 0 48.00 48.00" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="1.344"></g><g id="SVGRepo_iconCarrier"> <path d="M37 16C34.2386 16 32 13.7614 32 11C32 8.23858 34.2386 6 37 6C39.7614 6 42 8.23858 42 11C42 13.7614 39.7614 16 37 16Z" fill="#ffffff" stroke="#000000" stroke-width="1.344" stroke-miterlimit="2"></path> <path d="M12 12C9.79086 12 8 10.2091 8 8C8 5.79086 9.79086 4 12 4C14.2091 4 16 5.79086 16 8C16 10.2091 14.2091 12 12 12Z" fill="#ffffff" stroke="#000000" stroke-width="1.344" stroke-miterlimit="2"></path> <path d="M26 39L32 34V28C32 24.5339 34 22 37 22C40 22 42 24.5339 42 28V32.8372V42" stroke="#000000" stroke-width="1.344" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M24 33L18 28V24C18 20.5339 16 18 13 18C10 18 8 20.5339 8 24V26.8372V42" stroke="#000000" stroke-width="1.344" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>`, imagen: "./public/potencia/biblioteca.webp" },
-    { id: "laboratorio", nombre: "Laboratorios", descripcion: "Laboratorios equipados con tecnología de vanguardia para prácticas y experimentación.", icono: `<svg fill="#000000" width="36" height="36" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 72 72" enable-background="new 0 0 72 72" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M67.625,56.738C67.592,56.688,67.66,56.787,67.625,56.738L47.823,28.167V5.42c0-1.105-0.539-1.92-1.643-1.92H27.179 c-1.104,0-1.356,0.816-1.356,1.92v22.097L4.904,56.764c-0.035,0.049-0.217,0.277-0.248,0.33c-1.688,2.926-2.078,5.621-0.785,7.86 c1.306,2.261,3.915,3.546,7.347,3.546h49.451c3.429,0,6.118-1.287,7.424-3.551C69.389,62.704,69.313,59.666,67.625,56.738z M29.137,29.302c0.237-0.338,0.687-0.74,0.687-1.152V7.5h14v21.301c0,0.412-0.194,0.824,0.044,1.161l9.19,13.262 c-3.056,1.232-6.822,2.05-14.531-2.557c-5.585-3.337-12.499-2.048-17.199-0.449L29.137,29.302z M64.55,62.949 c-0.554,0.96-1.969,1.551-3.88,1.551H11.219c-1.915,0-3.33-0.589-3.883-1.547c-0.532-0.922-0.324-2.391,0.571-3.975l11.287-15.777 c3.942-1.702,12.219-4.454,18.308-0.816c4.852,2.898,8.367,3.814,11.116,3.814c2.291,0,4.05-0.637,5.607-1.291l9.755,14.076 C64.877,60.568,65.085,62.023,64.55,62.949z"></path> <path d="M22.026,50.969c-3.017,0-5.471,2.453-5.471,5.471c0,3.017,2.454,5.471,5.471,5.471c3.016,0,5.471-2.454,5.471-5.471 C27.497,53.422,25.043,50.969,22.026,50.969z M22.026,59.911c-1.914,0-3.471-1.558-3.471-3.472s1.557-3.471,3.471-3.471 s3.471,1.557,3.471,3.471S23.94,59.911,22.026,59.911z"></path> <path d="M50.775,52.469c-2.603,0-4.721,2.117-4.721,4.721c0,2.603,2.118,4.721,4.721,4.721c2.604,0,4.722-2.118,4.722-4.721 C55.497,54.586,53.379,52.469,50.775,52.469z M50.775,59.911c-1.5,0-2.721-1.222-2.721-2.722s1.221-2.721,2.721-2.721 s2.722,1.221,2.722,2.721S52.275,59.911,50.775,59.911z"></path> <path d="M35.077,45.469c-2.217,0-4.021,1.803-4.021,4.021c0,2.217,1.803,4.021,4.021,4.021c2.217,0,4.021-1.805,4.021-4.021 S37.294,45.469,35.077,45.469z M35.077,51.512c-1.114,0-2.021-0.908-2.021-2.021c0-1.114,0.907-2.021,2.021-2.021 c1.114,0,2.021,0.906,2.021,2.021S36.191,51.512,35.077,51.512z"></path> <path d="M40.824,22.42c0.553,0,1-0.447,1-1v-11c0-0.553-0.447-1-1-1s-1,0.447-1,1v11C39.824,21.973,40.271,22.42,40.824,22.42z"></path> <path d="M40.824,27.42c0.553,0,1-0.447,1-1v-1c0-0.553-0.447-1-1-1s-1,0.447-1,1v1C39.824,26.973,40.271,27.42,40.824,27.42z"></path> </g> </g></svg>`, imagen: "./public/potencia/" },
-    { id: "hospital", nombre: "Hospital Escuela", descripcion: "Servicios de atención médica y bienestar para cuidar tu salud integral.", icono: `<svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="10" width="8" height="28" fill="#fff" stroke="#000" stroke-width="2"/><rect x="10" y="20" width="28" height="8" fill="#fff" stroke="#000" stroke-width="2"/></svg>`, imagen: "./public/potencia/Hospital-Escuela.webp" },
-    { id: "talleres", nombre: "Talleres y Actividades", descripcion: "Talleres, cursos y actividades extracurriculares para potenciar tus habilidades y creatividad.", icono: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="36" height="36"> <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" /></svg>`, imagen: "./public/potencia/talleres.webp" },
-    { id: "espacios", nombre: "Espacios Verdes", descripcion: "Áreas verdes para disfrutar al aire libre, descansar y conectar con la naturaleza.", icono: `<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="36" height="36" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Guides"> <g id="_x32_0_px_2_"> </g> <g id="_x32_0px"> </g> <g id="_x34_0px"> </g> <g id="_x34_4_px"> </g> <g id="_x34_8px"> <g id="_x31_6px"> </g> <g id="square_4px"> <g id="_x32_8_px"> <g id="square_4px_2_"> </g> <g id="square_4px_3_"> </g> <g id="square_4px_1_"> </g> <g id="_x32_4_px_2_"> </g> <g id="_x31_2_px"> </g> </g> </g> </g> <g id="Icons"> </g> <g id="_x32_0_px"> </g> <g id="square_6px"> <g id="_x31_2_PX"> </g> </g> <g id="_x33_6_px"> <g id="_x33_2_px"> <g id="_x32_8_px_1_"> <g id="square_6px_1_"> </g> <g id="_x32_0_px_1_"> <g id="_x31_2_PX_2_"> </g> <g id="_x34_8_px"> <g id="_x32_4_px"> </g> <g id="_x32_4_px_1_"> </g> </g> </g> </g> </g> </g> <g id="_x32_0_px_3_"> </g> <g id="_x32_0_px_4_"> </g> <g id="New_Symbol_8"> <g id="_x32_4_px_3_"> </g> </g> </g> <g id="Artboard"> </g> <g id="Free_Icons"> <g> <polygon style="fill:none;stroke:#000000;stroke-linejoin:round;stroke-miterlimit:10;" points="17.5,18 11.5,22 5.5,18 5.5,12 11.5,0.5 17.5,12 "></polygon> <line style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="11.5" y1="8.5" x2="11.5" y2="23.5"></line> <polyline style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="15,14.5 11.5,17.5 8,14.5 "></polyline> <polyline style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="14,11.5 11.5,13.5 9,11.5 "></polyline> </g> </g> </g></svg>`, imagen: "./public/potencia/espacios-verdes.webp" },
-    { id: "estudio", nombre: "Estudio de radio y TV", descripcion: "Instalaciones profesionales para la producción y transmisión de contenidos audiovisuales y radiales.", icono: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="36" height="36"> <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 7.5 16.5-4.125M12 6.75c-2.708 0-5.363.224-7.948.655C2.999 7.58 2.25 8.507 2.25 9.574v9.176A2.25 2.25 0 0 0 4.5 21h15a2.25 2.25 0 0 0 2.25-2.25V9.574c0-1.067-.75-1.994-1.802-2.169A48.329 48.329 0 0 0 12 6.75Zm-1.683 6.443-.005.005-.006-.005.006-.005.005.005Zm-.005 2.127-.005-.006.005-.005.005.005-.005.005Zm-2.116-.006-.005.006-.006-.006.005-.005.006.005Zm-.005-2.116-.006-.005.006-.005.005.005-.005.005ZM9.255 10.5v.008h-.008V10.5h.008Zm3.249 1.88-.007.004-.003-.007.006-.003.004.006Zm-1.38 5.126-.003-.006.006-.004.004.007-.006.003Zm.007-6.501-.003.006-.007-.003.004-.007.006.004Zm1.37 5.129-.007-.004.004-.006.006.003-.004.007Zm.504-1.877h-.008v-.007h.008v.007ZM9.255 18v.008h-.008V18h.008Zm-3.246-1.87-.007.004L6 16.127l.006-.003.004.006Zm1.366-5.119-.004-.006.006-.004.004.007-.006.003ZM7.38 17.5l-.003.006-.007-.003.004-.007.006.004Zm-1.376-5.116L6 12.38l.003-.007.007.004-.004.007Zm-.5 1.873h-.008v-.007h.008v.007ZM17.25 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Zm0 4.5a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" /></svg>`, imagen: "./public/potencia/radio-tv.webp" },
-    { id: "accesibilidad", nombre: "Accesibilidad", descripcion: "Infraestructura y servicios adaptados para garantizar la inclusión y el acceso de todas las personas.", icono: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="36"><g id="SVGRepo_bgCarrier" stroke-width="0" ></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M14 7C14 8.10457 13.1046 9 12 9C10.8954 9 10 8.10457 10 7C10 5.89543 10.8954 5 12 5C13.1046 5 14 5.89543 14 7Z" stroke="#000000" stroke-width="1.5"></path> <path d="M18 10C18 10 14.4627 11.5 12 11.5C9.53727 11.5 6 10 6 10" stroke="#000000" stroke-width="1.5" stroke-linecap="round"></path> <path d="M12 12V13.4522M12 13.4522C12 14.0275 12.1654 14.5906 12.4765 15.0745L15 19M12 13.4522C12 14.0275 11.8346 14.5906 11.5235 15.0745L9 19" stroke="#000000" stroke-width="1.5" stroke-linecap="round"></path> <path d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7" stroke="#000000" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>`, imagen: "./public/potencia/accesibilidad.webp" },
-    { id: "gastronomia", nombre: "Zonas Gastronómicas", descripcion: "Espacios dedicados a la alimentación, con variedad de opciones para disfrutar comidas y bebidas.", icono: `<svg fill="#000000" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="36" height="36"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title></title> <g data-name="Calque 2" id="Calque_2"> <path d="M85.08,47.56H74.25a1.5,1.5,0,0,0-1.5,1.5v4.46H67.07l-5.83-12h8.92a1.5,1.5,0,0,0,1.5-1.5v-6a1.5,1.5,0,0,0-1.5-1.5H30.54a1.5,1.5,0,0,0-1.5,1.5v6a1.5,1.5,0,0,0,1.5,1.5h7.7l-5.2,12H28V49.06a1.5,1.5,0,0,0-1.5-1.5H15.62a1.5,1.5,0,0,0-1.5,1.5v6a1.5,1.5,0,0,0,1.5,1.5H31.74l-4.32,9.92a1.51,1.51,0,0,0,.78,2,1.61,1.61,0,0,0,.6.12,1.49,1.49,0,0,0,1.37-.9L35,56.52H65.2l5.35,11a1.5,1.5,0,0,0,1.35.84,1.55,1.55,0,0,0,.66-.15,1.51,1.51,0,0,0,.69-2l-4.71-9.64H85.08a1.5,1.5,0,0,0,1.5-1.5v-6A1.5,1.5,0,0,0,85.08,47.56Zm-1.5,6H75.75v-3h7.83ZM32,35.61H68.66v3H32Zm9.44,6s0,0,0-.08H58a1.27,1.27,0,0,0,.12.36l5.66,11.6H36.31ZM17.12,53.52v-3H25v3H17.12Z"></path> </g> </g></svg>`, imagen: "./public/potencia/zonas-gastronomicas.webp" }
+    { id: "descanso", nombre: "Áreas de descanso", descripcion: "Espacios cómodos y tranquilos para relajarte y recargar energías entre clases.", icono: "./public/kao.webp", imagen: "./public/benja.png" },
+    { id: "deporte", nombre: "Deporte", descripcion: "Instalaciones deportivas de primer nivel para mantenerte activo y saludable.", icono: "./public/kao.webp", imagen: "./public/areas.webp" },
+    { id: "biblioteca", nombre: "Biblioteca", descripcion: "Acceso a una vasta colección de recursos académicos y espacios de estudio.", icono: "./public/kao.webp", imagen: "./public/areas.webp" },
+    { id: "laboratorio", nombre: "Laboratorios", descripcion: "Laboratorios equipados con tecnología de vanguardia para prácticas y experimentación.", icono: "./public/kao.webp", imagen: "./public/areas.webp" },
+    { id: "coworking", nombre: "Coworking", descripcion: "Espacios colaborativos y modernos para fomentar la creatividad y el trabajo en equipo.", icono: "./public/kao.webp", imagen: "./public/areas.webp" },
+    { id: "idiomas", nombre: "Centro de idiomas", descripcion: "Programas de idiomas para potenciar tus habilidades comunicativas y abrirte a nuevas culturas.", icono: "./public/kao.webp", imagen: "./public/areas.webp" },
+    { id: "salud", nombre: "Salud", descripcion: "Servicios de atención médica y bienestar para cuidar tu salud integral.", icono: "./public/kao.webp", imagen: "./public/areas.webp" },
+    { id: "cultura", nombre: "Cultura", descripcion: "Actividades culturales y artísticas para enriquecer tu experiencia universitaria.", icono: "./public/kao.webp", imagen: "./public/areas.webp" }
   ]
 
   const containerPotencia = document.getElementById("potencia")
 
   if (containerPotencia) {
-    // Verificar si es mobile
-    const isMobile = window.innerWidth < 1079;
-
-    if (isMobile) {
-      // Crear estructura para carrusel en mobile
-      containerPotencia.innerHTML = `
-        <div class="xl:hidden w-full col-span-2">
-          <!-- Contenedor del carrusel -->
-          <div id="potencia-carousel-container" class="relative bg-white/80 rounded-xl p-4 shadow-xl transition-opacity duration-300">
-            <div class="flex items-center gap-4">
-              <div id="potencia-carousel-image" class="w-12 h-12 rounded-xl">
-                ${potencia[0].icono} 
-              </div>
-              <div class="flex-1">
-                <h3 id="potencia-carousel-title" class="font-semibold">${potencia[0].nombre}</h3>
-                <p id="potencia-carousel-description" class="text-xs text-gray-600">${potencia[0].descripcion}</p>
-              </div>
-            </div>
-            <!-- Controles del carrusel -->
-            <div class="flex justify-between items-center mt-4">
-              <button id="potencia-prev" class="bg-gray-400/50 rounded-full p-2">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 18l-6-6 6-6"></path>
-                </svg>
-              </button>
-              <div id="potencia-dots" class="flex space-x-2">
-                <!-- Dots generados dinámicamente -->
-              </div>
-              <button id="potencia-next" class="bg-gray-400/50 rounded-full p-2">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 18l6-6-6-6"></path>
-                </svg>
-              </button>
-            </div>
-          </div>
+    containerPotencia.innerHTML = potencia.map(item => `
+      <div class="bg-black/10 rounded-xl flex flex-row justify-center items-center gap-4 p-4 shadow-xl cursor-pointer hover:bg-black/20 transition-colors" data-potencia-id="${item.id}" data-imagen="${item.imagen}">
+        <img src="${item.icono}" class="w-12 h-12 flex rounded-xl"/>
+        <div class="grid-rows-2 space-y-2 inline-block">
+          <h3>${item.nombre}</h3>
+          <p>${item.descripcion}</p>
         </div>
-      `;
-
-      // Inicializar carrusel para mobile
-      const potenciaCarouselData = potencia.map(item => ({
-        titulo: item.nombre,
-        text: item.descripcion,
-        icono: item.icono,
-        imagen: item.imagen
-      }));
-
-      const potenciaCarousel = new GenericCarousel({
-        items: potenciaCarouselData,
-        selectors: {
-          container: "#potencia-carousel-container",
-          imagen: "#potencia-carousel-image",
-          text: "#potencia-carousel-description",
-          titulo: "#potencia-carousel-title",
-          dots: "#potencia-dots",
-          prevBtn: "#potencia-prev",
-          nextBtn: "#potencia-next"
-        },
-        autoPlayDelay: 0
-      });
-
-      const mainImage = document.querySelector('img[alt="Placeholder Image"]');
-      if (mainImage) {
-        // Cambiar imagen inicial
-        mainImage.src = potencia[0].imagen;
-        mainImage.alt = potencia[0].nombre;
-
-        // Override del método renderItem para incluir cambio de imagen principal
-        const originalRenderItem = potenciaCarousel.renderItem.bind(potenciaCarousel);
-        potenciaCarousel.renderItem = async function () {
-          await originalRenderItem();
-          const currentItem = potencia[this.currentIndex];
-          if (mainImage && currentItem.imagen) {
-            mainImage.src = currentItem.imagen;
-            mainImage.alt = currentItem.nombre;
-          }
-        };
-      }
-
-    } else {
-      containerPotencia.innerHTML = potencia.map(item => `
-        <div class="bg-white/80 rounded-xl md:flex md:flex-row justify-center items-center gap-4 p-4 shadow-xl cursor-pointer hover:bg-gray-100 transition-colors hidden md:block" data-potencia-id="${item.id}" data-imagen="${item.imagen}">
-          <div class="w-12 h-12 flex items-center justify-center rounded-xl">
-            ${item.icono}
-          </div>
-          <div class="grid-rows-2 space-y-2 inline-block">
-            <h3 class="font-bold">${item.nombre}</h3>
-            <p class="text-sm">${item.descripcion}</p>
-          </div>
-          <div class="-rotate-90">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </div>
+        <div class="-rotate-90">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
         </div>
-      `).join('');
-
-      const potenciaItems = containerPotencia.querySelectorAll('[data-potencia-id]');
-      const mainImage = document.querySelector('img[alt="Placeholder Image"]');
-
-      potenciaItems.forEach(item => {
-        item.addEventListener('click', function () {
-          const imagenSrc = this.getAttribute('data-imagen');
-          if (mainImage && imagenSrc) {
-            mainImage.src = imagenSrc;
-            mainImage.alt = this.querySelector('h3').textContent;
-          }
-
-          // Quitamos el fondo blanco de todos los ítems
-          potenciaItems.forEach(i => i.classList.remove('border-[#D6001C]', 'border', 'bg-gray-100'));
-
-          // Agregamos el fondo blanco solo al ítem seleccionado
-          this.classList.add('border-[#D6001C]', 'border', 'bg-gray-100');
-        });
-      });
-    }
-
+      </div>
+    `).join('')
+    
+    // Add click event listeners
+    const potenciaItems = containerPotencia.querySelectorAll('[data-potencia-id]')
+    const mainImage = document.querySelector('img[alt="Placeholder Image"]')
+    
+    potenciaItems.forEach(item => {
+      item.addEventListener('click', function() {
+        const imagenSrc = this.getAttribute('data-imagen')
+        if (mainImage && imagenSrc) {
+          mainImage.src = imagenSrc
+          mainImage.alt = this.querySelector('h3').textContent
+        }
+        
+        potenciaItems.forEach(i => i.classList.remove('bg-black/30'))
+        this.classList.add('bg-black/30')
+      })
+    })
   }
 }
+
 /* --------------------- Formulario ----------------------------- */
 function initFormulario() {
   // Script para el formulario

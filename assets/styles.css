@@ -76,7 +76,7 @@
 
 @media (max-width: 768px) {
     .boton-cta {
-        padding: 7px 12px;
+        padding: 6px 10px;
         gap: 5px;
         justify-content: center;
         inline-size: auto;
@@ -451,6 +451,7 @@ h3 {
 #navbar-menu a:hover {
     background-color: rgba(214, 0, 28, 0.1);
     padding-left: 1rem;
+    color: black;
 }
 
 /* Animación del botón hamburguesa */
