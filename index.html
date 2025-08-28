@@ -79,231 +79,9 @@
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-  <script src="./assets/scripts.js" async defer></script>
+  <script src="./assets/scripts.js" defer></script>
   <link rel="stylesheet" href="./assets/styles.css">
   <!-- ..... -->
-
-  <style>
-    /*SI O SI DEBO DECLARAR LA ALTURA DEL MAPA*/
-    #map {
-      height: 45vh;
-    }
-
-    body {
-      font-family: "Museo Sans";
-    }
-
-    .boton-gris {
-      cursor: pointer;
-      background-color: #616161 !important;
-      color: var(--blanco_ucasal);
-      padding: 5px 3em;
-      border: none;
-      font-size: 1.6em;
-      font-weight: 700;
-      font-family: "Museo Sans";
-    }
-
-    .vacio {
-      color: white;
-    }
-
-    .bigTitle {
-      display: inline-block;
-      color: #B11111;
-      font-weight: 900;
-      font-size: 1.3em;
-      font-family: "Museo Sans";
-    }
-
-    .buttonno {
-      position: relative;
-      transition: all 0.3s ease-in-out;
-      padding-inline: 1.25rem;
-      padding-block: 0.3rem;
-      background-color: #B11111;
-      border-radius: 9999px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      color: #ffff;
-      gap: 10px;
-      border: 3px solid #ffffff4d;
-      outline: none;
-      overflow: hidden;
-      font-size: 15px;
-    }
-
-    .zoom-effect {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-      transition: transform 0.3s ease;
-    }
-
-    .icon {
-      width: 18px;
-      height: 18px;
-      transition: all 0.3s ease-in-out;
-    }
-
-    .buttonno:hover {
-      transform: scale(1.05);
-      border-color: #fff9;
-    }
-
-    .buttonno:hover .icon {
-      transform: translate(2px);
-    }
-
-    .buttonno:hover::before {
-      animation: shine 1.5s ease-out infinite;
-    }
-
-    .buttonno::before {
-      content: "";
-      position: absolute;
-      width: 100px;
-      height: 100%;
-      background-image: linear-gradient(120deg,
-          rgba(255, 255, 255, 0) 30%,
-          rgba(255, 255, 255, 0.8),
-          rgba(255, 255, 255, 0) 70%);
-      top: 0;
-      left: -100px;
-      opacity: 0.6;
-    }
-
-    @keyframes shine {
-      0% {
-        left: -100px;
-      }
-
-      60% {
-        left: 100%;
-      }
-
-      to {
-        left: 100%;
-      }
-    }
-
-    @keyframes infinite-scroll {
-      from {
-        transform: translateX(0);
-      }
-
-      to {
-        transform: translateX(-100%);
-      }
-    }
-
-    .infinite-scroll {
-      animation: infinite-scroll 20s linear infinite;
-    }
-
-    .infinite-scroll img {
-      height: 100px;
-      margin: 0 50px;
-    }
-
-    .overdot {
-      display: flex;
-      /* Asegura que el contenido texto se centre */
-      background-color: rgba(0, 0, 0, 0.5);
-      /* Fondo negro con opacidad */
-      color: white;
-      /* Texto blanco */
-      /* transition: opacity 0.3s ease; */
-      /* Transici&oacute;n suave al cambiar */
-      /* opacity: 1; */
-      /* Siempre visible */
-    }
-
-    .step-dot {
-      position: relative;
-    }
-
-    .dot {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
-      transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-
-    .active .dot {
-      transform: translateY(-50%) scale(1.15);
-      background-color: #ee1818;
-    }
-
-    .active .dot svg,
-    .active .step-title text-black font-bold {
-      color: black;
-      font-weight: 600;
-      /* Cambia el color de los SVGs y los t&iacute;tulos a blanco */
-      transition: color 0.3s ease;
-    }
-
-    ol {
-      position: relative;
-    }
-
-    ol::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 20px;
-      width: 2px;
-      height: 80%;
-      background: #ccc;
-    }
-
-    /*************/
-
-
-    @keyframes aparecer {
-      0% {
-        opacity: 0;
-        transform: translateY(100px);
-      }
-
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .ocultar {
-      opacity: 0;
-    }
-
-    .animar {
-      animation: aparecer 0.5s;
-    }
-
-
-    @media (max-width: 991px) {
-      .porque_post {
-        width: unset;
-      }
-
-      .display-3 {
-        font-size: 2rem;
-      }
-
-      .banner-row {
-        position: relative;
-        margin: 0 !important;
-        display: inline;
-        /* width: 100vw; */
-      }
-
-      .ahora_dist {
-        width: 100vw;
-      }
-    }
-  </style>
 </head>
 
 <body>
@@ -437,7 +215,8 @@
           </span>
           <!-- Descripcion página -->
           <h3 class="text-lg text-gray-800"><br>
-            Mas de 60 años impulsando el talento de miles de estudiantes con educacion innovadora y un compromiso firme con el desarrollo personal y profesional.<br>
+            Mas de 60 años impulsando el talento de miles de estudiantes con educacion innovadora y un compromiso firme
+            con el desarrollo personal y profesional.<br>
           </h3>
           <!-- CTA -->
           <button onclick="location.href='#carreras'" class="boton-cta">Conoce nuestras carreras
@@ -450,8 +229,10 @@
           <div class="grid grid-cols-4 md:grid-cols-8 items-center text-center text-[#002F6C] font-semibold">
             <span class="md:col-start-1 text-lg leading-tight">+120<br><span class="text-base ml-1">Sedes</span></span>
             <span class="md:col-start-3 text-lg leading-tight">+80<br><span class="text-base">Carreras</span></span>
-            <span class="md:col-start-5 text-lg leading-tight">+100.000<br><span class="text-base">Estudiantes</span></span>
-            <span class="md:col-start-7 text-lg leading-tight">+70.000<br><span class="text-base">Graduados</span></span>
+            <span class="md:col-start-5 text-lg leading-tight">+100.000<br><span
+                class="text-base">Estudiantes</span></span>
+            <span class="md:col-start-7 text-lg leading-tight">+70.000<br><span
+                class="text-base">Graduados</span></span>
           </div>
         </div>
         <!-- COLUMNA DERECHA -->
@@ -509,7 +290,8 @@
   </main>
   <!-- Carreras -->
   <section class="carreras-section-brand font-sans py-[30px]">
-    <div class="bg-[url(./public/potencia/Modalidades.webp)] absolute inset-0 bg-no-repeat bg-cover bg-center z-20"></div>
+    <div class="bg-[url(./public/potencia/Modalidades.webp)] absolute inset-0 bg-no-repeat bg-cover bg-center z-20">
+    </div>
     <div class="absolute inset-0 hidden md:block bg-black/30 z-10"></div>
     <div class="w-full max-w-4xl p-6 mx-auto z-30 relative">
       <div class="text-center text-white mb-5 font-bold">
@@ -820,13 +602,12 @@
   </div>
   <div id="financiavenecia" class="mb-5"></div>
   <!-- FINANCIA ARANCELES -->
-  <div class="relative bg-fixed bg-center bg-cover"
-    style="background-image: url('/landing/ingreso-carreras-ucasal/close-up-person-doing-online-shopping.jpg');">
+  <div class="relative bg-fixed bg-center bg-cover" style="background-image: url('./public/tarjeta.webp');">
     <div class="absolute inset-0 bg-black opacity-50"></div>
     <div class="relative z-10 contenedor">
-      <h2 class="py-5 text-white font-bold font-sans shadow-black">Financia tus aranceles con:
+      <h2 class="pt-5 text-white font-bold font-sans shadow-black">Financia tus aranceles con:
       </h2>
-      <div class="grid my-5 text-white grid-cols-2" id="aranceles">
+      <div class="flex flex-row justify-evenly space-x-6 my-5 text-white" id="aranceles">
         <!-- Dinamico -->
       </div>
     </div>
@@ -841,12 +622,202 @@
           <iframe src="https://ucasal.edu.ar/mapa_sedes/mapa_sedes_ucasal.html"
             style="height: 45vh;width:100%; border: 0;" allowfullscreen></iframe>
         </div>
-        <!-- Fila 1, Columna 2 - Recorrido 360 -->
-        <div class="flex flex-col justify-start overflow-hidden">
-          <h2 class="mb-5 bigTitle shadow-black"><span style="color: rgb(97, 96, 96)">Nuestro campus:</span></h2>
-          <iframe src="https://ucasal.edu.ar/recorrido360/" style="height: 45vh;width:100%; border: 0;"
-            class="shadow video"></iframe>
-        </div>
+        <!-- Fila 1, Columna 2 - Preguntas Frecuentes -->
+        <section id="faq" aria-labelledby="faq-title" class="flex justify-start flex-col">
+          <div class="text-center mb-2">
+            <h2 id="faq-title" class="text-2xl font-bold tracking-tight">Preguntas frecuentes</h2>
+          </div>
+          <div
+            class="divide-y divide-gray-200 border border-gray-200 rounded-xl bg-white shadow-sm ">
+            <!-- ITEM -->
+            <div class="p-4">
+              <h3>
+                <button type="button" class="flex w-full items-center justify-between text-left" aria-expanded="false"
+                  aria-controls="faq-panel-1" data-faq-question="¿Qué modalidades ofrecen en UCASAL? "
+                  data-analytics="faq_toggle"> <span class="text-base font-medium">¿Qué modalidades ofrecen en UCASAL?
+                  </span>
+                  <svg class="h-5 w-5 shrink-0 transition-transform duration-200" viewBox="0 0 20 20"
+                    fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd"
+                      d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 011.08 1.04l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </button>
+              </h3>
+              <div id="faq-panel-1" role="region" aria-labelledby="faq-q-1"
+                class="mt-2 hidden border-l-2 border-blue-600 pl-2">
+                <p class="text-sm text-gray-700">
+                  UCASAL ofrece tres modalidades de estudio pensadas para vos.
+                  Elegí la que mejor se adapte a tu estilo de vida.<br>
+                  <b>Modalidad Presencial:</b> cursás
+                  en nuestro campus universitario en Salta y vivís la experiencia al máximo, con
+                  clases en aula y actividades académicas integrales.<br>
+                  <b>Modalidad a Distancia:</b> cursado 100% online con exámenes
+                  finales presenciales en la sede UCASAL más cercana, disponible en más de 120
+                  puntos del país.<br>
+                  <b>Modalidad Home:</b> cursado y exámenes 100% virtuales, ideal para
+                  estudiar desde casa, estés donde estés, desde cualquier parte del mundo
+                </p>
+              </div>
+            </div>
+
+            <!-- DUPLICÁ DESDE ACÁ PARA MÁS ITEMS -->
+            <div class="p-4">
+              <h3>
+                <button type="button" class="flex w-full items-center justify-between text-left" aria-expanded="false"
+                  aria-controls="faq-panel-2" data-faq-question="¿El título que otorga UCASAL tiene validez nacional? "
+                  data-analytics="faq_toggle">
+                  <span class="text-base font-medium">¿El título que otorga UCASAL tiene validez nacional? </span>
+                  <svg class="h-5 w-5 shrink-0 transition-transform duration-200" viewBox="0 0 20 20"
+                    fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd"
+                      d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 011.08 1.04l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </button>
+              </h3>
+              <div id="faq-panel-2" role="region" class="mt-2 hidden border-l-2 border-blue-600 pl-2">
+                <p class="text-sm text-gray-700">
+                  Sí, los títulos de UCASAL tienen validez nacional y están reconocidos por el Ministerio de Educación
+                  de la Nacion.
+                </p>
+              </div>
+            </div>
+
+            <div class="p-4">
+              <h3>
+                <button type="button" class="flex w-full items-center justify-between text-left" aria-expanded="false"
+                  aria-controls="faq-panel-3"
+                  data-faq-question="¿Puedo acceder a pasantías o prácticas profesionales mientras estudio en UCASAL?"
+                  data-analytics="faq_toggle">
+                  <span class="text-base font-medium">¿Puedo acceder a pasantías o prácticas profesionales mientras
+                    estudio en UCASAL?</span>
+                  <svg class="h-5 w-5 shrink-0 transition-transform duration-200" viewBox="0 0 20 20"
+                    fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd"
+                      d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 011.08 1.04l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </button>
+              </h3>
+              <div id="faq-panel-3" role="region" class="mt-2 hidden border-l-2 border-blue-600 pl-2">
+                <p class="text-sm text-gray-700">
+                  Sí, durante tu carrera en UCASAL podes acceder a pasantías y prácticas profesionales a través de
+                  convenios con empresas, instituciones y organismos públicos. Estas experiencias te permiten adquirir
+                  experiencia real en el ámbito laboral y complementar tu formación académica
+                </p>
+              </div>
+            </div>
+
+            <div class="p-4">
+              <h3>
+                <button type="button" class="flex w-full items-center justify-between text-left" aria-expanded="false"
+                  aria-controls="faq-panel-4"
+                  data-faq-question="¿En UCASAL puedo acceder a becas?"
+                  data-analytics="faq_toggle">
+                  <span class="text-base font-medium"> ¿En UCASAL puedo acceder a becas? </span>
+                  <svg class="h-5 w-5 shrink-0 transition-transform duration-200" viewBox="0 0 20 20"
+                    fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd"
+                      d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 011.08 1.04l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </button>
+              </h3>
+              <div id="faq-panel-4" role="region" class="mt-2 hidden border-l-2 border-blue-600 pl-2">
+                <p class="text-sm text-gray-700">
+                  En UCASAL, contamos con diversas becas que te ayudan a
+                  financiar tus estudios. Ya sea que elijas la modalidad presencial o a
+                  distancia, podés acceder a beneficios económicos que hacen más accesible tu
+                  carrera universitaria.
+                </p>
+              </div>
+            </div>
+
+            <div class="p-4">
+              <h3>
+                <button type="button" class="flex w-full items-center justify-between text-left" aria-expanded="false"
+                  aria-controls="faq-panel-5"
+                  data-faq-question="¿Cuáles son los requisitos para inscribirse en una carrera
+                    universitaria en UCASAL?"
+                  data-analytics="faq_toggle">
+                  <span class="text-base font-medium">¿Cuáles son los requisitos para inscribirse en una carrera
+                    universitaria en UCASAL?</span>
+                  <svg class="h-5 w-5 shrink-0 transition-transform duration-200" viewBox="0 0 20 20"
+                    fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd"
+                      d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 011.08 1.04l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </button>
+              </h3>
+              <div id="faq-panel-5" role="region" class="mt-2 hidden border-l-2 border-blue-600 pl-2">
+                <p class="text-sm text-gray-700">
+                  Para inscribirte en una carrera en UCASAL, necesitás completar:
+                <ul class="list-disc list-inside">
+                  <li>Nombre y apellido</li>
+                  <li>DNI, Cédula o Pasaporte</li>
+                  <li>Correo electrónico y teléfono</li>
+                  <li>Carrera, modalidad y sede cercana</li>
+                </ul>
+                Con estos datos ya podés iniciar tu inscripción y dar el primer paso hacia tu futuro universitario.
+                </p>
+              </div>
+            </div>
+
+            <!-- Agregá más ítems según necesites -->
+          </div>
+        </section>
+        <script>
+          (function () {
+            const items = document.querySelectorAll('#faq button[aria-controls]');
+            const singleOpen = true; // poné false si querés que se abran múltiples
+
+            function toggle(btn, expand) {
+              const panelId = btn.getAttribute('aria-controls');
+              const panel = document.getElementById(panelId);
+              btn.setAttribute('aria-expanded', String(expand));
+              panel.classList.toggle('hidden', !expand);
+
+              // Rotación del ícono
+              const icon = btn.querySelector('svg');
+              if (icon) icon.style.transform = expand ? 'rotate(180deg)' : 'rotate(0deg)';
+              if (expand) {
+
+                // Agregar clase de efecto de apertura al panel
+                panel.classList.add('faq-menu-open');
+
+
+                // Efecto de resaltado temporal
+                setTimeout(() => {
+                  panel.classList.remove('faq-menu-open');
+                }, 300);
+
+                // Scroll suave hacia el elemento abierto
+                setTimeout(() => {
+                  btn.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest'
+                  });
+                }, 150);
+              } else {
+                panel.classList.remove('faq-menu-open');
+              }
+            }
+
+            items.forEach((btn) => {
+              btn.addEventListener('click', () => {
+                const isOpen = btn.getAttribute('aria-expanded') === 'true';
+                if (singleOpen) {
+                  items.forEach((b) => {
+                    if (b !== btn) toggle(b, false)
+                  });
+                }
+                toggle(btn, !isOpen);
+              });
+            });
+          })();
+        </script>
       </div>
       <!-- Botones del Mapa -->
       <div class="grid items-center justify-between grid-cols-1 gap-4 p-4 md:grid-cols-2">
@@ -871,36 +842,25 @@
       </div>
     </section>
   </div>
-  <footer class="bg-[#B11111] rounded-b-lg">
+
+  <footer class="bg-[#B11111]">
     <div class="contenedor">
       <div class="w-full py-4 lg:py-4">
-        <div class="relative">
-          <div class="flex md:absolute md:-bottom-[45px] md:right-0 mb-6 md:mb-0">
-            <a href="#" class="flex items-center">
-              <!-- Aquí pasamos el prop isoColor como true para que el logo sea blanco -->
-              <img src=/landing/ingreso-carreras-ucasal/isologoBlanco.svg class="ucasal-logo w-36" alt="UCASAL LOGO" />
-            </a>
-          </div>
+        <div class="flex justify-center">
+          <a href="#" class="flex items-center">
+            <!-- Aquí pasamos el prop isoColor como true para que el logo sea blanco -->
+            <img src=/landing/ingreso-carreras-ucasal/isologoBlanco.svg class="ucasal-logo w-48" alt="UCASAL LOGO" />
+          </a>
         </div>
-        <a href="https://www.ucasal.edu.ar" class="text-xs text-white">
-          <i class="fas fa-home"></i> www.ucasal.edu.ar
-        </a>
-        <p class="text-xs text-white">
-          <i class="fas fa-phone"></i> 54 0387 4268800 / 0810-555-(822725)
-        </p>
-        <p class="text-xs text-white">
-          <i class="fas fa-envelope"></i> admision@ucasal.edu.ar
-        </p>
         <hr class="my-2 border-gray-200 sm:mx-auto dark:border-white-700 lg:my-4" />
         <div class="flex justify-center align-middle">
           <span class="text-xs text-white dark:text-white">
-            &copy; 2024 <a href="https://www.ucasal.edu.ar/" class="hover:underline">UCASAL</a>. Construi tu historia.
+            &copy; 2025 UCASAL. Construi tu historia.
           </span>
         </div>
       </div>
     </div>
   </footer>
-
 
   <!--Google Analytics-->
   <script>

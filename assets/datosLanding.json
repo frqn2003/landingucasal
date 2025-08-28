@@ -61,14 +61,18 @@
     "&#127942;Construí<span class='text-sm font-extrabold lg:text-lg'>&nbsp;<strong>tu historia</strong></span>"
   ],
   "codcaroff": [],
-  "cerradas": "<span>&#128274; &#161;Inscripciones<span class='text-sm font-extrabold lg:text-lg'>&nbsp;Cerradas</span>!</span>",
+  "cerradas": [
+    "<span>&#128274; &#161;Inscripciones<span class='text-sm font-extrabold lg:text-lg'>&nbsp;Cerradas</span>!</span>",    
+    "&#127942;Construí<span class='text-sm font-extrabold lg:text-lg'>&nbsp;<strong>tu historia</strong></span>"
+  ],
   "tarjeta": [
     {
       "id": "macro",
-      "nombre": "Macro Click",
+      "nombre": "Macro",
       "imagen": "/landing/ingreso-carreras-2022/convenios/macro.svg",
-      "descripcion": "Elegí abonar con<b> MACRO CLICK</b><br>en 1 a 3 cuotas sin interés",
-      "activa": false
+      "descripcion": "Elegí abonar con<b> MACRO </b><br>en 1 a 3 cuotas sin interés",
+      "activa": true,
+      "orden": 1
     },
     {
       "id": "naranja",
@@ -76,7 +80,7 @@
       "imagen": "/landing/ingreso-carreras-2022/convenios/naranjax.svg",
       "descripcion": "Elegí abonar con<b> Naranja X</b><br> en Z y 5 cuotas sin interés",
       "activa": true,
-      "orden": 1
+      "orden": 2
     },
     {
       "id": "banco",
@@ -84,7 +88,7 @@
       "imagen": "/landing/ingreso-carreras-2022/convenios/banco.svg",
       "descripcion": "Elegí abonar con<b> Tarjeta BanCo</b><br>de 1 hasta 6 cuotas sin interés",
       "activa": true,
-      "orden": 2
+      "orden": 3
     }
   ],
 "banner": {

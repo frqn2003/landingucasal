@@ -200,7 +200,7 @@
             "duracion": "4 años",
             "popular": true,
             "destacada": false,
-            "categoria": "Ciencias Sociales",
+            "categoria": "Negocios",
             "imagen": "./public/areas/sociales.svg",
             "estudiantes": 163
         },
@@ -624,7 +624,7 @@
             "duracion": "3 años",
             "popular": true,
             "destacada": false,
-            "categoria": "Ciencias Económicas y Administración",
+            "categoria": "Administración, Ciencias Económicas y Negocios",
             "imagen": "./public/areas/administracion.svg",
             "estudiantes": 249
         },
@@ -884,7 +884,7 @@
             "duracion": "4 años",
             "popular": true,
             "destacada": false,
-            "categoria": "Ciencias Económicas y Administración",
+            "categoria": "Administración, Ciencias Económicas y Negocios",
             "imagen": "./public/areas/administracion.svg",
             "estudiantes": 111
         },
@@ -1055,7 +1055,7 @@
             "duracion": "2 años",
             "popular": true,
             "destacada": false,
-            "categoria": "Ciencias Económicas y Económicas",
+            "categoria": "Ciencias Económicas y Administración",
             "imagen": "./public/areas/economia.svg",
             "estudiantes": 16
         },
@@ -1148,30 +1148,30 @@
         {
             "id": "popular",
             "nombre": "Más Populares",
-            "filterType": "popular"
+            "filtroTipo": "popular"
         },
         {
             "id": "destacada",
             "nombre": "Destacadas",
-            "filterType": "destacada"
+            "filtroTipo": "destacada"
         },
         {
             "id": "1",
             "nombre": "Presencial",
-            "filterType": "modalidad",
+            "filtroTipo": "modalidad",
             "value": 1
         },
         {
             "id": "7",
-            "nombre": "Virtual/Online",
-            "filterType": "modalidad",
+            "nombre": "Online",
+            "filtroTipo": "modalidad",
             "value": 7
         }
     ],
     "filtrosArea": [
         "ingeniería",
         "tecnología",
-        "económicas",
+        "Económicas y Negocios",
         "salud",
         "sociales",
         "Humanidades",
@@ -1187,7 +1187,7 @@
             "id": 1,
             "nombre": "Presencial",
             "descripcion": "Cursá en un campus pensado para vos. Aprendé, conectá y crecé en un entorno que potencia tu formación.",
-            "imagen": "https://placehold.co/60x60",
+            "imagen": "./public/modalidades/iconopresencial.webp",
             "caracteristicas": [
                 "Infraestructura moderna y completa.",
                 "Rutina clara y horarios fijos.",
@@ -1199,8 +1199,8 @@
         {
             "id": 7,
             "nombre": "Online",
-            "descripcion": "Cursá desde donde estés, aprendiendo a tu ritmo y manejando tus propios tiempos sin dejar de lado tus actividades.",
-            "imagen": "https://placehold.co/60x60",
+            "descripcion": "Cursá desde donde estés, a tu ritmo y manejando tus propios tiempos sin dejar de lado tus actividades.",
+            "imagen": "./public/modalidades/iconoonline.webp",
             "caracteristicas": [
                 "Espacios virtuales de aprendizaje.",
                 "Acompañamiento continuo.",
